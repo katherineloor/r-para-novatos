@@ -22,48 +22,28 @@ A parte mais importante de escrever código é torná-lo legível e compreensív
 O ideal é que outra pessoa seja capaz de pegar seu código e ser capaz de entender
 o que ele faz.
 
+## Documentação: diga-nos qual e por quê, não como
 
-## Documentation: tell us what and why, not how
+Quando você começa pela primeira vez, seus comentários muitas vezes descrevem o que um comando faz, dado que você ainda está aprendendo por si mesmo e isso pode lhe ajudar a esclarecer conceitos e lembrá-lo(a) mais tarde. No entanto, estes comentários não são particularmente úteis futuramente quando você não se lembra que problema seu código estava tentando resolver. Tente também incluir comentários que lhe digam * por que * você está resolvendo um problema, e * qual * problema
+isso é. O * como * pode vir depois disso: é um detalhe de implementação que você a princípio não deve ter que se preocupar.
 
-When you first start out, your comments will often describe what a command does,
-since you're still learning yourself and it can help to clarify concepts and
-remind you later. However, these comments aren't particularly useful later on
-when you don't remember what problem your code is trying to solve. Try to also
-include comments that tell you *why* you're solving a problem, and *what* problem
-that is. The *how* can come after that: it's an implementation detail you ideally
-shouldn't have to worry about.
+## Mantenha seu código modular
 
-## Keep your code modular
+Nossa recomendação é que você separe sua suas funções de seus scripts de análise, armazenando-as em um arquivo separado que você possa linkar (`source`) ao abrir sua sessão do R em determinado projeto. Esta abordagem é bacana porque lhe permite ter um script de análise organizado e um repositório de funções úteis que podem ser carregadas em qualquer script de análise em seu projeto. Isso também permite agrupar funções em conjunto facilmente.
 
-Our recommendation is that you should separate your functions from your analysis
-scripts, and store them in a separate file that you `source` when you open the R
-session in your project. This approach is nice because it leaves you with an
-uncluttered analysis script, and a repository of useful functions that can be
-loaded into any analysis script in your project. It also lets you group related
-functions together easily.
+## Dividir o problema em pequenos pedaços
 
-## Break down problem into bite size pieces
+Quando você começa pela primeira vez, resolver problemas e escrever funções podem ser tarefas assustadores e difíceis de separar devido sua inexperiência com o código. Tente quebrar o seu problema em pequenos pedaços e se preocupar com os detalhes de implementação mais tarde: continue dividindo o problema em funções cada vez menores até que você chegar a um ponto onde você pode codificar uma solução e construir o problema de volta a partir daí.
 
-When you first start out, problem solving and function writing can be daunting
-tasks, and hard to separate from code inexperience. Try to break down your
-problem into digestible chunks and worry about the implementation details later:
-keep breaking down the problem into smaller and smaller functions until you
-reach a point where you can code a solution, and build back up from there.
+## Saiba que seu código está fazendo a coisa certa
 
-## Know that your code is doing the right thing
+Certifique-se de testar suas funções!
+  
+## Não se ~~reprima~~ repita
 
-Make sure to test your functions!
+As funções possibilitam sua reutilização fácil dentro de um projeto. Se você vir blocos semelhantes de linhas de código ao longo do seu projeto, esses são candidatos para se tornarem funções.
 
-## Don't repeat yourself
+Se os cálculos forem executados através de uma série de funções, então o projeto torna-se mais modular e mais fácil de manusear. Este é especialmente o caso para o qual uma determinada entrada resulta sempre uma saída particular.
 
-Functions enable easy reuse within a project. If you see blocks of similar
-lines of code through your project, those are usually candidates for being
-moved into functions.
-
-If your calculations are performed through a series of functions, then the
-project becomes more modular and easier to change. This is especially the case
-for which a particular input always gives a particular output.
-
-## Remember to be stylish
-
-Apply consistent style to your code.
+## Lembre-se de ser elegante
+Use um estilo consistente ao longo de código.
