@@ -1,18 +1,18 @@
 ---
-title: Escrever Bom Software
+title: Writing Good Software
 teaching: 15
-execises: 0
+exercises: 0
 questions:
-- "Como escrever softwares que outras pessoas possam usar?"
+- "How can I write software that other people can use?"
 objectives:
-- "Descrever as melhores práticas para escrever R e explicar e explicar a razão de cada uma delas".
+- "Describe best practices for writing R and explain the justification for each."
 keypoints:
-- "Documentar o que e por quê, não como."
-- "Reduzir programas em funções curtas de propósito único".
-- "Escreva testes re-executáveis."
-- "Não seja repetitivo"
-- "Não seja repetitivo."
-- "Seja consistente ao nomear, indentae e outros aspectos de formatação."
+- "Document what and why, not how."
+- "Break programs into short single-purpose functions."
+- "Write re-runnable tests."
+- "Don't repeat yourself."
+- "Don't repeat yourself."
+- "Be consistent in naming, indentation, and other aspects of style."
 source: Rmd
 ---
 
