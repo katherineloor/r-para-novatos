@@ -18,14 +18,11 @@ source: Rmd
 
 ## Tornar o código legível
   
-A parte mais importante de escrever código é torná-lo legível e compreensível.
-O ideal é que outra pessoa seja capaz de pegar seu código e ser capaz de entender
-o que ele faz.
+A parte mais importante de escrever código é torná-lo legível e compreensível. O ideal é que outra pessoa seja capaz de pegar seu código e ser capaz de entender o que ele faz.
 
 ## Documentação: diga-nos qual e por quê, não como
 
-Quando você começa pela primeira vez, seus comentários muitas vezes descrevem o que um comando faz, dado que você ainda está aprendendo por si mesmo e isso pode lhe ajudar a esclarecer conceitos e lembrá-lo(a) mais tarde. No entanto, estes comentários não são particularmente úteis futuramente quando você não se lembra que problema seu código estava tentando resolver. Tente também incluir comentários que lhe digam * por que * você está resolvendo um problema, e * qual * problema
-isso é. O * como * pode vir depois disso: é um detalhe de implementação que você a princípio não deve ter que se preocupar.
+Quando você começa pela primeira vez, seus comentários muitas vezes descrevem o que um comando faz, dado que você ainda está aprendendo por si mesmo e isso pode lhe ajudar a esclarecer conceitos e lembrá-lo(a) mais tarde. No entanto, estes comentários não são particularmente úteis futuramente quando você não se lembra que problema seu código estava tentando resolver. Tente também incluir comentários que lhe digam * por que * você está resolvendo um problema, e * qual * problema isso é. O * como * pode vir depois disso: é um detalhe de implementação que você a princípio não deve ter que se preocupar.
 
 ## Mantenha seu código modular
 
