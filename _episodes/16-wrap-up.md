@@ -16,12 +16,12 @@ keypoints:
 source: Rmd
 ---
 
-## Make code readable
+## Tornar o código legível
+  
+A parte mais importante de escrever código é torná-lo legível e compreensível.
+O ideal é que outra pessoa seja capaz de pegar seu código e ser capaz de entender
+o que ele faz.
 
-The most important part of writing code is making it readable and understandable.
-You want someone else to be able to pick up your code and be able to understand
-what it does: more often than not this someone will be you 6 months down the line,
-who will otherwise be cursing past-self.
 
 ## Documentation: tell us what and why, not how
 
