@@ -115,9 +115,9 @@ sessionInfo()
 
 
 ~~~
-R version 3.3.3 (2017-03-06)
-Platform: x86_64-apple-darwin16.4.0 (64-bit)
-Running under: macOS Sierra 10.12.3
+R version 3.3.0 (2016-05-03)
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+Running under: OS X 10.11.6 (El Capitan)
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
@@ -129,7 +129,7 @@ other attached packages:
 [1] checkpoint_0.3.18 stringr_1.2.0     knitr_1.15.1     
 
 loaded via a namespace (and not attached):
-[1] magrittr_1.5  tools_3.3.3   stringi_1.1.2 methods_3.3.3 evaluate_0.10
+[1] magrittr_1.5  tools_3.3.0   stringi_1.1.2 methods_3.3.0 evaluate_0.10
 ~~~
 {: .output}
 

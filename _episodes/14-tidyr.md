@@ -58,6 +58,19 @@ Load the packages
 
 ~~~
 library("tidyr")
+~~~
+{: .r}
+
+
+
+~~~
+Warning: package 'tidyr' was built under R version 3.3.2
+~~~
+{: .error}
+
+
+
+~~~
 library("dplyr")
 ~~~
 {: .r}
