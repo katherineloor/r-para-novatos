@@ -20,18 +20,20 @@ source: Rmd
 ```{r, include=FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("06-")
-# Silently load in the data so the rest of the lesson works
+# Carregando silenciosamente os dados para que o resto do tópico rode
 gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
 ```
 
 
-R has many powerful subset operators and mastering them will allow you to
-easily perform complex operations on any kind of dataset.
+O R tem vários operadores poderosos para subconjuntos e o domínio deles irá
+permitir que você facilmente utilize operações complexas em qualquer tipo de
+conjunto de dados.
 
-There are six different ways we can subset any kind of object, and three
-different subsetting operators for the different data structures.
+Existem seis diferentes maneiras de nós criarmos subconjuntos de qualquer tipo de
+objeto, e três diferentes operadores de subconjuntos para as diferentes
+estruturas de dados.
 
-Let's start with the workhorse of R: atomic vectors.
+Vamos começar com o carro chefe do R: vetores atômicos.
 
 ```{r}
 x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
@@ -39,13 +41,13 @@ names(x) <- c('a', 'b', 'c', 'd', 'e')
 x
 ```
 
-So now that we've created a dummy vector to play with, how do we get at its
-contents?
+Então, agora que nós criamos um vetor *dummy* para brincar, como nós temos acesso
+ao seu conteúdo?
 
-## Accessing elements using their indices
+## Acessando elementos usando seus índices
 
-To extract elements of a vector we can give their corresponding index, starting
-from one:
+Para extrair elementos de um vetor nós podemos dar seus correspondentes índices,
+começando por um:
 
 ```{r}
 x[1]
@@ -55,92 +57,95 @@ x[1]
 x[4]
 ```
 
-It may look different, but the square brackets operator is a function. For atomic vectors
-(and matrices), it means "get me the nth element".
+Isso pode parecer diferente, mas o operador par de colchetes é uma função. Para
+vetores atômicos (e matrizes), isso significa "me passe o *n*-ésimo elemento".
 
-We can ask for multiple elements at once:
+Nós podemos pedir por múltiplos elementos de uma única vez:
 
 ```{r}
 x[c(1, 3)]
 ```
 
-Or slices of the vector:
+Ou fatias do vetor:
 
 ```{r}
 x[1:4]
 ```
 
-the `:` operator creates a sequence of numbers from the left element to the right.
+O operador : cria uma sequência de números do elemento da esquerda até o da
+direita.
+
 ```{r}
 1:4
 c(1, 2, 3, 4)
 ```
 
 
-We can ask for the same element multiple times:
+Nós podemos pedir pelo mesmo elemento múltiplas vezes:
 
 ```{r}
 x[c(1,1,3)]
 ```
 
-If we ask for a number outside of the vector, R will return missing values:
+Se nós pedirmos por um número fora do vetor, o R retornará valores faltantes:
 
 ```{r}
 x[6]
 ```
 
-This is a vector of length one containing an `NA`, whose name is also `NA`.
+Este é um vetor de comprimento um contendo um `NA`, cujo nome é também `NA`.
 
-If we ask for the 0th element, we get an empty vector:
+Se nós pedirmos pelo elemento de índice 0, nós temos um vetor vazio:
 
 ```{r}
 x[0]
 ```
 
-> ## Vector numbering in R starts at 1
+> ## Numeração de vetores no R começa em 1
 >
-> In many programming languages (C and python, for example), the first
-> element of a vector has an index of 0. In R, the first element is 1.
+> Em várias linguagens de programação (C e python, por exemplo), o primeiro
+> elemento de um vetor possuí um indexador igual a 0. Em R, o primeiro elemento
+> é 1.
 {: .callout}
 
-## Skipping and removing elements
+## Pulando e removendo elementos
 
-If we use a negative number as the index of a vector, R will return
-every element *except* for the one specified:
+Se nós usarmos como indexador de um vetor um número negativo, o R irá retornar
+todo elemento *exceto* o elemento específicado:
 
 ```{r}
 x[-2]
 ```
 
 
-We can skip multiple elements:
+Nós podemos pular múltiplos elementos:
 
 ```{r}
-x[c(-1, -5)]  # or x[-c(1,5)]
+x[c(-1, -5)]  # ou x[-c(1,5)]
 ```
 
-> ## Tip: Order of operations
+> ## Dica: Ordem de operações
 >
-> A common trip up for novices occurs when trying to skip
-> slices of a vector. Most people first try to negate a
-> sequence like so:
+> Uma experiência em comum para os novatos ocorre quando se tenta pular
+> pedaços de um vetor. A maioria das pessoas primeiro tenta negar uma
+> sequência, como por exemplo:
 >
 > ```{r, error=TRUE, eval=FALSE}
 > x[-1:3]
 > ```
 >
-> This gives a somewhat cryptic error:
+> Isto retorna uma espécie de erro crítico:
 >
 > ```{r, error=TRUE, echo=FALSE}
 > x[-1:3]
 > ```
 >
-> But remember the order of operations. `:` is really a function, so
-> what happens is it takes its first argument as -1, and second as 3,
-> so generates the sequence of numbers: `c(-1, 0, 1, 2, 3)`.
+> Mas lembre da ordem das operações. : é realmente uma função, então o que
+> acontece é que ele pega seu primento argumento como -1, o segundo como 3,
+> e então gera a sequência de números: `c(-1, 0, 1, 2, 3)`.
 >
-> The correct solution is to wrap that function call in brackets, so
-> that the `-` operator applies to the results:
+> A solução correta é colocar o que a função chama em parênteses, assim o
+> operador `-` é aplicado ao resultado:
 >
 > ```{r}
 > x[-(1:3)]
@@ -148,17 +153,17 @@ x[c(-1, -5)]  # or x[-c(1,5)]
 {: .callout}
 
 
-To remove elements from a vector, we need to assign the results back
-into the variable:
+Para remover elementos de um vetor, nós precisamos atribuir o resultado
+novamente na variável:
 
 ```{r}
 x <- x[-4]
 x
 ```
 
-> ## Challenge 1
+> ## Desafio 1
 >
-> Given the following code:
+> Dado o código a seguir:
 >
 > ```{r}
 > x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
@@ -166,15 +171,15 @@ x
 > print(x)
 > ```
 >
-> Come up with at least 3 different commands that will produce the following output:
+> Forneça ao menos 3 diferentes comandos que produzem o seguinte resultado:
 >
 > ```{r, echo=FALSE}
 > x[2:4]
 > ```
 >
-> After you find 3 different commands, compare notes with your neighbour. Did you have different strategies?
+> Depois de você encontrar 3 diferentes comandos, compare anotações com seu colega. Vocês tiveram diferentes estratégias?
 >
-> > ## Solution to challenge 1
+> > ## Resposta do desafio 1
 > >
 > > ```{r}
 > > x[2:4]
@@ -192,40 +197,40 @@ x
 > {: .solution}
 {: .challenge}
 
-## Subsetting by name
+## Subconjuntos por nome
 
-We can extract elements by using their name, instead of index:
+Nós podemos extrair elementos através de seu nome, invés do indexador:
 
 ```{r}
 x[c("a", "c")]
 ```
 
-This is usually a much more reliable way to subset objects: the
-position of various elements can often change when chaining together
-subsetting operations, but the names will always remain the same!
+Esta é uma maneira muito mais confiável de dividir objetos: a posição de vários
+elementos pode frequentemente mudar quando encadeamos operações de subconjuntos,
+mas os nomes sempre permanecerão os mesmos!
 
-Unfortunately we can't skip or remove elements so easily.
+Infelizmente não podemos pular ou remover elementos tão facilmente.
 
-To skip (or remove) a single named element:
+Para pular (ou remover) um único elemento nomeado:
 
 ```{r}
 x[-which(names(x) == "a")]
 ```
 
-The `which` function returns the indices of all `TRUE` elements of its argument.
-Remember that expressions evaluate before being passed to functions. Let's break
-this down so that its clearer what's happening.
+A função `which` retorna os índices de todos os elementos `TRUE` de seu
+argumento. Lembre que expressões são avaliadas antes de serem passadas para
+funções. Vamos mostrar passo à passo para ficar claro o que está acontecendo.
 
-First this happens:
+Primeiro isso acontece:
 
 ```{r}
 names(x) == "a"
 ```
 
-The condition operator is applied to every name of the vector `x`. Only the
-first name is "a" so that element is TRUE.
+O operador condicional é aplicado a todo nome do vetor `x`. Apenas o primeiro
+nome é `a` e por isso seu elemento é `TRUE`.
 
-`which` then converts this to an index:
+`which` então converte isto para um indexador:
 
 ```{r}
 which(names(x) == "a")
@@ -233,22 +238,22 @@ which(names(x) == "a")
 
 
 
-Only the first element is `TRUE`, so `which` returns 1. Now that we have indices
-the skipping works because we have a negative index!
+Apenas o primeiro elemento é `TRUE`, então `which` retorna 1. Agora que temos
+índices podemos pular um elemento, pois temos um index negativo!
 
-Skipping multiple named indices is similar, but uses a different comparison
-operator:
+Pular múltiplos índices nomeados é similar, mas usa um operador de comparação
+diferente:
 
 ```{r}
 x[-which(names(x) %in% c("a", "c"))]
 ```
 
-The `%in%` goes through each element of its left argument, in this case the
-names of `x`, and asks, "Does this element occur in the second argument?".
+O `%in%` vai em cada elemento de seu argumento à esquerda, nesse caso os nomes
+de `x`, e pergunta, "Esse elemento ocorre no segundo argumento?"
 
-> ## Challenge 2
+> ## Desafio 2
 >
-> Run the following code to define vector `x` as above:
+> Rode o código a seguir para definir o vetor `x` como acima:
 >
 > ```{r}
 > x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
@@ -256,159 +261,159 @@ names of `x`, and asks, "Does this element occur in the second argument?".
 > print(x)
 > ```
 >
-> Given this vector `x`, what would you expect the following to do?
+> Dado este vetor `X`, o que você espera que o código a seguir faça?
 >```{r, eval=FALSE}
 > x[-which(names(x) == "g")]
 >```
 >
-> Try out this command and see what you get. Did this match your expectation?
-> Why did we get this result? (Tip: test out each part of the command on it's own - this is a useful debugging strategy)
+> Teste este comando e veja o que você recebe. É o que você esperava?
+> Por que nós recebemos este resultado? (Dica: teste cada parte do comando - esta é uma ferramenta útil de depuração, *debugging*)
 >
-> Which of the following are true:
+> Quais das afirmações a seguir são verdadeiras:
 >
-> * A) if there are no `TRUE` values passed to `which`, an empty vector is returned
-> * B) if there are no `TRUE` values passed to `which`, an error message is shown
-> * C) `integer()` is an empty vector
-> * D) making an empty vector negative produces an "everything" vector
-> * E) `x[]` gives the same result as `x[integer()]`
+> * A) se não existem valores `TRUE` passados ao `witch`, um vetor vazio é retornado
+> * B) se não existem valores `TRUE` passados ao `witch`, uma mensagem de erro é retornada
+> * C) `integer` é um vetor vazio
+> * D) fazendo um vetor vazio negativo é retornado um vetor "com todo mundo"
+> * E) `x[]` dá o mesmo resultado que `x[integer()]`
 >
-> > ## Solution to challenge 2
+> > ## Resposta do desafio 2
 > >
-> > A and C are correct.
+> > A e C estão corretas.
 > >
-> > The `which` command returns the index of every `TRUE` value in its
-> > input. The `names(x) == "g"` command didn't return any `TRUE` values. Because
-> > there were no `TRUE` values passed to the `which` command, it returned an
-> > empty vector. Negating this vector with the minus sign didn't change its
-> > meaning. Because we used this empty vector to retrieve values from `x`, it
-> > produced an empty numeric vector. It was a `named numeric` empty vector
-> > because the vector type of x is "named numeric" since we assigned names to the
-> > values (try `str(x)` ).
+> > O comando `which` retorna o indexador de todo valor `TRUE` em sua entrada,
+> > *input*. O comando `names(x) == "g"` não retorna cada valor `TRUE`. Se não 
+> > existem valores `TRUE` passados ao comando `which`, é retornado um vetor vazio.
+> > Transformado este vetor em negativo com um sinal de menos não altera seu
+> > significado. Pois nós usamos este vetor vazio para recuperar valores de `x`, o
+> > que produz um vetor numérico vazio. Ele é um vetor `numérico nomeado` vazio
+> > porque o tipo do vetor `x` é "numérico nomeado" desde que nós atribuímos nomes
+> > aos valores (tente `str(x)`).
 > {: .solution}
 {: .challenge}
 
-> ## Tip: Non-unique names
+> ## Dica: Nomes não-únicos
 >
-> You should be aware that it is possible for multiple elements in a
-> vector to have the same name. (For a data frame, columns can have
-> the same name --- although R tries to avoid this --- but row names
-> must be unique.) Consider these examples:
+> Você deve estar consciente de que é possível que múltiplos elementos de um vetor
+> tenham o mesmo nome. (Para um *data frame*, colunas podem ter o mesmo nome -
+> embora o R tente evitar isso - mas o nome das linhas deve ser único). Considere
+> estes exemplos:
 >
 >```{r}
 > x <- 1:3
 > x
 > names(x) <- c('a', 'a', 'a')
 > x
-> x['a']  # only returns first value
-> x[which(names(x) == 'a')]  # returns all three values
+> x['a']  # retorna apenas o primeiro valor
+> x[which(names(x) == 'a')]  # retorna todos os três valores
 > ```
 {: .callout}
 
 
-> ## Tip: Getting help for operators
+> ## Dica: Tendo ajuda com operadores
 >
-> Remember you can search for help on operators by wrapping them in quotes:
-> `help("%in%")` or `?"%in%"`.
+> Lembre-se que você pode procurar por ajuda para operadores colocando eles entre aspas:
+> `help("%in%")` ou `?"%in%"`.
 >
 {: .callout}
 
 
-So why can't we use `==` like before? That's an excellent question.
+Então por que não podemos usar `==` igual antes? Essa é uma excelente pergunta.
 
-Let's take a look at the comparison component of this code:
+Vamos dar uma olhada no componente de comparação deste código:
 
 ```{r}
 names(x) == c('a', 'c')
 ```
 
-Obviously "c" is in the names of `x`, so why didn't this work? `==` works
-slightly differently than `%in%`. It will compare each element of its left argument
-to the corresponding element of its right argument.
+Obviamente "c" está como um dos nomes de `x`, então por que isto não funcionou?
+`==` trabalha ligeiramente diferente de `%in%`. Ele irá comparar cada elemento de
+seu argumento a esquerda com o correspondente elemento do argumento a direita.
 
-Here's a mock illustration:
+Aqui uma ilustração:
 
 ```{r, eval=FALSE}
-c("a", "b", "c", "e")  # names of x
-   |    |    |    |    # The elements == is comparing
+c("a", "b", "c", "e")  # nomes de x
+   |    |    |    |    # Os elementos == são comparados
 c("a", "c")
 ```
 
-When one vector is shorter than the other, it gets *recycled*:
+Quando um vetor é menor que o outro, ele é *reciclado*:
 
 ```{r, eval=FALSE}
-c("a", "b", "c", "e")  # names of x
-   |    |    |    |    # The elements == is comparing
+c("a", "b", "c", "e")  # nomes de x
+   |    |    |    |    # Os elementos == são comparados
 c("a", "c", "a", "c")
 ```
 
-In this case R simply repeats `c("a", "c")` twice. If the longer
-vector length isn't a multiple of the shorter vector length, then
-R will also print out a warning message:
+Neste caso o R simplesmente repete c("a", "c") duas vezes. Se o
+tamando do maior vetor não for múltiplo do tamanho do menor vetor,
+o R também irá retornar uma mensagem de aviso:
 
 ```{r}
 names(x) == c('a', 'c', 'e')
 ```
 
-This difference between `==` and `%in%` is important to remember,
-because it can introduce hard to find and subtle bugs!
+Essa diferença entre `==` e `%in%` é importante de se lembrar, pois
+pode gerar *bugs* sutis e difíceis de encontrar!
 
-## Subsetting through other logical operations
+## Subconjuntos através de outras operações lógicas
 
-We can also more simply subset through logical operations:
+Nós podemos também criar subconjuntos mais simples atráves de
+operações lógicas:
 
 ```{r}
 x[c(TRUE, TRUE, FALSE, FALSE)]
 ```
 
-Note that in this case, the logical vector is also recycled to the
-length of the vector we're subsetting!
+Note que neste caso, o vetor lógico é também reciclado para o
+tamanho do vetor que estamos fazendo o subconjunto!
 
 ```{r}
 x[c(TRUE, FALSE)]
 ```
 
-Since comparison operators evaluate to logical vectors, we can also
-use them to succinctly subset vectors:
+Já que operadores de comparação avaliam para vetores lógicos, nós
+podemos usá-los para sucintamente criar subconjuntos de vetores:
 
 ```{r}
 x[x > 7]
 ```
 
-> ## Tip: Combining logical conditions
+> ## Dica: Combinanndo condições lógicas
 >
-> There are many situations in which you will wish to combine multiple logical
-> criteria. For example, we might want to find all the countries that are
-> located in Asia **or** Europe **and** have life expectancies within a certain
-> range. Several operations for combining logical vectors exist in R:
+> Existem várias situações em que você vai desejar combinar múltiplos critérios
+> lógicos. Por exemplo, nós podemos querer encontrar todos os países da Ásia *ou*
+> da Europa *e* que possuem expectativa de vida dentro de certo intervalo.
+> Existem no R várias operações para combinar vetores lógicos:
 >
->  * `&`, the "logical AND" operator: returns `TRUE` if both the left and right
->    are `TRUE`.
->  * `|`, the "logical OR" operator: returns `TRUE`, if either the left or right
->    (or both) are `TRUE`.
+>  * `&`, o operador lógico "E": retorna `TRUE` se tanto a esquerda quanto a
+     direita forem `TRUE`.
+>  * `|`, o operador lógico "OU": retorna `TRUE`, se a esquerda ou direita (ou 
+     ambas) forem `TRUE`.
 >
-> The recycling rule applies with both of these, so `TRUE & c(TRUE, FALSE, TRUE)`
-> will compare the first `TRUE` on the left of the `&` sign with each of the
-> three conditions on the right.
+> A regra de reciclagem se aplica em ambos, assim, `TRUE` `&`
+> `c(TRUE, FALSE, TRUE)` compara o primeiro `TRUE` na esquerda do sinal `&` com
+> cada uma das três condições da direita.
 >
-> You may sometimes see `&&` and `||` instead of `&` and `|`. These operators
-> do not use the recycling rule: they only look at the first element of each
-> vector and ignore the remaining elements. The longer operators are mainly used
-> in programming, rather than data analysis.
+> As vezes você pode ver `&&` e `||` invés de `&` e `|`. Estes operadores não usam
+> a regra de reciclagem: eles olham apenas para o primeiro elemento de cada vetor
+> e ignoram os demais elementos. Operadores longos são usados principalmente em
+> programação, invés de análise de dados.
 >
->  * `!`, the "logical NOT" operator: converts `TRUE` to `FALSE` and `FALSE` to
->    `TRUE`. It can negate a single logical condition (eg `!TRUE` becomes
->    `FALSE`), or a whole vector of conditions(eg `!c(TRUE, FALSE)` becomes
->    `c(FALSE, TRUE)`).
+>  * `!`, o operador lógico "NÃO": converte `TRUE` em `FALSE` e `FALSE` em `TRUE`.
+>    Ele pode negar uma única condição lógica (por exemplo, `!TRUE` se torna
+>    `FALSE`), ou um vetor inteiro de condições (por exemplo, `!c(TRUE, FALSE)` se
+>    torna `c(FALSE, TRUE`).
 >
-> Additionally, you can compare the elements within a single vector using the
-> `all` function (which returns `TRUE` if every element of the vector is `TRUE`)
-> and the `any` function (which returns `TRUE` if one or more elements of the
-> vector are `TRUE`).
+> Adicionalmente, você pode comparar os elementos dentro de um único vetor usando a
+> função `all` (que retorna `TRUE` se todos os elementos do vetor forem `TRUE`) e
+> a função `any` (que retorna `TRUE` se um ou mais elementos do vetor for `TRUE`).
 {: .callout}
 
-> ## Challenge 3
+> ## Desafio 3
 >
-> Given the following code:
+> Dado o código a seguir:
 >
 > ```{r}
 > x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
@@ -416,9 +421,9 @@ x[x > 7]
 > print(x)
 > ```
 >
-> Write a subsetting command to return the values in x that are greater than 4 and less than 7.
+> Escreva um comando que retorne os valores em `x` que são maiores que 4 e menores que 7.
 >
-> > ## Solution to challenge 3
+> > ## Resposta do desafio 3
 > >
 > > ```{r}
 > > x_subset <- x[x<7 & x>4]
@@ -427,26 +432,26 @@ x[x > 7]
 > {: .solution}
 {: .challenge}
 
-## Handling special values
+## Lidando com valores especiais
 
-At some point you will encounter functions in R which cannot handle missing, infinite,
-or undefined data.
+Em algum dado momento você irá encontrar funções em R que não sabem lidar com
+dados faltantes, infinito, ou indefinidos.
 
-There are a number of special functions you can use to filter out this data:
+Existem funções especiais que você pode usar para filtrar estes dados:
 
- * `is.na` will return all positions in a vector, matrix, or data.frame
-   containing `NA`.
- * likewise, `is.nan`, and `is.infinite` will do the same for `NaN` and `Inf`.
- * `is.finite` will return all positions in a vector, matrix, or data.frame
-   that do not contain `NA`, `NaN` or `Inf`.
- * `na.omit` will filter out all missing values from a vector
+ * `is.na` irá retornar todas as posições do vetor, matriz, ou *data frame*
+   que contém `NA`.
+ * Da mesma maneira, `is.nan` e `is.infinite` fará o mesmo para `NaN` e `Inf`.
+ * `is.finite` irá retornar todas as posições do vetor, matriz, ou *data frame*
+  que não contém `NA`, `NaN` ou `Inf`.
+ * `na.omit` irá filtrar todos os valores faltantes de um vetor
 
-## Factor subsetting
+## Subconjuntos de fatores
 
-Now that we've explored the different ways to subset vectors, how
-do we subset the other data structures?
+Agora que já exploramos as diferentes maneiras de fazer subconjuntos de vetores,
+como nós fazemos subconjuntos de outras estruturas de dados?
 
-Factor subsetting works the same way as vector subsetting.
+Subconjuntos de fatores funciona da mesma maneira que os subconjuntos de vetores.
 
 ```{r}
 f <- factor(c("a", "a", "b", "c", "c", "d"))
@@ -455,18 +460,17 @@ f[f %in% c("b", "c")]
 f[1:3]
 ```
 
-An important note is that skipping elements will not remove the level
-even if no more of that category exists in the factor:
+Uma importante nota é que pular elementos não irá remover o nível (*level*),
+mesmo que não existam mais elementos dessa categoria no fator:
 
 ```{r}
 f[-3]
 ```
 
-## Matrix subsetting
+## Subconjuntos de matrizes
 
-Matrices are also subsetted using the `[` function. In this case
-it takes two arguments: the first applying to the rows, the second
-to its columns:
+Subconjuntos de matrizes são criados usando a função `[`. Neste caso é usado
+dois argumentos: o primeiro aplicado às linhas, o segundo às colunas:
 
 ```{r}
 set.seed(1)
@@ -474,77 +478,78 @@ m <- matrix(rnorm(6*4), ncol=4, nrow=6)
 m[3:4, c(3,1)]
 ```
 
-You can leave the first or second arguments blank to retrieve all the
-rows or columns respectively:
+Você pode deixar o primeiro ou segundo argumento em branco para recuperar todas
+as linhas ou colunas respectivamente:
 
 ```{r}
 m[, c(3,4)]
 ```
 
-If we only access one row or column, R will automatically convert the result
-to a vector:
+Se nós acessarmos apenas uma linha ou coluna, o R irá automaticamente converter
+o resultado para um vetor:
 
 ```{r}
 m[3,]
 ```
 
-If you want to keep the output as a matrix, you need to specify a *third* argument;
-`drop = FALSE`:
+Se você quiser manter a saída como uma matriz, você precisa especificar um 
+*terceiro* argumento, `drop = FALSE`:
 
 ```{r}
 m[3, , drop=FALSE]
 ```
 
-Unlike vectors, if we try to access a row or column outside of the matrix,
-R will throw an error:
+Ao contrário de vetores, se nós tentarmos acessar uma linha ou coluna fora da
+matriz, o R irá retornar um erro:
 
 ```{r, error=TRUE}
 m[, c(3,6)]
 ```
 
-> ## Tip: Higher dimensional arrays
+> ## Dica: Matrizes de maior dimensão
 >
-> when dealing with multi-dimensional arrays, each argument to `[`
-> corresponds to a dimension. For example, a 3D array, the first three
-> arguments correspond to the rows, columns, and depth dimension.
+> ao se trabalhar com matrizes de maiores dimensão, cada argumento para `[`
+> corresponde a uma dimensão. Por exemplo, numa matriz 3D, os primeiros três
+> argumentos correspondem as linhas, colunas, e nível da dimensão.
 >
 {: .callout}
 
-Because matrices are vectors, we can
-also subset using only one argument:
+Por matrizes serem vetores, nós podemos também criar subconjuntos usando apenas
+um argumento:
 
 ```{r}
 m[5]
 ```
 
 
-This usually isn't useful, and often confusing to read. However it is useful to note that matrices
-are laid out in *column-major format* by default. That is the elements of the
-vector are arranged column-wise:
+Isto usualmente não é útil, e frequentemente confundem na hora de ler. Contudo,
+é útil para notar que matrizes são estabelecidas por padrão (*default*) no
+formato colunas primeiro, *column-major*. Isso significa que os vetores são
+arrumados pelas colunas:
 
 ```{r}
 matrix(1:6, nrow=2, ncol=3)
 ```
 
-If you wish to populate the matrix by row, use `byrow=TRUE`:
+Se você deseja preencher a matriz pelas linhas, use `byrow=TRUE`:
 
 ```{r}
 matrix(1:6, nrow=2, ncol=3, byrow=TRUE)
 ```
 
-Matrices can also be subsetted using their rownames and column names
-instead of their row and column indices.
+Subconjuntos de matrizes também podem ser criados pelos nomes das linhas e 
+colunas, invés do índice das linhas e colunas.
 
-> ## Challenge 4
+> ## Desafio 4
 >
-> Given the following code:
+> Dado o seguinte código:
 >
 > ```{r}
 > m <- matrix(1:18, nrow=3, ncol=6)
 > print(m)
 > ```
 >
-> 1. Which of the following commands will extract the values 11 and 14?
+> 1. Qual dos seguintes comandos irá extrair os valores 11 e 14?
 >
 > A. `m[2,4,2,5]`
 >
@@ -554,83 +559,84 @@ instead of their row and column indices.
 >
 > D. `m[2,c(4,5)]`
 >
-> > ## Solution to challenge 4
+> > ## Resposta do desafio 4
 > >
 > > D
 > {: .solution}
 {: .challenge}
 
 
-## List subsetting
+## Subconjuntos de listas
 
-Now we'll introduce some new subsetting operators. There are three functions
-used to subset lists. `[`, as we've seen for atomic vectors and matrices,
-as well as `[[` and `$`.
+Agora nós vamos introduzir alguns novos operadores para subconjuntos. Existem
+três funções usadas para fazer subconjuntos de listas. `[`, como vimos para
+vetores atômicos e matrizes, assim como `[[` e `$`.
 
-Using `[` will always return a list. If you want to *subset* a list, but not
-*extract* an element, then you will likely use `[`.
+Usando `[` sempre será retornada uma lista. Se você quiser um *subconjunto* de
+uma lista, mas não *extrair* um elemento, então você provavelmente irá usar `[`.
 
 ```{r}
 xlist <- list(a = "Software Carpentry", b = 1:10, data = head(iris))
 xlist[1]
 ```
 
-This returns a *list with one element*.
+Isto retorna uma *lista com um elemento*.
 
-We can subset elements of a list exactly the same was as atomic
-vectors using `[`. Comparison operations however won't work as
-they're not recursive, they will try to condition on the data structures
-in each element of the list, not the individual elements within those
-data structures.
+Nós podemos selecionar elementos de uma lista exatamente da mesma maneira usada
+com vetores atômicos, isto é, `[`. Operadores de comparação entretanto não
+funcionam por não serem recursivos, eles irão testar uma condição na estrutura de
+dados em cada elemento da lista, não no elemento indivual dentro dessa estrutura
+de dados.
 
 ```{r}
 xlist[1:2]
 ```
 
-To extract individual elements of a list, you need to use the double-square
-bracket function: `[[`.
+Para extrair elementos individuais de uma lista, você precisa usar a função dois
+pares de colchetes: `[[`.
 
 ```{r}
 xlist[[1]]
 ```
 
-Notice that now the result is a vector, not a list.
+Repare que agora o resultado é um vetor, não uma lista.
 
-You can't extract more than one element at once:
+Você não pode extrair mais de elemento de uma vez:
 
 ```{r, error=TRUE}
 xlist[[1:2]]
 ```
 
-Nor use it to skip elements:
+Nem usar isso para pular elementos:
 
 ```{r, error=TRUE}
 xlist[[-1]]
 ```
 
-But you can use names to both subset and extract elements:
+Mas você pode usar nomes tanto para fazer subconjuntos quanto para extrair
+elementos:
 
 ```{r}
 xlist[["a"]]
 ```
 
-The `$` function is a shorthand way for extracting elements by name:
+A função `$` é uma maneira abreviada de extrair elementos pelo nome:
 
 ```{r}
 xlist$data
 ```
 
-> ## Challenge 5
-> Given the following list:
+> ## Desafio 5
+> Dada a seguinte lista:
 >
 > ```{r, eval=FALSE}
 > xlist <- list(a = "Software Carpentry", b = 1:10, data = head(iris))
 > ```
 >
-> Using your knowledge of both list and vector subsetting, extract the number 2 from xlist.
-> Hint: the number 2 is contained within the "b" item in the list.
+> Usando seus conhecimentos de subconjuntos de listas e vetores, extraia o número
+> 2 de xlist. Dica: o número 2 está contido dentro do item "b" da lista.
 >
-> > ## Solution to challenge 5
+> > ## Resposta do desafio 5
 > >
 > > ```{r}
 > > xlist$b[2]
@@ -645,19 +651,19 @@ xlist$data
 {: .challenge}
 
 
-> ## Challenge 6
-> Given a linear model:
+> ## Desafio 6
+> Dado um modelo linear:
 >
 > ```{r, eval=FALSE}
 > mod <- aov(pop ~ lifeExp, data=gapminder)
 > ```
 >
-> Extract the residual degrees of freedom (hint: `attributes()` will help you)
+> Extraia os graus de liberdade residuais (dica: `attributes()` irá ajudar você)
 >
-> > ## Solution to challenge 6
+> > ## Resposta do desafio 6
 > >
 > > ```{r, eval=FALSE}
-> > attributes(mod) ## `df.residual` is one of the names of `mod`
+> > attributes(mod) ## `df.residual` é um dos nomes de `mod`
 > > ```
 > > ```{r, eval=FALSE}
 > > mod$df.residual
@@ -666,117 +672,117 @@ xlist$data
 {: .challenge}
 
 
-## Data frames
+## *Data frames*
 
-Remember the data frames are lists underneath the hood, so similar rules
-apply. However they are also two dimensional objects:
+Lembre-se que *data frames* são listas disfarçadas, então regras similares se
+aplicam. Contudo, eles também são objetos de duas dimensões:
 
-`[` with one argument will act the same was as for lists, where each list
-element corresponds to a column. The resulting object will be a data frame:
+`[` com um argumento irá agir da mesma forma que em listas, em que cada elemento
+da lista corresponde a uma coluna. O objeto resultante será um *data frame*:
 
 ```{r}
 head(gapminder[3])
 ```
 
-Similarly, `[[` will act to extract *a single column*:
+Similarmente, `[[` irá agir para extrair uma *única coluna*:
 
 ```{r}
 head(gapminder[["lifeExp"]])
 ```
 
-And `$` provides a convenient shorthand to extract columns by name:
+E `$` fornece um caminho mais curto e conveniente para extrair colunas pelo nome:
 
 ```{r}
 head(gapminder$year)
 ```
 
-With two arguments, `[` behaves the same way as for matrices:
+Com dois argumentos, `[` se comporta da mesma maneira que em matrizes:
 
 ```{r}
 gapminder[1:3,]
 ```
 
-If we subset a single row, the result will be a data frame (because
-the elements are mixed types):
+Se nós selecionarmos uma única linha, o resultado será um *data frame* (pois os
+elementos são de tipos variados):
 
 ```{r}
 gapminder[3,]
 ```
 
-But for a single column the result will be a vector (this can
-be changed with the third argument, `drop = FALSE`).
+Mas para uma única coluna o resultado será um vetor (isso pode ser alterado com o
+terceiro argumento, `drop = FALSE`).
 
-> ## Challenge 7
+> ## Desafio 7
 >
-> Fix each of the following common data frame subsetting errors:
+> Conserte cada um dos seguintes subconjuntos de *data frames* com erros:
 >
-> 1. Extract observations collected for the year 1957
+> 1. Extraia observações coletadas no ano de 1957
 >
 >    ```{r, eval=FALSE}
 >    gapminder[gapminder$year = 1957,]
 >    ```
 >
-> 2. Extract all columns except 1 through to 4
+> 2. Extraia todas as colunas exceto 1 até 4
 >
 >    ```{r, eval=FALSE}
 >    gapminder[,-1:4]
 >    ```
 >
-> 3. Extract the rows where the life expectancy is longer the 80 years
+> 3. Extraia as linhas em que a expectativa de vida é maior que 80 anos
 >
 >    ```{r, eval=FALSE}
 >    gapminder[gapminder$lifeExp > 80]
 >    ```
 >
-> 4. Extract the first row, and the fourth and fifth columns
->   (`lifeExp` and `gdpPercap`).
+> 4. Extraia a primeira linha, e a quarta e quinta coluna
+>    (`lifeExp` e `gdpPercap`).
 >
 >    ```{r, eval=FALSE}
 >    gapminder[1, 4, 5]
 >    ```
 >
-> 5. Advanced: extract rows that contain information for the years 2002
->    and 2007
+> 5. Avançado: extraia as linhas que contêm informações sobre os anos 2002
+>    e 2007
 >
 >    ```{r, eval=FALSE}
 >    gapminder[gapminder$year == 2002 | 2007,]
 >    ```
 >
-> > ## Solution to challenge 7
+> > ## Resposta do desafio 7
 > >
-> > Fix each of the following common data frame subsetting errors:
+> > Conserte cada um dos seguintes subconjuntos de *data frames* com erros:
 > >
-> > 1. Extract observations collected for the year 1957
+> > 1. Extraia observações coletadas no ano de 1957
 > >
 > >    ```{r, eval=FALSE}
 > >    # gapminder[gapminder$year = 1957,]
 > >    gapminder[gapminder$year == 1957,]
 > >    ```
 > >
-> > 2. Extract all columns except 1 through to 4
+> > 2. Extraia todas as colunas exceto 1 até 4
 > >
 > >    ```{r, eval=FALSE}
 > >    # gapminder[,-1:4]
 > >    gapminder[,-c(1:4)]
 > >    ```
 > >
-> > 3. Extract the rows where the life expectancy is longer the 80 years
+> > 3. Extraia as linhas em que a expectativa de vida é maior que 80 anos
 > >
 > >    ```{r, eval=FALSE}
 > >    # gapminder[gapminder$lifeExp > 80]
 > >    gapminder[gapminder$lifeExp > 80,]
 > >    ```
 > >
-> > 4. Extract the first row, and the fourth and fifth columns
-> >   (`lifeExp` and `gdpPercap`).
+> > 4. Extraia a primeira linha, e a quarta e quinta coluna
+> >    (`lifeExp` e `gdpPercap`).
 > >
 > >    ```{r, eval=FALSE}
 > >    # gapminder[1, 4, 5]
 > >    gapminder[1, c(4, 5)]
 > >    ```
 > >
-> > 5. Advanced: extract rows that contain information for the years 2002
-> >    and 2007
+> > 5. Avançado: extraia as linhas que contêm informações sobre os anos 2002
+> >    e 2007
 > >
 > >     ```{r, eval=FALSE}
 > >     # gapminder[gapminder$year == 2002 | 2007,]
@@ -786,17 +792,17 @@ be changed with the third argument, `drop = FALSE`).
 > {: .solution}
 {: .challenge}
 
-> ## Challenge 8
+> ## Desafio 8
 >
-> 1. Why does `gapminder[1:20]` return an error? How does it differ from `gapminder[1:20, ]`?
+> 1. Por que `gapminder[1:20]` retorna um erro? Como isso difere de `gapminder[1:20, ]`?
 >
 >
-> 2. Create a new `data.frame` called `gapminder_small` that only contains rows 1 through 9
-> and 19 through 23. You can do this in one or two steps.
+> 2. Crie um novo `data.frame` chamado `gapminder_small` que contenha apenas as linhas
+> >  1 até 9 e 19 até 23. Você pode fazer isso em um ou dois passos.
 >
-> > ## Solution to challenge 8
+> > ## Resposta do desafio 8
 > >
-> > 1.  `gapminder` is a data.frame so needs to be subsetted on two dimensions. `gapminder[1:20, ]` subsets the data to give the first 20 rows and all columns.
+> > 1. `gapminder` é um `data.frame`, então ele precisa de duas dimensões para ter um subconjunto. `gapminder[1:20, ]` diz para selecionar as primeiras 20 linhas e todas as colunas.
 > >
 > > 2. 
 > >

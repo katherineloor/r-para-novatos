@@ -1,24 +1,25 @@
 ---
-title: "Exploring Data Frames"
-teaching: 20
-exercises: 10
-questions:
-- "How can I manipulate a data frame?"
-objectives:
-- "Be able to add and remove rows and columns."
-- "Be able to remove rows with `NA` values."
-- "Be able to append two data frames"
-- "Be able to articulate what a `factor` is and how to convert between `factor` and `character`."
-- "Be able to find basic properties of a data frames including size, class or type of the columns, names, and first few rows."
-keypoints:
-- "Use `cbind()` to add a new column to a data frame."
-- "Use `rbind()` to add a new row to a data frame."
-- "Remove rows from a data frame."
-- "Use `na.omit()` to remove rows from a data frame with `NA` values."
-- "Use `levels()` and `as.character()` to explore and manipulate factors"
-- "Use `str()`, `nrow()`, `ncol()`, `dim()`, `colnames()`, `rownames()`, `head()` and `typeof()` to understand structure of the data frame"
-- "Read in a csv file using `read.csv()`"
-- "Understand `length()` of a data frame"
+title: "Explorando Data Frames"
+Ensino: 20
+Exercícios: 10
+Questes:
+- "Como manipular um data frame?"
+Objetivo:
+- Ser capaz de adicionar um remover linhas e colunas.
+- Ser capaz de remover linhas com valores `NA`.
+- Ser capaz de juntar dois data frames.
+- Ser capaz de articular o que um `factor` é e como converter entre `fator`e `character`
+- Ser capaz de procurar propriedades básicas de um data frame incluindo tamanho, classe ou tipo das colunas, nomes, e as primeiras linhas.
+Pontos chave:
+- Usar `cbind()` para adicionar uma nova coluna a um data frame.
+- Usar `rbind()` para adicionar uma nova linha a um data frame.
+- Remover linhas de um data frame.
+- Usar `na.omit()` para remover linhas de um data frame com valor `NA`.
+- Usar `levels()` e `as.character()` para explorar e manipular fatores.
+- Usar `str()`, `nrow()`, `ncol()`, `dim()`, `colnames()`, `rownames()`, `head()` and
+  `typeof()` para entender a estrutura do data frame.
+- Ler um arquivo csv usando `read.csv()`
+- Entender `length()` de um data frame
 source: Rmd
 ---
 
@@ -27,18 +28,18 @@ source("../bin/chunk-options.R")
 knitr_fig_path("05-")
 ```
 
+Neste ponto, você viu isso tudo - na última lição, nós visitamos todos os tipos básicos
+de dados e estruturas de dados no R. Tudo o que você fará será uma manipulação destas
+ferramentas. Mas na maior parte do tempo, a estrela do show será o
+data frame - a tabela que nós criamos carregando informação de um arquivo csv. Nesta lição, 
+nós iremos aprender algumas coisas a mais sobre trabalhar com data frames.
 
-At this point, you've see it all - in the last lesson, we toured all the basic
-data types and data structures in R. Everything you do will be a manipulation of
-those tools. But a whole lot of the time, the star of the show is going to be
-the data frame - the table that we created by loading information from a csv file. In this lesson, we'll learn a few more things
-about working with data frames.
+## Adicionando colunas e linhas a um data frame
 
-## Adding columns and rows in data frame
+Aprendemos anteriormente que colunas em um data frame eram vetores, tal que nossos
+dados eram consistentes em tipo por coluna. Tal que, se nós quiséssemos adicionar uma
+nova coluna nós precisaríamos começar fazendo um novo vetor:
 
-We learned last time that the columns in a data frame were vectors, so that our
-data are consistent in type throughout the column. As such, if we want to add a
-new column, we need to start by making a new vector:
 
 ```{r, echo = FALSE}
 cats <- read.csv("data/feline-data.csv")
@@ -49,14 +50,14 @@ age <- c(2,3,5,12)
 cats
 ```
 
-We can then add this as a column via:
+Nós podemos então adicionar como uma nova coluna via:
 
 ```{r, error=TRUE}
 cats <- cbind(cats, age)
 ```
 
-Why didn't this work? Of course, R wants to see one element in our new column
-for every row in the table:
+Por que isso não funcionou? Com certeza, o R quer ver um elemento em nossa nova coluna
+para cada linha da tabela:
 
 ```{r}
 cats
@@ -64,49 +65,46 @@ age <- c(4,5,8)
 cats <- cbind(cats, age)
 cats
 ```
-
-Now how about adding rows - in this case, we saw last time that the rows of a
-data frame are made of lists:
+Agora como adicionar linhas - neste caso, nós vimos da última vez que a linhas
+de um data frame são feitas de listas:
 
 ```{r}
 newRow <- list("tortoiseshell", 3.3, TRUE, 9)
 cats <- rbind(cats, newRow)
 ```
 
-## Factors
+## Fatores
 
-Another thing to look out for has emerged - when R creates a factor, it only
-allows whatever is originally there when our data was first loaded, which was
-'black', 'calico' and 'tabby' in our case. Anything new that doesn't fit into
-one of these categories is rejected as nonsense (becomes NA).
+Outra coisa para se prestar atenção surgiu - quando o R cria um fator, ele apenas
+permite os que estavam originalmente na tabela quando os dados foram carregados pela
+primeira vez, os quais eram 'black', 'calico' e 'tabby' em nosso caso. Qualquer coisa
+nova que não se ajustar em uma das categorias é rejeitada como sem sentido (transforma-se NA).
 
-The warning is telling us that we unsuccessfully added 'tortoiseshell' to our
-*coat* factor, but 3.3 (a numeric), TRUE (a logical), and 9 (a numeric) were
-successfully added to *weight*, *likes_string*, and *age*, respectfully, since
-those values are not factors. To successfully add a cat with a
-'tortoiseshell' *coat*, explicitly add 'tortoiseshell' as a *level* in the factor:
+O aviso está dizendo que não conseguimos adicionar 'tortoiseshell' ao nosso
+fator *coat*, mas 3.3 (um número), TRUE (um lógico) e 9 (um número) foram 
+adicionados com sucesso a *weight*, *likes_string*, e *age*, respectivamente, desde
+que esses valores não são fatores e um gato com um 
+*coat* 'tortoiseshell', explicitamente adicionar 'tortoiseshell' como um *nível* no fator:
 
 ```{r}
 levels(cats$coat)
 levels(cats$coat) <- c(levels(cats$coat), 'tortoiseshell')
 cats <- rbind(cats, list("tortoiseshell", 3.3, TRUE, 9))
 ```
-
-Alternatively, we can change a factor column to a character vector; we lose the
-handy categories of the factor, but can subsequently add any word we want to the
-column without babysitting the factor levels:
+Alternativamente, nós podemos modificar uma coluna de fatores para um vetor de caracteres; nós perdemos
+o acesso a categorias do fator, mas podemos subsequentemente adicionar qualquer palavra à 
+coluna sem necessidade de vigiar os níveis do fator:
 
 ```{r}
 str(cats)
 cats$coat <- as.character(cats$coat)
 str(cats)
 ```
+## Removendo Linhas
 
-## Removing rows
-
-We now know how to add rows and columns to our data frame in R - but in our
-first attempt to add a 'tortoiseshell' cat to the data frame we've accidentally
-added a garbage row:
+Nós sabemos como adicionar linhas e colunas ao nosso data frame no R - mas em nossa
+primeira tentativa de adicionar um gato 'casco de tartaruga' ao data frame, nós acidentalmente
+adicionamos uma linha errada:
 
 ```{r}
 cats
@@ -117,59 +115,59 @@ We can ask for a data frame minus this offending row:
 ```{r}
 cats[-4,]
 ```
+Note que a vírgula com nada após indica que queremos remover a quarta linha inteiramente.
 
-Notice the comma with nothing after it to indicate we want to drop the entire fourth row.
+Nota: Nós podemos também remover várias linhas de uma só vez colocando as linhas
+em um vetor: `cats[c(-4,-5),]`
 
-Note: We could also remove both new rows at once by putting the row numbers
-inside of a vector: `cats[c(-4,-5),]`
-
-Alternatively, we can drop all rows with `NA` values:
+Alternativaente, nós podemos tirar todas as linhas com valores `NA`:
 
 ```{r}
 na.omit(cats)
 ```
 
-Let's reassign the output to `cats`, so that our changes will be permanent:
+Vamos reatribuir a saída de `cats`, tal que nossas mudanças sejam permanentes:
 
 ```{r}
 cats <- na.omit(cats)
 ```
 
-## Appending to a data frame
+## Anexando a um data frame
 
-The key to remember when adding data to a data frame is that *columns are
-vectors or factors, and rows are lists.* We can also glue two data frames
-together with `rbind`:
+A chave para lembrar quando adicionar dados a um data frame é *colunas são
+vetores ou fatores, e linhas são listas.* Podemos também juntar dois data frames
+com `rbind`:
 
 ```{r}
 cats <- rbind(cats, cats)
 cats
 ```
-But now the row names are unnecessarily complicated. We can remove the rownames,
-and R will automatically re-name them sequentially:
+
+Mas agora o nome das linhas estão desnecessariamente complicados. Nós podemos
+remover o nome das linhas, e R irá renomeá-las sequencialmente:
 
 ```{r}
 rownames(cats) <- NULL
 cats
 ```
 
-> ## Challenge 1
+> ## Desafio 1
 >
-> You can create a new data frame right from within R with the following syntax:
+> Você pode criar um novo data frame direto de dentro do R com a seguinte sintáxe:
 > ```{r}
 > df <- data.frame(id = c('a', 'b', 'c'),
 >                  x = 1:3,
 >                  y = c(TRUE, TRUE, FALSE),
 >                  stringsAsFactors = FALSE)
 > ```
-> Make a data frame that holds the following information for yourself:
+> Fazer um data frame que contém as seguintes informação sobre você mesmo:
 >
-> - first name
-> - last name
-> - lucky number
+> - Nome (name)
+> - Sobrenome (last name)
+> - Número da sorte (lucky number)
 >
-> Then use `rbind` to add an entry for the people sitting beside you.
-> Finally, use `cbind` to add a column with each person's answer to the question, "Is it time for coffee break?"
+> Então use `rbind` para adicionar um novo registro da pessoa sentada ao teu lado.
+> Finalmente, utilize `cbind` para adicionar uma coluna para cada pessoa a responder a questão, "É hora do coffee break?"
 >
 > > ## Solution to Challenge 1
 > > ```{r}
@@ -183,38 +181,38 @@ cats
 > {: .solution}
 {: .challenge}
 
-## Realistic example
-So far, you've seen the basics of manipulating data frames with our cat data;
-now, let's use those skills to digest a more realistic dataset. Lets read in the
-gapminder dataset that we downloaded previously:
+## Exemplo realista
+Até agora, você viu o básico de manipulação de data frames com nossos dados sobre gatos;
+agora vamos utilizar essas habilidades para resumir um conjunto de dados mais realista.
+Vamos ler os dados do conjunto gapminder que baixamos previamente:
 
 ```{r}
 gapminder <- read.csv("data/gapminder-FiveYearData.csv")
 ```
 
-> ## Miscellaneous Tips
+> ## Dicas Variadas
 >
-> * Another type of file you might encounter are tab-separated value files (.tsv). To specify a tab as a separator, use `"\\t"` or `read.delim()`.
+> * Outro tipo de arquivo que você deve encontrar são os dados separados por tabulação, do inglês tab-separetad value files (.tsv). Para especificar tabulação como um separador, utilize `"\\t"` ou `read.delim()`.
 >
-> * Files can also be downloaded directly from the Internet into a local
-> folder of your choice onto your computer using the `download.file` function.
-> The `read.csv` function can then be executed to read the downloaded file from the download location, for example,
+> * Arquivo também podem ser baixados diretamente da internet para uma pasta local
+> de seu escolha dentro de seu computador utilizando a função `dowbload.file`.
+> A função `read.csv` pode ser executada para ler o arquivo baixado, por exemplo:
 > ```{r eval=FALSE, echo=TRUE}
 > download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv", destfile = "data/gapminder-FiveYearData.csv")
 > gapminder <- read.csv("data/gapminder-FiveYearData.csv")
 > ```
 >
-> * Alternatively, you can also read in files directly into R from the Internet by replacing the file paths with a web address in `read.csv`. One should note that in doing this no local copy of the csv file is first saved onto your computer. For example,
+> * Alternativamente, você pode também ler arquivos da internet diretamente no R trocando o endereço da pasta por um endereço da web em `read.csv`. Deve-se notar que ao fazer isso nenhuma cópia do arquivo será salva no computador. Por exemplo,
 > ```{r eval=FALSE, echo=TRUE}
 > gapminder <- read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder-FiveYearData.csv")
 > ```
 >
-> * You can read directly from excel spreadsheets without
-> converting them to plain text first by using the [readxl](https://cran.r-project.org/web/packages/readxl/index.html) package.
+> * Podemos ler diretamente uma tabela excel sem
+> converter em texto usando o pacote [readxl](https://cran.r-project.org/web/packages/readxl/index.html)
 {: .callout}
 
-Let's investigate gapminder a bit; the first thing we should always do is check
-out what the data looks like with `str`:
+Vamos investigar um pouco o gapminder; a primeira coisa que sempre devemos
+fazer é checar como os dados estão organizados com `str`:
 
 ```{r}
 str(gapminder)
