@@ -8,15 +8,15 @@ objectives:
 - "To be able to use the split-apply-combine strategy for data analysis."
 keypoints:
 - "Use the `plyr` package to split data, apply functions to subsets, and combine the results."
-source: Rmd
 ---
 
 
 
-Previously we looked at how you can use functions to simplify your code.
-We defined the `calcGDP` function, which takes the gapminder dataset,
-and multiplies the population and GDP per capita column. We also defined
-additional arguments so we could filter by `year` and `country`:
+
+Anteriormente analisamos como usar funções para simplificar o seu código.
+Nós definimos a função `calcGDP`, que pega o conjunto de dados gapminder,
+e multiplica a população com a coluna do PIB per capita. Também definimos
+argumentos adicionais para que possamos filtrar por `year` e `country`:
 
 
 ~~~
@@ -37,12 +37,12 @@ calcGDP <- function(dat, year=NULL, country=NULL) {
 ~~~
 {: .r}
 
-A common task you'll encounter when working with data, is that you'll want to
-run calculations on different groups within the data. In the above, we were
-simply calculating the GDP by multiplying two columns together. But what if
-we wanted to calculated the mean GDP per continent?
+Uma tarefa comum que encontrará ao trabalhar com dados, é que se você desejará
+executar cálculos em diferentes grupos dentro dos dados. Acima, estávamos
+calculando simplesmente o PIB multiplicando duas colunas juntas. Mas e se
+quisermos calcular o PIB médio por continente?
 
-We could run `calcGPD` and then take the mean of each continent:
+Deveríamos executar `calcGPD` e então pegar as médias por cada continente:
 
 
 ~~~
@@ -86,31 +86,30 @@ mean(withGDP[withGDP$continent == "Asia", "gdp"])
 ~~~
 {: .output}
 
-But this isn't very *nice*. Yes, by using a function, you have reduced a
-substantial amount of repetition. That **is** nice. But there is still
-repetition. Repeating yourself will cost you time, both now and later, and
-potentially introduce some nasty bugs.
+Mas isso não é *agradável*. Sim, usando uma função, você pode reduzir uma
+quantidade substancial de repetições. Isso **é** bom. Porém ainda há
+repetição. Repetindo custará-lhe tempo, agora e mais tarde, e
+potencialmente introduzirá alguns erros desagradáveis.
 
-We could write a new function that is flexible like `calcGDP`, but this
-also takes a substantial amount of effort and testing to get right.
+Poderíamos escrever uma nova função que seja flexível como `calcGDP`, mas isso
+também requer uma quantidade substancial de esforço e testes até estar pronta.
 
-The abstract problem we're encountering here is know as "split-apply-combine":
+O problema que estamos revelando aqui é conhecido como "split-apply-combine":
 
 ![Split apply combine](../fig/splitapply.png)
 
-We want to *split* our data into groups, in this case continents, *apply*
-some calculations on that group, then optionally *combine* the results
-together afterwards.
+Nós queremos *split (dividir)* nossos dados em grupos, neste caso continentes, 
+*apply (aplicar)* alguns cálculos nesse grupo, e depois opcionalmente 
+*combine (combinar)* os resultados.
 
-## The `plyr` package
+## O pacote `plyr`
 
-For those of you who have used R before, you might be familiar with the
-`apply` family of functions. While R's built in functions do work, we're
-going to introduce you to another method for solving the "split-apply-combine"
-problem. The [plyr](http://had.co.nz/plyr/) package provides a set of
-functions that we find more user friendly for solving this problem.
+Para alguns de vocês que tem usado R antes, poderia estar familiarizado com o
+uso de família de funções `apply`. Agora, vamos apresentar outro método para 
+resolver o problema "split-apply-combine". O pacote [plyr](http://had.co.nz/plyr/) fornece 
+um conjunto de funções que encontraremos mais agradáveis para resolver este problema.
 
-We installed this package in an earlier challenge. Let's load it now:
+Instalamos este pacote em uma tarefa anterior. Vamos carregá-lo agora:
 
 
 ~~~
@@ -118,32 +117,32 @@ library("plyr")
 ~~~
 {: .r}
 
-Plyr has functions for operating on `lists`, `data.frames` and `arrays`
-(matrices, or n-dimensional vectors). Each function performs:
+Plyr tem funções para operações entre `lists`, `data.frames` e `arrays`
+(matrizes, ou n-dimensional vetores). Cada função executa:
 
-1. A **split**ting operation
-2. **Apply** a function on each split in turn.
-3. Re**combine** output data as a single data object.
+1. Uma operação de divisão (**split**ting).
+2. Aplique uma função em cada divisão (**Apply**).
+3. Recombine os dados da saída como um único objeto de dados (Re**combine**).
 
-The functions are named based on the data structure they expect as input,
-and the data structure you want returned as output: [a]rray, [l]ist, or
-[d]ata.frame. The first letter corresponds to the input data structure,
-the second letter to the output data structure, and then the rest of the
-function is named "ply".
+As funções são chamadas baseadas na estrutura dos dados elas esperam como entrada,
+e a estrutura dos dados que se deseja como saída: [a]rray, [l]ist, ou
+[d]ata.frame. A primeira letra corresponde à estrutura dos dados da entrada,
+a segunda letra à estrutura dos dados da saída, e o resto da função
+é chamada "ply".
 
-This gives us 9 core functions **ply.  There are an additional three functions
-which will only perform the split and apply steps, and not any combine step.
-They're named by their input data type and represent null output by a `_` (see
-table)
+Isso nós dá 9 funções principais **ply. Existem três funções adicionais que só
+executarão as etapas de divisão e aplicação e não qualquer etapa de combinação.
+Eles são chamados por seu tipo de dados de entrada e representam uma saída nula por um `_` 
+(veja a tabela)
 
-Note here that plyr's use of "array" is different to R's,
-an array in ply can include a vector or matrix.
+Note aqui que o uso dos "arrays" de plyr é diferente que em R,
+um array em ply pode incluir um vetor ou uma matriz.
 
 ![Full apply suite](../fig/full_apply_suite.png)
 
 
-Each of the xxply functions (`daply`, `ddply`, `llply`, `laply`, ...) has the
-same structure and has 4 key features and structure:
+Cada uma das funções de xxply (`daply`, `ddply`, `llply`, `laply`, ...) tem a
+mesma estrutura e tem 4 características e estruturas chaves:
 
 
 ~~~
@@ -151,12 +150,12 @@ xxply(.data, .variables, .fun)
 ~~~
 {: .r}
 
-* The first letter of the function name gives the input type and the second gives the output type.
-* .data - gives the data object to be processed
-* .variables - identifies the splitting variables
-* .fun - gives the function to be called on each piece
+* A primeira letra do nome da função dá o tipo de entrada e o segundo dá o tipo de dado da saída.
+* .data - dá o objeto de dados a ser processado
+* .variables - identifica as variáveis de divisão
+* .fun - dá a função que será chamada em cada fase
 
-Now we can quickly calculate the mean GDP per continent:
+Agora podemos rapidamente calcular a média do PIB por continente:
 
 
 ~~~
@@ -180,23 +179,23 @@ ddply(
 ~~~
 {: .output}
 
-Let's walk through the previous code:
+Vamos revisar o código anterior:
 
-- The `ddply` function feeds in a `data.frame` (function starts with **d**) and
-returns another `data.frame` (2nd letter is a **d**) i
-- the first argument we gave was the data.frame we wanted to operate on: in this
-  case the gapminder data. We called `calcGDP` on it first so that it would have
-  the additional `gdp` column added to it.
-- The second argument indicated our split criteria: in this case the "continent"
-  column. Note that we gave the name of the column, not the values of the column like we had done previously with subsetting. Plyr takes care of these
-  implementation details for you.
-- The third argument is the function we want to apply to each grouping of the
-  data. We had to define our own short function here: each subset of the data
-  gets stored in `x`, the first argument of our function. This is an anonymous
-  function: we haven't defined it elsewhere, and it has no name. It only exists
-  in the scope of our call to `ddply`.
+- A função `ddply` se alimenta de um `data.frame` (função começa com **d**) e
+retorna outro `data.frame` (segunda letra é **d**)
+- O primeiro argumento que demos foi a data.frame com o qual queríamos operar: neste
+  caso os dados de gapminder. Chamamos primeiro `calcGDP` tal que ele tería agregada
+  uma coluna adicional `gdp`.
+- O segundo argumento indicou nossos critérios de divisão: neste caso a coluna "continent".
+  Note que nós demos o nome da coluna, não o valor da coluna como a gente tem feito anteriormente 
+  com subconjuntos. Plyr cuida desses detalhes de implementação por você.
+- O terceiro argumento é a função que queremos aplicar a cada grupo de dados.
+  Temos que definir aqui nossa propria função curta: cada subconjunto de dados
+  é armazenado em `x`, o primeiro argumento de nossa função. Esta é uma função 
+  anônima: não a definimos em outro lugar, e ela não tem nome. Ela só existe
+  dentro do âmbito de nossa chamada a `ddply`.
 
-What if we want a different type of output data structure?:
+E se quisermos uma estrutura de dados de saída diferente?:
 
 
 ~~~
@@ -238,10 +237,10 @@ attr(,"split_labels")
 ~~~
 {: .output}
 
-We called the same function again, but changed the second letter to an `l`, so
-the output was returned as a list.
+Nós chamamos a mesma função novamente, mas mudamos a segunda letra para uma `l`,
+assim a saída obtida foi uma lista.
 
-We can specify multiple columns to group by:
+Podemos também especificar várias colunas para agrupar:
 
 
 ~~~
@@ -357,9 +356,8 @@ continent          1992         1997         2002         2007
 ~~~
 {: .output}
 
-You can use these functions in place of `for` loops (and its usually faster to
-do so).
-To replace a for loop, put the code that was in the body of the `for` loop inside an anonymous function.
+Você pode usar essas funções em lugar de `for` loops (é usualmente mais rápido).
+Para substituir um for loop, ponha o código que está no corpo do `for` loop em lugar da função anônima.
 
 
 ~~~
@@ -388,38 +386,38 @@ d_ply(
 ~~~
 {: .output}
 
-> ## Tip: printing numbers
+> ## Dica: apresentação de números
 >
-> The `format` function can be used to make numeric
-> values "pretty" for printing out in messages.
+> A função `format` pode ser usada para "melhorar" a apresentação
+> dos valores numéricos em mensagens.
 {: .callout}
 
 
-> ## Challenge 1
+> ## Desafio 1
 >
-> Calculate the average life expectancy per continent. Which has the longest?
-> Which had the shortest?
+> Calcule a média da esperança de vida por continente. Qual tem a maior?
+> Qual tem a menor?
 {: .challenge}
 
-> ## Challenge 2
+> ## Desafio 2
 >
-> Calculate the average life expectancy per continent and year. Which had the
-> longest and shortest in 2007? Which had the greatest change in between 1952
-> and 2007?
+> Calcule a média da esperança de vida por continente e ano. Qual tinha a
+> maior e a menor em 2017? Qual apresenta a maior mudança entre os anos 1952
+> e 2007?
 {: .challenge}
 
 
-> ## Advanced Challenge
+> ## Desafio Avançado
 >
-> Calculate the difference in mean life expectancy between
-> the years 1952 and 2007 from the output of challenge 2
-> using one of the `plyr` functions.
+> Calcule a diferença das médias da esperança de vida entre
+> os anos 1952 e 2007 usando os resultados do desafio 2
+> use uma das funções de `plyr`.
 {: .challenge}
 
-> ## Alternate Challenge if class seems lost
+> ## Desafio Alternativo se a aula parece perdida
 >
-> Without running them, which of the following will calculate the average
-> life expectancy per continent:
+> Sem executá-lo, qual dos segintes códigos calculará a média
+> da esperança de vida por continente:
 >
 > 1.
 > 

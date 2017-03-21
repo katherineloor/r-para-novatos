@@ -1,26 +1,25 @@
 ---
-título: " Gerenciamento de projetos com RStudio"
-ensino: 20
-exercícios: 10
-questões:
-- "Como eu posso gerenciar meus projetos no R ?"
-objetivos:
-- Ser capaz de criar projetos independentes com RStudio
-- TSer capaz de usar o git com o RStudio
-pontos-chave:
-- "Utilizar o RStudio para criar e gerenciar projetos com bom layout."
-- "Tratar os dados apenas como arquivos de leitura."
-- "Tratas as saídas como dispensáveis."
-- "Separar as funções das aplicações."
-- "Usar a versão de controle"
-source: Rmd
+title: "Project Management With RStudio"
+teaching: 20
+exercises: 10
+questions:
+- "How can I manage my projects in R?"
+objectives:
+- To be able to create self-contained projects in RStudio
+- To be able to use git from within RStudio
+keypoints:
+- "Use RStudio to create and manage projects with consistent layout."
+- "Treat raw data as read-only."
+- "Treat generated output as disposable."
+- "Separate function definition and application."
+- "Use version control."
 ---
 
 
 
-## Introdução
+## Introdu??o
 
-O processo científico é de natureza incremental. Muitos projetos começam com notas ou códigos aleatórios e a partir disso surgem manuscritos. Eventualmente essas escritas e códigos se misturam.
+O processo cient?fico ? de natureza incremental. Muitos projetos come?am com notas ou c?digos aleat?rios e a partir disso surgem manuscritos. Eventualmente essas escritas e c?digos se misturam.
 <blockquote class="twitter-tweet"><p>Managing your projects in a reproducible fashion doesn't just make your science reproducible, it makes your life easier.</p>â€” Vince Buffalo (@vsbuffalo) <a href="https://twitter.com/vsbuffalo/status/323638476153167872">April 15, 2013</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
@@ -28,24 +27,24 @@ A maioria das pessas organizam seus projetos da seguinte maneira
 
 ![](../fig/bad_layout.png)
 
-Por diversas razões SEMPRE devemos evitar esse tipo de armazenamento de projetos:
+Por diversas raz?es SEMPRE devemos evitar esse tipo de armazenamento de projetos:
 
-1. É difícil ver qual versão é a original e quais são as modificadas.
-2. Deste modo obtemos diversas extensões de arquivos na mesma pasta.
-3. Provavelmente iremos demorar bastante para para encontrar alguma coisa. Relacionar uma figura com o código que a gera, por exemplo.
+1. ? dif?cil ver qual vers?o ? a original e quais s?o as modificadas.
+2. Deste modo obtemos diversas extens?es de arquivos na mesma pasta.
+3. Provavelmente iremos demorar bastante para para encontrar alguma coisa. Relacionar uma figura com o c?digo que a gera, por exemplo.
 
-Um bom *layout* pode facilitar bastante nossa vida. Algumas vantagens são:
+Um bom *layout* pode facilitar bastante nossa vida. Algumas vantagens s?o:
 
 * Nos ajuda a assegurar a integridade dos dados;
-* Facilita o compartilhamento dos códigos com outras pessoas (colegas de laboratório, colaboradores ou supervisores);
-* Facilita o processo de atualização dos códigos;
-* É mais fácil encontrar um projeto após algum tempo.
+* Facilita o compartilhamento dos c?digos com outras pessoas (colegas de laborat?rio, colaboradores ou supervisores);
+* Facilita o processo de atualiza??o dos c?digos;
+* ? mais f?cil encontrar um projeto ap?s algum tempo.
 
-## Uma possível solução
+## Uma poss?vel solu??o
 
 Existem ferramentas e pacotes que nos ajudam a gerenciar nosso trabalho de forma mais efetiva.
 
-Uma das melhores características do RStudio, são as funcionalidades oferecidas em termos de gerenciamento de projetos. Usaremos tais ferramentas para uma criar um projeto independente e passível de ser reproduzido.
+Uma das melhores caracter?sticas do RStudio, s?o as funcionalidades oferecidas em termos de gerenciamento de projetos. Usaremos tais ferramentas para uma criar um projeto independente e pass?vel de ser reproduzido.
 
 
 
@@ -53,50 +52,50 @@ Uma das melhores características do RStudio, são as funcionalidades oferecidas e
 >
 > Vamos criar um novo projeto no RStudio
 >
-> 1. Clique no botão File e então em  New Progect.
+> 1. Clique no bot?o File e ent?o em  New Progect.
 > 2. Clique em New Directory.
 > 3. Clique em Empty Project.
-> 4. Digite o nome do diretório que em que seu projeto será gravado.
+> 4. Digite o nome do diret?rio que em que seu projeto ser? gravado.
 > 5. Clique em Create a git repository.
 > 6. Clique em Create Projeto.
 {: .challenge}
 
-Agora, toda vez que iniciarmos uma sessão desse projeto no RStudio todo o trabalho estará inteiramente contido neste diretório.
+Agora, toda vez que iniciarmos uma sess?o desse projeto no RStudio todo o trabalho estar? inteiramente contido neste diret?rio.
 
-## Melhores práticas aplicadas a organização de projetos
+## Melhores pr?ticas aplicadas a organiza??o de projetos
 
-Embora não exista a `MELHOR` forma de organizar um projeto, existem alguns princípios gerais que são consistentes com o objetico de deixar o gerenciamento de projetos mais simples.
+Embora n?o exista a `MELHOR` forma de organizar um projeto, existem alguns princ?pios gerais que s?o consistentes com o objetico de deixar o gerenciamento de projetos mais simples.
 
 ### Trate os dados apenas como leitura
 
-Este é provavelmente o principal objetivo ao organizar um projeto. Dados geralmente são difíceis de se coletar. Trabalhar com dados em programas interativos (Excel) onde eles podem ser modificados atrapalha. Isso porque não temos certeza de onde os dados vieram ou como foram modificados desde a coleta. Para evitar este tipo de problema é recomendável trabalhar os dados como arquivos apenas para leitura.
+Este ? provavelmente o principal objetivo ao organizar um projeto. Dados geralmente s?o dif?ceis de se coletar. Trabalhar com dados em programas interativos (Excel) onde eles podem ser modificados atrapalha. Isso porque n?o temos certeza de onde os dados vieram ou como foram modificados desde a coleta. Para evitar este tipo de problema ? recomend?vel trabalhar os dados como arquivos apenas para leitura.
 
 ### Limpeza dos dados
 
-Em muitos casos os dados são "sujos". Nestes casos é extremamente difícil transformar os dados até que eles sejam passíveis de serem lidos pelo R (ou qualquer outro programa). Esta tarefa é geralmente chamada de "data munging". Quando alterações devem ser feitas no conjunto de dados original, é aconselhável criar um segundo arquivo de leitura em uma pasta separada.
+Em muitos casos os dados s?o "sujos". Nestes casos ? extremamente dif?cil transformar os dados at? que eles sejam pass?veis de serem lidos pelo R (ou qualquer outro programa). Esta tarefa ? geralmente chamada de "data munging". Quando altera??es devem ser feitas no conjunto de dados original, ? aconselh?vel criar um segundo arquivo de leitura em uma pasta separada.
 
-### Trate as saídas como dispensáveis
+### Trate as sa?das como dispens?veis
 
-Quaisquer coisas geradas pelos scripts devem ser tratadas como dispensáveis. Devemos ser capazes de recriar as alterações ou análises feitas a partir do script.
+Quaisquer coisas geradas pelos scripts devem ser tratadas como dispens?veis. Devemos ser capazes de recriar as altera??es ou an?lises feitas a partir do script.
 
-Existem diversas maneiras de gerenciar os outputs. É interessante termos uma pasta com subdiretórios para cada análise que formos fazer. Desta maneira é mais fácil encontrar as análises de interesse, pois ao mesmo tempo que nem todas as análises feitas são utilizadas no trabalho final, outras poderão ser aplicadas em outros projetos.
+Existem diversas maneiras de gerenciar os outputs. ? interessante termos uma pasta com subdiret?rios para cada an?lise que formos fazer. Desta maneira ? mais f?cil encontrar as an?lises de interesse, pois ao mesmo tempo que nem todas as an?lises feitas s?o utilizadas no trabalho final, outras poder?o ser aplicadas em outros projetos.
 
 
-> ## Dica: Praticas interessantes em computação científica
+> ## Dica: Praticas interessantes em computa??o cient?fica
 >
-> [Boas práticas em computação científica](https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf) sugerem as recomendações para uma boa organização de projetos:
+> [Boas pr?ticas em computa??o cient?fica](https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf) sugerem as recomenda??es para uma boa organiza??o de projetos:
 >
-> 1. Coloque cada projeto em seu próprio diretório. O diretório deve ser nomeado após o projeto.
-> 2. Coloque documentos de textos associados a um diretório `doc`.
-> 3. Coloque os dados puros no diretório `data`, os dados alterados e os dados limpos devem ser colocados em uma pasta `results`.
-> 4. Coloque os scripts e os programas em um diretório `src`. Os programas importados de outros locais devem ser alocados no diretório `bin`.
-> 5. Escolha nomes que indiquem a função de cada arquivo.
+> 1. Coloque cada projeto em seu pr?prio diret?rio. O diret?rio deve ser nomeado ap?s o projeto.
+> 2. Coloque documentos de textos associados a um diret?rio `doc`.
+> 3. Coloque os dados puros no diret?rio `data`, os dados alterados e os dados limpos devem ser colocados em uma pasta `results`.
+> 4. Coloque os scripts e os programas em um diret?rio `src`. Os programas importados de outros locais devem ser alocados no diret?rio `bin`.
+> 5. Escolha nomes que indiquem a fun??o de cada arquivo.
 >
 {: .callout}
 
-> ## Dica: Modelo de projeto - uma possível solução
+> ## Dica: Modelo de projeto - uma poss?vel solu??o
 >
-> Uma maneira de automatizar o gerenciamento de projetos se dá com a instalação do pacote `ProjectTemplate`. Esse  > pacote oferece uma estrutura que é considerada ideal para o bom gerenciamento do projeto. O pacote é útil porque > mostra o fluxo de trabalho de forma organizada e estruturada. Com o RStudio e com o Git é possível ter controle  > total dos trabalhos, além de facilitar o compartilhamento dos arquivos com colaboradores.
+> Uma maneira de automatizar o gerenciamento de projetos se d? com a instala??o do pacote `ProjectTemplate`. Esse  > pacote oferece uma estrutura que ? considerada ideal para o bom gerenciamento do projeto. O pacote ? ?til porque > mostra o fluxo de trabalho de forma organizada e estruturada. Com o RStudio e com o Git ? poss?vel ter controle  > total dos trabalhos, al?m de facilitar o compartilhamento dos arquivos com colaboradores.
 >
 > 1. Instale o pacote ProjectTemplate
 > 2. Carregue o pacote
@@ -110,53 +109,53 @@ Existem diversas maneiras de gerenciar os outputs. É interessante termos uma pas
 > ~~~
 > {: .r}
 >
-> Para mais informações sobre o pacote `ProjectTemplate` e suas funcionalidades acesse   
+> Para mais informa??es sobre o pacote `ProjectTemplate` e suas funcionalidades acesse   
 > [ProjectTemplate](http://projecttemplate.net/index.html)
 {: .callout}
 
-### Separe as funções das aplicações
+### Separe as fun??es das aplica??es
 
-O modo mais efetivo de trabalhar no R é brincando com os códigos na sessão interativa. Quando temos certeza de que os códigos funcionam e fazem o que queremos, copiamos para um arquivo de script. Também é possível salvar todos os comandos utilizados, para isso utilizamos a função *history()*. Utilizar essa função nem sempre é útil pois quando estamos desenvolvendo algum programa novo surgem muitos erros.
+O modo mais efetivo de trabalhar no R ? brincando com os c?digos na sess?o interativa. Quando temos certeza de que os c?digos funcionam e fazem o que queremos, copiamos para um arquivo de script. Tamb?m ? poss?vel salvar todos os comandos utilizados, para isso utilizamos a fun??o *history()*. Utilizar essa fun??o nem sempre ? ?til pois quando estamos desenvolvendo algum programa novo surgem muitos erros.
 
-Quando o prejeto é novo, geralmente o arquivo de script contém muitas linhas. Quando o projeto está em um estágio mais avançado pedaços de códigos podem ser re-utilizados. É uma boa ideia separar os códigos em diferrentes pastas; Uma para salvar os códigos que serão utilizados com frequência e outra para salvar os scripts das análises feitas.
+Quando o prejeto ? novo, geralmente o arquivo de script cont?m muitas linhas. Quando o projeto est? em um est?gio mais avan?ado peda?os de c?digos podem ser re-utilizados. ? uma boa ideia separar os c?digos em diferrentes pastas; Uma para salvar os c?digos que ser?o utilizados com frequ?ncia e outra para salvar os scripts das an?lises feitas.
 
-> ##  Dica: evite duplicação
+> ##  Dica: evite duplica??o
 >
-> É possível que o mesmo conjunto de dados e o mesmo script sejam usados em projetos distintos. De modo geral 
-> queremos evitar a duplicação de arquivos de modo a salvar espaço e não termos que atualizar o mesmo código em 
+> ? poss?vel que o mesmo conjunto de dados e o mesmo script sejam usados em projetos distintos. De modo geral 
+> queremos evitar a duplica??o de arquivos de modo a salvar espa?o e n?o termos que atualizar o mesmo c?digo em 
 > diferentes lugares.
 
-> Quando este for o caso é interessante usar *symbolic links*, que são atalhos para arquivos que se encontram em 
+> Quando este for o caso ? interessante usar *symbolic links*, que s?o atalhos para arquivos que se encontram em 
 > outro lugares. No Linux e no OS X podemos usar o comando `ln -s`, no Windows podemos criar um atalho ou usar o
 > comando `mklink` no terminal de comandos.
 {: .callout}
 
-### Save the data in the data directory
+### Salvando os dados na pasta data
 
-Now we have a good directory structure we will now place/save the data file in the `data/` directory.
+Agora que nÃ³s temos uma boa estrutura para o diretÃ³rio iremos colocar/salvar os dados na pasta `data/`.
 
-> ## Challenge 1
-> Download the gapminder data from [here](https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv).
+> ## Desafio 1
+> FaÃ§a download dos dados gapminder [aqui](https://raw.githubusercontent.com/resbaz/r-novice-gapminder-files/master/data/gapminder-FiveYearData.csv).
 >
-> 1. Download the file (CTRL + S, right mouse click -> "Save as", or File -> "Save page as")
-> 2. Make sure it's saved under the name `gapminder-FiveYearData.csv`
-> 3. Save the file in the `data/` folder within your project.
->
-> We will load and inspect these data later.
+> 1. Baixe o arquivo (CTRL + S, clique no botÃ£o direito do mouse -> â€œSalvar comoâ€, ou Arquivo -> â€œSalvar pÃ¡gina comoâ€)
+> 2. Tenha certeza que estÃ¡ salvo com o nome `gapminder-FiveYearData.csv`
+> 3. Salve o arquivo na pasta `data/` dentro do seu projeto.
+> 
+> Iremos carregar e inspecionar esses dados mais tarde.
 {: .challenge}
 
-> ## Challenge 2
-> It is useful to get some general idea about the dataset, directly from the
-> command line, before loading it into R. Understanding the dataset better
-> will come in handy when making decisions on how to load it in R. Use the command-line
-> shell to answer the following questions:
-> 1. What is the size of the file?
-> 2. How many rows of data does it contain?
-> 3. What kinds of values are stored in this file?
+> ## Desafio 2
+> Ã‰ Ãºtil ter alguma ideia geral sobre o banco de dados, diretamente pela linha de 
+> comando, antes de carregÃ¡-los no R. Entendendo o banco de dados bem serÃ¡ Ãºtil quando
+> formos fazer decisÃµes sobre como carregÃ¡-lo no R. Use a linha de comando shell para
+> responder as seguintes questÃµes:
+> 1. Qual Ã© o tamanho do arquivo?
+> 2. Quantas linhas de dados ele contÃ©m?
+> 3. Quais sÃ£o os tipos de dados dos valores armazenados neste arquivo?
 >
-> > ## Solution to Challenge 2
+> > ## SoluÃ§Ã£o do exercÃ­cio 2
 > >
-> > By running these commands in the shell:
+> > Rodando os seguintes comandos no shell:
 > > 
 > > ~~~
 > > ls -lh data/gapminder-FiveYearData.csv
@@ -170,7 +169,7 @@ Now we have a good directory structure we will now place/save the data file in t
 > > -rw-r--r--  1 gabrielfranco89  staff    80K Mar 20 20:50 data/gapminder-FiveYearData.csv
 > > ~~~
 > > {: .output}
-> > The file size is 80K.
+> > O tamanho do arquivo Ã© 80K.
 > > 
 > > ~~~
 > > wc -l data/gapminder-FiveYearData.csv
@@ -184,7 +183,7 @@ Now we have a good directory structure we will now place/save the data file in t
 > >     1705 data/gapminder-FiveYearData.csv
 > > ~~~
 > > {: .output}
-> > There are 1705 lines. The data looks like:
+> > Existem 1705 linhas que sÃ£o parecidas como em:
 > > 
 > > ~~~
 > > head data/gapminder-FiveYearData.csv
@@ -210,42 +209,35 @@ Now we have a good directory structure we will now place/save the data file in t
 > {: .solution}
 {: .challenge}
 
-> ## Tip: command line in R Studio
+> ## Dica: linha de comando no R Studio
 >
-> You can quickly open up a shell in RStudio using the **Tools -> Shell...** menu item.
+> VocÃª pode rapidamente abrir um shell em RStudio usando o item **Ferramentas -> Shellâ€¦**  do menu.
 {: .callout}
 
-### Version Control
+### Controle de versÃ£o
 
-We also set up our project to integrate with git, putting it under version control.
-RStudio has a nicer interface to git than shell, but is very limited in what it can
-do, so you will find yourself occasionally needing to use the shell. Let's go
-through and make an initial commit of our template files.
+NÃ³s tambÃ©m podemos integrar nosso projeto com git, o colocando sob controle de versÃ£o. RStudio possui uma interface para o git melhor que a do shell, mas Ã© bastante limitada no que ela pode fazer, logo vocÃª ocasionalmente se encontrarÃ¡ precisando usar o shell. Vamos continuar e fazer um primeiro commit dos nossos templates.
 
-The workspace/history pane has a tab for "Git". We can stage each file by checking the box:
-you will see a green "A" next to stage files and folders, and yellow question marks next to
-files or folders git doesn't know about yet. RStudio also nicely shows you the difference
-between files from different commits.
+O painel workspace/history tem um botÃ£o para â€œGitâ€. Podemos selecionar cada arquivo marcando nas caixas: vocÃª verÃ¡ um "A" verde prÃ³ximo dos arquivos e pastas, e pontos de interrogaÃ§Ãµes amarelos prÃ³ximos dos arquivos ou pastas que o git ainda nÃ£o conhece. RStudio tambÃ©m mostra para vocÃª a diferenÃ§a entre arquivos de diferentes commits.
 
-> ## Tip: versioning disposable output
+> ## Dica: VersÃ£o para saÃ­da descartÃ¡vel
 >
-> Generally you do not want to version disposable output (or read-only data).
-> You should modify the `.gitignore` file to tell git to ignore these files
-> and directories.
+> Geralmente vocÃª nÃ£o deseja criar uma versÃ£o para saÃ­da descartÃ¡vel (ou dados para
+> somente leitura). VocÃª deve modificar o arquivo `.gitignore` para dizer ao git para
+> ignorar esses arquivos e pastas.
 {: .callout}
 
-> ## Challenge 3
+> ## Desafio 3
 >
-> 1. Create a directory within your project called `graphs`.
-> 2. Modify the `.gitignore` file to contain `graphs/`
-> so that this disposable output isn't versioned.
+> 1. Crie uma pasta dentro do seu projeto com o nome `graphs`.
+> 2. Modifique o aquivo `.gitignore` para conter `graphs` de forma que essa saÃ­da
+> descartÃ¡vel nÃ£o seja versionada.
 >
-> Add the newly created folders to version control using
-> the git interface.
+> Adicione as novas pastas criadas para o controle de versÃ£o usando a interface git.
 >
-> > ## Solution to Challenge 3
+> > ## SoluÃ§Ã£o do exercÃ­cio 3
 > >
-> > This can be done with the command line:
+> > Isso pode ser feito com as linhas de comando:
 > > ```
 > > $ mkdir graphs
 > > $ echo "graphs/" >> .gitignore

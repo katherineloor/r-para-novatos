@@ -1,59 +1,65 @@
 ---
-title: "IntroduÃ§Ã£o ao R e RStudio"
-Quest<f5>es:
-- Como encontrar o seu camihno ao redor de RStudio?
-- Como interagir com R?
-- Como gerenciar seu ambiente?
-- Como instalar pacotes?
-exercises: 10
-source: Rmd
+title: "Introduction to R and RStudio"
 teaching: 45
-Objetivos:
-- Obter familiaridade com os vÃ¡rios panÃ©is no IDE do RStudio
-- Obter familiaridade com os botÃµes, atalhos e opÃ§Ãµes no IDE do RStudio
-- Entender variÃ¡veis e como atribuir a ela
-- Ser capaz de gerenciar seu espaÃ§o de trabalho em uma sessaÃ£o interativa de R
-- Ser capaz de usar operaÃ§oÃµes matemÃ¡ticas e de comparaÃ§Ã£o
-- Ser capaz de chamar funÃ§Ãµes
-- Introduzir o gerenciamento de pacotes
+exercises: 10
+questions:
+- "How to find your way around RStudio?"
+- "How to interact with R?"
+- "How to manage your environment?"
+- "How to install packages?"
+objectives:
+- "To gain familiarity with the various panes in the RStudio IDE"
+- "To gain familiarity with the buttons, short cuts and options in the RStudio IDE"
+- "To understand variables and how to assign to them"
+- "To be able to manage your workspace in an interactive R session"
+- "To be able to use mathematical and comparison operations"
+- "To be able to call functions"
+- "Introduction to package management"
+keypoints:
+- "Use RStudio to write and run R programs."
+- "R has the usual arithmetic operators and mathematical functions."
+- "Use `<-` to assign values to variables."
+- "Use `ls()` to list the variables in a program."
+- "Use `rm()` to delete objects in a program."
+- "Use `install.packages()` to install packages (libraries)."
 ---
 
 
 
 
-## Motiva<e7><e3>o
+## Motiva??o
 
-A ci<ea>ncia <e9> um processo de v<e1>rias etapas: uma vez que voc<ea> criou uma experi<ea>ncia e coletou dados, a verdadeira divers<e3>o come<e7>a! Esta li<e7><e3>o ensinar<e1> como iniciar este processo usando R e RStudio. Come<e7>aremos com dados brutos, realizaremos an<e1>lises explorat<f3>rias e aprenderemos a tra<e7>ar resultados graficamente. Este exemplo come<e7>a com um conjunto de dados de [gapminder.org](https://www.gapminder.org) que cont<e9>m informa<e7><f5>es de popula<e7><e3>o para muitos pa<ed>ses ao longo do tempo. Voc<ea> pode ler os dados em R? Pode tra<e7>ar a popula<e7><e3>o para o Senegal? Voc<ea> pode calcular a renda m<e9>dia dos pa<ed>ses do continente asi<e1>tico? No final dessas li<e7><f5>es voc<ea> ser<e1> capaz de fazer coisas como tramar as popula<e7><f5>es de todos esses pa<ed>ses em menos de um minuto!
+A ci?ncia ? um processo de v?rias etapas: uma vez que voc? criou uma experi?ncia e coletou dados, a verdadeira divers?o come?a! Esta li??o ensinar? como iniciar este processo usando R e RStudio. Come?aremos com dados brutos, realizaremos an?lises explorat?rias e aprenderemos a tra?ar resultados graficamente. Este exemplo come?a com um conjunto de dados de [gapminder.org](https://www.gapminder.org) que cont?m informa??es de popula??o para muitos pa?ses ao longo do tempo. Voc? pode ler os dados em R? Pode tra?ar a popula??o para o Senegal? Voc? pode calcular a renda m?dia dos pa?ses do continente asi?tico? No final dessas li??es voc? ser? capaz de fazer coisas como tramar as popula??es de todos esses pa?ses em menos de um minuto!
 
 ## Antes de iniciar o Workshop
 
-Certifique-se de que tem a vers<e3>o mais recente do R e do RStudio instalados na sua m<e1>quina. Isso <e9> importante, pois alguns pacotes usados no workshop podem n<e3>o ser instalados corretamente (ou em todos) se R n<e3>o estiver atualizado.
+Certifique-se de que tem a vers?o mais recente do R e do RStudio instalados na sua m?quina. Isso ? importante, pois alguns pacotes usados no workshop podem n?o ser instalados corretamente (ou em todos) se R n?o estiver atualizado.
 
 [Download and install the latest version of R here](https://www.r-project.org/)
 [Download and install RStudio here](https://www.rstudio.com/)
 
-## Introdu<e7>a<f5> ao RStudio 
+## Introdu?a? ao RStudio 
 
 
-Bem-vindo <e0> parte do R do Software Carpentry.
+Bem-vindo ? parte do R do Software Carpentry.
 
-Ao longo desta li<e7><e3>o, vamos ensinar-lhe alguns dos fundamentos da linguagem R, bem como algumas pr<e1>ticas recomendadas para organizar o c<f3>digo para projetos cient<ed>ficos que facilitar<e3>o a sua vida.
+Ao longo desta li??o, vamos ensinar-lhe alguns dos fundamentos da linguagem R, bem como algumas pr?ticas recomendadas para organizar o c?digo para projetos cient?ficos que facilitar?o a sua vida.
 
-Estaremos usando o RStudio: um ambiente de desenvolvimento integrado livre e de c<f3>digo aberto. Ele fornece um editor embutido, funciona em todas as plataformas (incluindo servidores) e oferece muitas vantagens, como integra<e7><e3>o com controle de vers<e3>o e gerenciamento de projetos. 
+Estaremos usando o RStudio: um ambiente de desenvolvimento integrado livre e de c?digo aberto. Ele fornece um editor embutido, funciona em todas as plataformas (incluindo servidores) e oferece muitas vantagens, como integra??o com controle de vers?o e gerenciamento de projetos. 
 
 
 
-**Layout b<e1>sico**
+**Layout b?sico**
 
-Quando voc<ea> abrir RStudio pela primeira vez, voc<ea> ser<e1> recebido por tr<ea>s pain<e9>is: 
+Quando voc? abrir RStudio pela primeira vez, voc? ser? recebido por tr?s pain?is: 
 
-  * O console R interativo (todo <e0> esquerda)
-  * Ambiente/Hist<f3>ria (tabulada no canto direito)
-  * Archivos/Gr<e1>ficos/Pacotes/Ajuda/Visualizador (com abas na parte inferior direita)
+  * O console R interativo (todo ? esquerda)
+  * Ambiente/Hist?ria (tabulada no canto direito)
+  * Archivos/Gr?ficos/Pacotes/Ajuda/Visualizador (com abas na parte inferior direita)
 
 ![](http://swcarpentry.github.io/r-novice-gapminder/fig/01-rstudio.png)
 
-Depois de abrir arquivos, como R scripts, um painel de editor tamb<e9>m ser<e1> aberto no canto superior esquerdo. 
+Depois de abrir arquivos, como R scripts, um painel de editor tamb?m ser? aberto no canto superior esquerdo. 
 
 
 ![](http://swcarpentry.github.io/r-novice-gapminder/fig/01-rstudio-script.png) 
@@ -62,38 +68,38 @@ Depois de abrir arquivos, como R scripts, um painel de editor tamb<e9>m ser<e1> 
 ## Fluxo de trabalho no RStudio
 Existem duas maneiras principais de se trabalhar dentro do RStudio.
 
-1. Teste e jogue dentro do console R interativo, em seguida, copie o c<f3>digo para um arquivo .R para ser executado posteriormente.
-   *  Isso funciona bem ao fazer pequenos testes e inicialmente come<e7>ar.
+1. Teste e jogue dentro do console R interativo, em seguida, copie o c?digo para um arquivo .R para ser executado posteriormente.
+   *  Isso funciona bem ao fazer pequenos testes e inicialmente come?ar.
    *  Torna-se rapidamente trabalhoso.
 2. Comece a escrever em um arquivo .R e use o comando / atalho RStudio para pressionar a linha atual, as linhas selecionadas ou as linhas modificadas para o console R interativo. .
-   * Esta <e9> uma <f3>tima maneira de come<e7>ar; Todo o seu c<f3>digo <e9> salvo para mais tarde.
-   * Voc<ea> poder<e1> executar o arquivo criado a partir de RStudio ou usando a fun<e7><e3>o **source ()** de R.
+   * Esta ? uma ?tima maneira de come?ar; Todo o seu c?digo ? salvo para mais tarde.
+   * Voc? poder? executar o arquivo criado a partir de RStudio ou usando a fun??o **source ()** de R.
 
-> ## Dica: Executando segmentos do seu c<f3>digo
+> ## Dica: Executando segmentos do seu c?digo
 >
-> O RStudio oferece-lhe uma grande flexibilidade na execu<e7><e3>o de c<f3>digo 
->a partir da janela do editor. Existem bot<f5>es, op<e7><f5>es de menu e atalhos 
->de teclado. Para executar a linha atual, voc<ea> pode: 1. pressionar no bot<e3>o 
+> O RStudio oferece-lhe uma grande flexibilidade na execu??o de c?digo 
+>a partir da janela do editor. Existem bot?es, op??es de menu e atalhos 
+>de teclado. Para executar a linha atual, voc? pode: 1. pressionar no bot?o 
 >Executar acima do painel do editor ou 2. selecionar "Run lines" no menu "Code",
 >ou 3. pressionar Ctrl-Enter no Windows ou Linux ou Command-Enter no OS X.
->(Este atalho tamb<e9>m pode ser visto ao passar o mouse sobre o bot<e3>o).
->Para executar um bloco de c<f3>digo, selecione-o e, em seguida, Executar. 
->Se voc<ea> modificou uma linha de c<f3>digo dentro de um bloco de c<f3>digo que 
->voc<ea> acabou de executar, n<e3>o h<e1> necessidade de reajustar a se<e7><e3>o e Run, 
->voc<ea> pode usar o pr<f3>ximo bot<e3>o, Re-Run the previous code region. Isso 
->executar<e1> o bloco de c<f3>digo anterior incluindo as modifica<e7><f5>es feitas.
+>(Este atalho tamb?m pode ser visto ao passar o mouse sobre o bot?o).
+>Para executar um bloco de c?digo, selecione-o e, em seguida, Executar. 
+>Se voc? modificou uma linha de c?digo dentro de um bloco de c?digo que 
+>voc? acabou de executar, n?o h? necessidade de reajustar a se??o e Run, 
+>voc? pode usar o pr?ximo bot?o, Re-Run the previous code region. Isso 
+>executar? o bloco de c?digo anterior incluindo as modifica??es feitas.
 >
 {: .callout}
 
-## Introdu<e7><e3>o a R
+## Introdu??o a R
 
-A maior parte do seu tempo em R ser<e1> gasto no console interativo R. Isto <e9> onde voc<ea> ir<e1> executar todo o seu c<f3>digo, e pode ser um ambiente <fa>til para experimentar id<e9>ias antes de adicion<e1>-los a um arquivo de script R. Este console no RStudio <e9> o mesmo que voc<ea> obteria se voc<ea> digitou R em seu ambiente de linha de comando.
+A maior parte do seu tempo em R ser? gasto no console interativo R. Isto ? onde voc? ir? executar todo o seu c?digo, e pode ser um ambiente ?til para experimentar id?ias antes de adicion?-los a um arquivo de script R. Este console no RStudio ? o mesmo que voc? obteria se voc? digitou R em seu ambiente de linha de comando.
 
-A primeira coisa que voc<ea> vai ver na sess<e3>o interativa R <e9> um monte de informa<e7><f5>es, seguido por um ">" e um cursor piscando. Em muitos aspectos isso <e9> semelhante ao ambiente de shell que voc<ea> aprendeu durante as li<e7><f5>es do shell: ele opera na mesma id<e9>ia de um "Read, evaluate, print loop": voc<ea> digita comandos, R tenta execut<e1>-los e, em seguida, retorna um resultado.
+A primeira coisa que voc? vai ver na sess?o interativa R ? um monte de informa??es, seguido por um ">" e um cursor piscando. Em muitos aspectos isso ? semelhante ao ambiente de shell que voc? aprendeu durante as li??es do shell: ele opera na mesma id?ia de um "Read, evaluate, print loop": voc? digita comandos, R tenta execut?-los e, em seguida, retorna um resultado.
 
 ## Usando R como uma calculadora 
 
-A coisa mais simples que voc<ea> pode fazer com R <e9> aritm<e9>tica: 
+A coisa mais simples que voc? pode fazer com R ? aritm?tica: 
 
 
 ~~~
@@ -108,9 +114,9 @@ A coisa mais simples que voc<ea> pode fazer com R <e9> aritm<e9>tica:
 ~~~
 {: .output}
 
-E R vai imprimir a resposta, com um precedente "[1]". N<e3>o se preocupe com isso por agora, vamos explicar isso mais tarde. Por agora, pense nisso como uma sa<ed>da indicadora.  
+E R vai imprimir a resposta, com um precedente "[1]". N?o se preocupe com isso por agora, vamos explicar isso mais tarde. Por agora, pense nisso como uma sa?da indicadora.  
 
-Como bash, se voc<ea> digitar um comando incompleto, R esperar<e1> que voc<ea> o complete: 
+Como bash, se voc? digitar um comando incompleto, R esperar? que voc? o complete: 
 
 ~~~
 > 1 +
@@ -122,26 +128,26 @@ Como bash, se voc<ea> digitar um comando incompleto, R esperar<e1> que voc<ea> o
 ~~~
 {: .output}
 
-Cada vez que voc<ea> pressionar a tecla Enter e a sess<e3>o R mostre um "+" em vez de um ">", isso significa que est<e1> esperando que voc<ea> complete o comando. Se voc<ea> deseja cancelar um comando, voc<ea> pode simplesmente presionar em "Esc" e rstudio vai lhe dar de volta o ">" alerta.
+Cada vez que voc? pressionar a tecla Enter e a sess?o R mostre um "+" em vez de um ">", isso significa que est? esperando que voc? complete o comando. Se voc? deseja cancelar um comando, voc? pode simplesmente presionar em "Esc" e rstudio vai lhe dar de volta o ">" alerta.
 
 > ## Dica: Cancelamento de comandos
 >
-> Se voc<ea> estiver usando R a partir da linha de comando em vez de 
->dentro RStudio, voc<ea> precisar<e1> usar `Ctrl+C` em vez de `Esc` 
-> para cancelar o comando. Isso tamb<e9>m se aplica aos usu<e1>rios de Mac!
+> Se voc? estiver usando R a partir da linha de comando em vez de 
+>dentro RStudio, voc? precisar? usar `Ctrl+C` em vez de `Esc` 
+> para cancelar o comando. Isso tamb?m se aplica aos usu?rios de Mac!
 >
-> Cancelar um comando n<e3>o <e9> <fa>til somente para matar comandos incompletos: 
-> voc<ea> tamb<e9>m pode us<e1>-lo para dizer a R para parar o c<f3>digo em execu<e7><e3>o
-> (por exemplo, se estiver demorando muito mais do que voc<ea> espera) 
->ou para se livrar do c<f3>digo que voc<ea> est<e1> escrevendo. 
+> Cancelar um comando n?o ? ?til somente para matar comandos incompletos: 
+> voc? tamb?m pode us?-lo para dizer a R para parar o c?digo em execu??o
+> (por exemplo, se estiver demorando muito mais do que voc? espera) 
+>ou para se livrar do c?digo que voc? est? escrevendo. 
 >
 {: .callout}
 
-Ao usar R como uma calculadora, a ordem das opera<e7><f5>es <e9> a mesma que voc<ea> teria aprendido na escola.  
+Ao usar R como uma calculadora, a ordem das opera??es ? a mesma que voc? teria aprendido na escola.  
 
-Da preced<ea>ncia mais alta <e0> mais baixa:
+Da preced?ncia mais alta ? mais baixa:
 
- * Par<ea>nteses: `(`, `)`
+ * Par?nteses: `(`, `)`
  * Exponentes: `^` or `**`
  * Dividir: `/`
  * Multiplicar: `*`
@@ -161,7 +167,7 @@ Da preced<ea>ncia mais alta <e0> mais baixa:
 ~~~
 {: .output}
 
-Use par<ea>nteses para agrupar opera<e7><f5>es, a fim de for<e7>ar a ordem de avalia<e7><e3>o se difere do padr<e3>o, ou para tornar claro o que voc<ea> pretende. .
+Use par?nteses para agrupar opera??es, a fim de for?ar a ordem de avalia??o se difere do padr?o, ou para tornar claro o que voc? pretende. .
 
 
 ~~~
@@ -176,20 +182,20 @@ Use par<ea>nteses para agrupar opera<e7><f5>es, a fim de for<e7>ar a ordem de av
 ~~~
 {: .output}
 
-Isso pode ficar complicado quando n<e3>o <e9> necess<e1>rio, mas esclarece suas inten<e7><f5>es. Lembre-se de que os outros podem ler o seu c<f3>digo mais tarde. 
+Isso pode ficar complicado quando n?o ? necess?rio, mas esclarece suas inten??es. Lembre-se de que os outros podem ler o seu c?digo mais tarde. 
 
 
 ~~~
-(3 + (5 * (2 ^ 2))) # difü¾™†”¼cil de ler
-3 + 5 * 2 ^ 2       # claro, se vocü¾˜–”¼ se lembrar das regras
-3 + 5 * (2 ^ 2)     # se vocü¾˜–”¼ esquecer algumas regras, isso pode ajudar
+(3 + (5 * (2 ^ 2))) # dif?cil de ler
+3 + 5 * 2 ^ 2       # claro, se voc? se lembrar das regras
+3 + 5 * (2 ^ 2)     # se voc? esquecer algumas regras, isso pode ajudar
 ~~~
 {: .r}
 
 
-O texto ap<f3>s cada linha de c<f3>digo <e9> chamado de "coment<e1>rio". Qualquer coisa que se segue ap<f3>s o hash (ou octothorpe) s<ed>mbolo `#` <e9> ignorado por R quando ele executa c<f3>digo.
+O texto ap?s cada linha de c?digo ? chamado de "coment?rio". Qualquer coisa que se segue ap?s o hash (ou octothorpe) s?mbolo `#` ? ignorado por R quando ele executa c?digo.
 
-N<fa>meros realmente pequenos ou grandes obt<ea>m uma nota<e7><e3>o cient<ed>fica:
+N?meros realmente pequenos ou grandes obt?m uma nota??o cient?fica:
 
 
 ~~~
@@ -204,10 +210,10 @@ N<fa>meros realmente pequenos ou grandes obt<ea>m uma nota<e7><e3>o cient<ed>fic
 ~~~
 {: .output}
 
-Qual <e9> taquigrafia para "multiplicado por `10^XX`". Ent<e3>o `2e-4` <e9> abrevia<e7><e3>o para `2 * 10^(-4)`.
+Qual ? taquigrafia para "multiplicado por `10^XX`". Ent?o `2e-4` ? abrevia??o para `2 * 10^(-4)`.
 
 
-Voc<ea> tamb<e9>m pode escrever n<fa>meros em nota<e7><e3>o cient<ed>fica: 
+Voc? tamb?m pode escrever n?meros em nota??o cient?fica: 
 
 
 ~~~
@@ -222,13 +228,13 @@ Voc<ea> tamb<e9>m pode escrever n<fa>meros em nota<e7><e3>o cient<ed>fica:
 ~~~
 {: .output}
 
-## Fun<e7><f5>es matem<e1>ticas
+## Fun??es matem?ticas
 
-R tem muitas fun<e7><f5>es matem<e1>ticas constru<ed>das. Para chamar uma fun<e7><e3>o, simplesmente digite seu nome, seguido por par<ea>nteses abertos e fechados. Qualquer coisa que digitemos dentro dos par<ea>nteses <e9> chamada de argumentos da fun<e7><e3>o:
+R tem muitas fun??es matem?ticas constru?das. Para chamar uma fun??o, simplesmente digite seu nome, seguido por par?nteses abertos e fechados. Qualquer coisa que digitemos dentro dos par?nteses ? chamada de argumentos da fun??o:
 
 
 ~~~
-sin(1)  # funü¾¶”¼ü¾–˜¼es trigonomü¾Ž–”¼tricas
+sin(1)  # fun??es trigonom?tricas
 ~~~
 {: .r}
 
@@ -278,19 +284,19 @@ exp(0.5) # e^(1/2)
 ~~~
 {: .output}
 
-N<e3>o se preocupe em tentar lembrar cada fun<e7><e3>o em R. Voc<ea> pode simplesmente procur<e1>-los no Google, ou se lembrar do in<ed>cio do nome da fun<e7><e3>o, use a conclus<e3>o da guia no RStudio.
+N?o se preocupe em tentar lembrar cada fun??o em R. Voc? pode simplesmente procur?-los no Google, ou se lembrar do in?cio do nome da fun??o, use a conclus?o da guia no RStudio.
 
-Esta <e9> uma vantagem que RStudio tem sobre R por conta pr<f3>pria, tem auto-conclus<e3>o habilidades que lhe permitem procurar mais facilmente as fun<e7><f5>es, os seus argumentos e os valores que eles tomam.
+Esta ? uma vantagem que RStudio tem sobre R por conta pr?pria, tem auto-conclus?o habilidades que lhe permitem procurar mais facilmente as fun??es, os seus argumentos e os valores que eles tomam.
 
-Digite um "?" antes do nome dum comando e abrir<e1> uma p<e1>gina de ajuda para esse comando. Assim como fornecer<e1> uma descri<e7><e3>o detalhada do comando e como ele funciona, baixando na a detailed description of the command and how it works, a rolagem para a parte inferior da p<e1>gina de ajuda normalmente mostrar<e1> uma cole<e7><e3>o de exemplos de c<f3>digo que ilustram o uso do comando. Passaremos por um exemplo mais adiante.
+Digite um "?" antes do nome dum comando e abrir? uma p?gina de ajuda para esse comando. Assim como fornecer? uma descri??o detalhada do comando e como ele funciona, baixando na a detailed description of the command and how it works, a rolagem para a parte inferior da p?gina de ajuda normalmente mostrar? uma cole??o de exemplos de c?digo que ilustram o uso do comando. Passaremos por um exemplo mais adiante.
 
 ## Comparando coisas
 
-Podemos tamb<e9>m fazer compara<e7><e3>o em R:
+Podemos tamb?m fazer compara??o em R:
 
 
 ~~~
-1 == 1  # igualdade (nota dois sinais iguais, leai-se como "ü¾Ž–”¼ igual a")
+1 == 1  # igualdade (nota dois sinais iguais, leai-se como "? igual a")
 ~~~
 {: .r}
 
@@ -303,7 +309,7 @@ Podemos tamb<e9>m fazer compara<e7><e3>o em R:
 
 
 ~~~
-1 != 2  # desigualdade (leai-se como "nü¾Œ¶”¼o ü¾Ž–”¼ igual a")
+1 != 2  # desigualdade (leai-se como "n?o ? igual a")
 ~~~
 {: .r}
 
@@ -366,27 +372,27 @@ Podemos tamb<e9>m fazer compara<e7><e3>o em R:
 ~~~
 {: .output}
 
-> ## Dica: Comparando N<fa>meros
+> ## Dica: Comparando N?meros
 >
->Uma palavra de advert<ea>ncia sobre a compara<e7><e3>o de n<fa>meros: 
->voc<ea> nunca deve usar `==` para comparar dois n<fa>meros a
+>Uma palavra de advert?ncia sobre a compara??o de n?meros: 
+>voc? nunca deve usar `==` para comparar dois n?meros a
 > menos que sejam inteiros (um tipo de dados que pode representar
-> especificamente apenas n<fa>meros inteiros).
+> especificamente apenas n?meros inteiros).
 >
-> Os computadores s<f3> podem representar n<fa>meros decimais com 
->um certo grau de precis<e3>o, ent<e3>o dois n<fa>meros que parecem os mesmos
->quando impressos por R, podem realmente ter diferentes representa<e7><f5>es 
+> Os computadores s? podem representar n?meros decimais com 
+>um certo grau de precis?o, ent?o dois n?meros que parecem os mesmos
+>quando impressos por R, podem realmente ter diferentes representa??es 
 >subjacentes e, portanto, ser diferentes por uma pequena margem de erro 
->(chamada toler<e2>ncia num<e9>rica da m<e1>quina).
+>(chamada toler?ncia num?rica da m?quina).
 >
-> Em vez disso, voc<ea> deve usar a fun<e7><e3>o `all.equal`.
+> Em vez disso, voc? deve usar a fun??o `all.equal`.
 > Leitura adicional:     [http://floating-point-gui.de/](http://floating-point-gui.de/)
 > 
 {: .callout}
 
-## Vari<e1>veis e atribui<e7><e3>o 
+## Vari?veis e atribui??o 
 
-Podemos armazenar valores em vari<e1>veis usando o operador de atribui<e7><e3>o `<-`, assim: 
+Podemos armazenar valores em vari?veis usando o operador de atribui??o `<-`, assim: 
 
 
 ~~~
@@ -394,7 +400,7 @@ x <- 1/40
 ~~~
 {: .r}
 
-Observe que a atribui<e7><e3>o n<e3>o imprime um valor. Em vez disso, n<f3>s armazenamos isso para mais tarde em algo chamado de **vari<e1>vel**, `x` agora cont<e9>m o **valor** `0.025`:
+Observe que a atribui??o n?o imprime um valor. Em vez disso, n?s armazenamos isso para mais tarde em algo chamado de **vari?vel**, `x` agora cont?m o **valor** `0.025`:
 
 
 ~~~
@@ -409,9 +415,9 @@ x
 ~~~
 {: .output}
 
-Mais precisamente, o valor armazenado <e9> uma *aproxima<e7><e3>o decimal* dessa fra<e7><e3>o chamada uma [N<fa>mero de ponto flutuante](http://en.wikipedia.org/wiki/Floating_point).
+Mais precisamente, o valor armazenado ? uma *aproxima??o decimal* dessa fra??o chamada uma [N?mero de ponto flutuante](http://en.wikipedia.org/wiki/Floating_point).
 
-Procure a guia `Ambiente` em um dos pain<e9>is do RStudio, e voc<ea> ver<e1> que `x` e seu valor apareceram. Nossa vari<e1>vel `x` pode ser usada no lugar de um n<fa>mero em qualquer c<e1>lculo que espera um n<fa>mero: 
+Procure a guia `Ambiente` em um dos pain?is do RStudio, e voc? ver? que `x` e seu valor apareceram. Nossa vari?vel `x` pode ser usada no lugar de um n?mero em qualquer c?lculo que espera um n?mero: 
 
 
 ~~~
@@ -426,7 +432,7 @@ log(x)
 ~~~
 {: .output}
 
-Observe tamb<e9>m que as vari<e1>veis podem ser reatribu<ed>das:
+Observe tamb?m que as vari?veis podem ser reatribu?das:
 
 
 ~~~
@@ -436,26 +442,26 @@ x <- 100
 
 `x` usado para conter o valor 0.025 e agora ele tem o valor 100.  
 
-valores asignados podem conter a vari<e1>vel sendo assignidada:
+valores asignados podem conter a vari?vel sendo assignidada:
 
 
 ~~~
-x <- x + 1 #observe como o RStudio atualiza sua descriü¾¶”¼ü¾Œ¶”¼o de x na guia superior direita
+x <- x + 1 #observe como o RStudio atualiza sua descri??o de x na guia superior direita
 ~~~
 {: .r}
 
-O lado direito da atribui<e7><e3>o pode ser qualquer express<e3>o R v<e1>lida. 
-O lado direito <e9> *totalmente avaliado* antes da atribui<e7><e3>o ocorrer.
+O lado direito da atribui??o pode ser qualquer express?o R v?lida. 
+O lado direito ? *totalmente avaliado* antes da atribui??o ocorrer.
 
-Nomes de vari<e1>veis podem conter letras, n<fa>meros, sublinhados e pontos. Eles n<e3>o podem come<e7>ar com um n<fa>mero nem conter espa<e7>os em tudo. Diferentes pessoas usam conven<e7><f5>es diferentes para nomes de vari<e1>veis longas,
+Nomes de vari?veis podem conter letras, n?meros, sublinhados e pontos. Eles n?o podem come?ar com um n?mero nem conter espa?os em tudo. Diferentes pessoas usam conven??es diferentes para nomes de vari?veis longas,
 
   * pontos.entre.palavras
   * sublinha\_entre_palavras
   * cameloCasoParaSeparadoPalavras
 
-O que voc<ea> usa depende de voc<ea>, mas seja **consistente**.
+O que voc? usa depende de voc?, mas seja **consistente**.
 
-Tamb<e9>m <e9> poss<ed>vel usar o operador = para atribui<e7><e3>o: 
+Tamb?m ? poss?vel usar o operador = para atribui??o: 
 
 
 ~~~
@@ -463,11 +469,11 @@ x = 1/40
 ~~~
 {: .r}
 
-Mas isso <e9> muito menos comum entre os usu<e1>rios de R. O mais importante <e9> ser **consistente** com o operador que voc<ea> usa. H<e1> ocasionalmente lugares onde <e9> menos confuso usar `<-` than `=`, e <e9> o s<ed>mbolo mais comum usado na comunidade. Portanto, a recomenda<e7><e3>o <e9> usar `<-`. 
+Mas isso ? muito menos comum entre os usu?rios de R. O mais importante ? ser **consistente** com o operador que voc? usa. H? ocasionalmente lugares onde ? menos confuso usar `<-` than `=`, e ? o s?mbolo mais comum usado na comunidade. Portanto, a recomenda??o ? usar `<-`. 
 
-## Vetoriza<e7><e3>o
+## Vetoriza??o
 
-<c9> de extrema relev<e2>ncia compreender que o R <e9> um software vetorizado. Isso simplesmnte quer dizer que vari<e1>veis e fun<e7><f5>es podem receber vetores. 
+? de extrema relev?ncia compreender que o R ? um software vetorizado. Isso simplesmnte quer dizer que vari?veis e fun??es podem receber vetores. 
 Veja os exemplos abaixo:
 
 
@@ -512,14 +518,14 @@ x <- 1:5
 ~~~
 {: .output}
 
-A possibilidade de vari<e1>veis e fun<e7><f5>es receber valores faz do R um software extremamente poderoso. Este t<f3>pico ser<e1> abordado em detalhes adiante.
+A possibilidade de vari?veis e fun??es receber valores faz do R um software extremamente poderoso. Este t?pico ser? abordado em detalhes adiante.
 
 
 ## Controlando o ambiente de trabalho
 
-Existem alguns comandos que o usu<e1>rio pode utilizar para interagir com o ambiente de trabalho do R.
+Existem alguns comandos que o usu?rio pode utilizar para interagir com o ambiente de trabalho do R.
 
-A fun<e7><e3>o `ls`, por exemplo, lista todas as vari<e1>veis e fun<e7><f5>es gravadas no ambiente de trabalho.
+A fun??o `ls`, por exemplo, lista todas as vari?veis e fun??es gravadas no ambiente de trabalho.
 
 
 
@@ -537,14 +543,14 @@ ls()
 
 > ## Dica: Objetos escondidos
 >
-> A fun<e7><e3>o `ls()`n<e3>o mostra vari<e1>veis e fun<e7><f5>es que come<e7><e3>o com `.`.
-> A fun<e7><e3>o  Para listar todos os objetos, inclusive os que   iniciam com `.`, digite `ls(all.names=TRUE)` e n<e3>o `ls()`.
+> A fun??o `ls()`n?o mostra vari?veis e fun??es que come??o com `.`.
+> A fun??o  Para listar todos os objetos, inclusive os que   iniciam com `.`, digite `ls(all.names=TRUE)` e n?o `ls()`.
 > 
 {: .callout}
 
-Note que na fun<e7><e3>o `ls` n<e3>o <e9> necess<e1>rio fornecer argumentos, mas <e9> necess<e1>rio colocar par<ea>ntesis para que o R entenda que se trata de uma fun<e7><e3>o.
+Note que na fun??o `ls` n?o ? necess?rio fornecer argumentos, mas ? necess?rio colocar par?ntesis para que o R entenda que se trata de uma fun??o.
 
-Se digitarmos apenas `ls` o R nos fornecer<e1> o c<f3>digo fonte da fun<e7><e3>o!
+Se digitarmos apenas `ls` o R nos fornecer? o c?digo fonte da fun??o!
 
 
 ~~~
@@ -586,12 +592,12 @@ function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE,
     }
     else all.names
 }
-<bytecode: 0x7fe73b2ce8b0>
+<bytecode: 0x7fd92a9714b0>
 <environment: namespace:base>
 ~~~
 {: .output}
 
-Pode ser interessante deletar objetos que n<e3>o ser<e3>o utilizados adiante. Para isso utilizamos a fun<e7><e3>o `rm`.
+Pode ser interessante deletar objetos que n?o ser?o utilizados adiante. Para isso utilizamos a fun??o `rm`.
 
 
 ~~~
@@ -599,7 +605,7 @@ rm(x)
 ~~~
 {: .r}
 
-Se muitos objetos devem ser exclu<ed>dos de uma s<f3> vez n<e3>o h<e1> necessidade de excluir um por um. Basta utilizar a fun<e7><e3>o `ls` conjugada com a `rm` da seguinte forma:
+Se muitos objetos devem ser exclu?dos de uma s? vez n?o h? necessidade de excluir um por um. Basta utilizar a fun??o `ls` conjugada com a `rm` da seguinte forma:
 
 
 ~~~
@@ -607,9 +613,9 @@ rm(list = ls())
 ~~~
 {: .r}
 
-Neste caso duas fun<e7><f5>es foram utilizadas em conjunto. Sempre que este for o caso o que est<e1> localizado dentro do par<ea>ntesis mais interno ser<e1> avaliado primeiro e assim em diante.
+Neste caso duas fun??es foram utilizadas em conjunto. Sempre que este for o caso o que est? localizado dentro do par?ntesis mais interno ser? avaliado primeiro e assim em diante.
 
-No caso acima foi especificado que o resultado da fun<e7><e3>o `ls` deveria ser usado na forma de lista `list` como argumento da fun<e7><e3>o `rm`. Quando destinados valores de argumentos a fun<e7><f5>es por nome, o operador a ser utilizado dever<e1> ser o s<ed>mbolo `=`.
+No caso acima foi especificado que o resultado da fun??o `ls` deveria ser usado na forma de lista `list` como argumento da fun??o `rm`. Quando destinados valores de argumentos a fun??es por nome, o operador a ser utilizado dever? ser o s?mbolo `=`.
 
 Se utilizarmos `<-` teremos efeitos indesejados ou  mensagens de erro.
 
@@ -627,9 +633,9 @@ Error in rm(list <- ls()): ... must contain names or character strings
 
 > ## Dica: Avisos vs Erros
 >
-> Fique atento pois o R poder<e1> fazer algo inesperado.
-> Erros, como no caso acima, ocorrem quando o R n<e3>o consegue efetuar as opera<e7><f5>es.
-> Avisos, por outro lado, indicam que o R conseguiu efetuar as opera<e7><f5>es, mas algo  provavelmente n<e3>o ocorreu como esperado.
+> Fique atento pois o R poder? fazer algo inesperado.
+> Erros, como no caso acima, ocorrem quando o R n?o consegue efetuar as opera??es.
+> Avisos, por outro lado, indicam que o R conseguiu efetuar as opera??es, mas algo  provavelmente n?o ocorreu como esperado.
 >
 > Em ambos os casos, as mensagens que o R fornece ajudam a consertar o problema.
 >
@@ -637,17 +643,17 @@ Error in rm(list <- ls()): ... must contain names or character strings
 
 ## Pacotes do R
 
-<c9> poss<ed>vel adicionar fun<e7><f5>es ao R atrav<e9>s da escrita de pacote escritos por voc<ea> mesmo, ou por pacotes escritos por outras pessoas. Hoje existem mais de 7000 pacotes dispon<ed>veis no CRAN (*the comprehensive R archive network*). O R e o Rstudio possuem elevada funcionalidade no quesito de gerenciamento de pacotes:
+? poss?vel adicionar fun??es ao R atrav?s da escrita de pacote escritos por voc? mesmo, ou por pacotes escritos por outras pessoas. Hoje existem mais de 7000 pacotes dispon?veis no CRAN (*the comprehensive R archive network*). O R e o Rstudio possuem elevada funcionalidade no quesito de gerenciamento de pacotes:
 
-* <c9> poss<ed>vel ver quais pacotes est<e3>o instalados. Para isso devemos digitar `installed.packages()`.
-* <c9> poss<ed>vel instalar novos pacotes ao digitar `install.packages("packagename")`, onde `packagename` <e9> o nome do pacote a ser instalado. 
-* <c9> poss<ed>vel atualizar pacotes j<e1> instalados. A fun<e7><e3>o utilizada <e9> `update.packages()`.
-* <c9> poss<ed>vel remover pacotes com a fun<e7><e3>o `remove.packages("packagename")`. 
-* <c9> poss<ed>vel tornar um pacote habilitado ao uso. A fun<e7><e3>o utilizada neste caso <e9> `library(packagename)`.
+* ? poss?vel ver quais pacotes est?o instalados. Para isso devemos digitar `installed.packages()`.
+* ? poss?vel instalar novos pacotes ao digitar `install.packages("packagename")`, onde `packagename` ? o nome do pacote a ser instalado. 
+* ? poss?vel atualizar pacotes j? instalados. A fun??o utilizada ? `update.packages()`.
+* ? poss?vel remover pacotes com a fun??o `remove.packages("packagename")`. 
+* ? poss?vel tornar um pacote habilitado ao uso. A fun??o utilizada neste caso ? `library(packagename)`.
 
 > ## Desafio 1
 >
-> Quais nomes a seguir s<e3>o v<e1>lidos para vari<e1>veis no R ?
+> Quais nomes a seguir s?o v?lidos para vari?veis no R ?
 > 
 > ~~~
 > min_height
@@ -661,9 +667,9 @@ Error in rm(list <- ls()): ... must contain names or character strings
 > ~~~
 > {: .r}
 >
-> > ## Solu<e7><e3>o do desafio 1
+> > ## Solu??o do desafio 1
 > >
-> > Os nomes a seguir s<e3>o v<e1>lidos:
+> > Os nomes a seguir s?o v?lidos:
 > > 
 > > ~~~
 > > min_height
@@ -673,14 +679,14 @@ Error in rm(list <- ls()): ... must contain names or character strings
 > > ~~~
 > > {: .r}
 > >
-> > O nome a seguir cria uma vari<e1>vel escondida
+> > O nome a seguir cria uma vari?vel escondida
 > > 
 > > ~~~
 > > .mass
 > > ~~~
 > > {: .r}
 > >
-> > Os nomes a seguir n<e3>o podem ser usados para nomear objetos
+> > Os nomes a seguir n?o podem ser usados para nomear objetos
 > > 
 > > ~~~
 > > _age
@@ -693,7 +699,7 @@ Error in rm(list <- ls()): ... must contain names or character strings
 
 > ## Desafio 2
 >
-> Quais ser<e3>o os valores das vari<e1>veis definidas abaixo ?
+> Quais ser?o os valores das vari?veis definidas abaixo ?
 >
 > 
 > ~~~
@@ -704,28 +710,28 @@ Error in rm(list <- ls()): ... must contain names or character strings
 > ~~~
 > {: .r}
 >
-> > ## Solu<e7><e3>o do desafio 2
+> > ## Solu??o do desafio 2
 > >
 > > 
 > > ~~~
 > > mass <- 47.5
 > > ~~~
 > > {: .r}
-> > Este comando atribui o valor 47.5 para a vari<e1>vel ` mass` for the variable mass
+> > Este comando atribui o valor 47.5 para a vari?vel ` mass` for the variable mass
 > >
 > > 
 > > ~~~
 > > age <- 122
 > > ~~~
 > > {: .r}
-> > Este comando atribiu o valor 122 para a vari<e1>vel ` age` 
+> > Este comando atribiu o valor 122 para a vari?vel ` age` 
 > >
 > > 
 > > ~~~
 > > mass <- mass * 2.3
 > > ~~~
 > > {: .r}
-> > O valor da vari<e1>vel ` mass`ser<e1> dividido por 2.3 e a vari<e1>vel ` mass` passar<e1> a ter um novo valor.
+> > O valor da vari?vel ` mass`ser? dividido por 2.3 e a vari?vel ` mass` passar? a ter um novo valor.
 > > 
 > >
 > > 
@@ -733,7 +739,7 @@ Error in rm(list <- ls()): ... must contain names or character strings
 > > age <- age - 20
 > > ~~~
 > > {: .r}
-> > Ser<e1> realizada uma subtra<e7><e3>o de 20 unidades na vari<e1>vel ` age`.
+> > Ser? realizada uma subtra??o de 20 unidades na vari?vel ` age`.
 > > 
 > {: .solution}
 {: .challenge}
@@ -741,12 +747,12 @@ Error in rm(list <- ls()): ... must contain names or character strings
 
 > ## Desafio 3
 >
-> Rode os c<f3>digos do desafio anterior, escreva um comando e compare massa com idade. 
-> A massa <e9> maior que a idade ?
+> Rode os c?digos do desafio anterior, escreva um comando e compare massa com idade. 
+> A massa ? maior que a idade ?
 >
-> > ## Solu<e7><e3>o do desafio 3
+> > ## Solu??o do desafio 3
 > >
-> > Uma maneira de realizar esta tarefa <e9> utilizar `>`:
+> > Uma maneira de realizar esta tarefa ? utilizar `>`:
 > > 
 > > ~~~
 > > mass > age
@@ -759,17 +765,17 @@ Error in rm(list <- ls()): ... must contain names or character strings
 > > [1] TRUE
 > > ~~~
 > > {: .output}
-> > O resultado a ser retornado deve ser `TRUE` porque a vari<e1>vel ` mass` <e9> maior que ` age`.
+> > O resultado a ser retornado deve ser `TRUE` porque a vari?vel ` mass` ? maior que ` age`.
 > {: .solution}
 {: .challenge}
 
 
 > ## Desafio 4
 >
-> Limpe o seu ambiente de trabalho. Delete as vari<e1>veis massa e idade.
+> Limpe o seu ambiente de trabalho. Delete as vari?veis massa e idade.
 >
 >
-> > ## Solu<e7><e3>o do desafio 4
+> > ## Solu??o do desafio 4
 > >
 > > O comando `rm` pode ser utilizado para realizar essa tarefa
 > > 
@@ -784,7 +790,7 @@ Error in rm(list <- ls()): ... must contain names or character strings
 >
 > Instale os pacotes `ggplot2`, `plyr` e `gapminder`.
 >
-> > ## Solu<e7><e3>o do desafio 5
+> > ## Solu??o do desafio 5
 > >
 > > Podemos utilizar o comando `install.packages()` para instalar os referidos pacotes.
 > > 

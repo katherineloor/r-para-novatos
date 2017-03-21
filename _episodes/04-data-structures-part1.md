@@ -14,14 +14,11 @@ keypoints:
 - "Use `read.csv` to read tabular data in R."
 - "The basic data types in R are double, integer, complex, logical, and character."
 - "Use factors to represent categories in R."
-source: Rmd
 ---
 
 
 
-One of R's most powerful features is its ability to deal with tabular data -
-like what you might already have in a spreadsheet or a CSV. Let's start by
-making a toy dataset in your `data/` directory, called `feline-data.csv`:
+Uma das características mais poderosas do R é sua capacidade de lidar com dados em tabelas - como você já deve ter visto em uma planilha em CSV. Vamos começar fazendo um banco de dados para testes na sua pasta `data/`, chamado _ directory, called `feline-data.csv`:
 
 
 ~~~
@@ -32,15 +29,15 @@ tabby,3.2,1
 ~~~
 {: .r}
 
-> ## Tip: Editing Text files in R
+> ## Dica: Editando arquivos de texto em R
 >
-> Alternatively, you can create `data/feline-data.csv` using a text editor (Nano),
-> or within RStudio with the **File -> New File -> Text File** menu item.
+> Alternativamente, você pode criar `data/feline-data.csv` usando um editor de texto
+> (Nano), ou dentro do RStudio com o item do menu **Arquivo -> Novo Arquivo -> Arquivo de texto**.
 {: .callout}
 
 
 
-We can load this into R via the following:
+Você pode carregar isso no R com o seguinte comando:
 
 
 ~~~
@@ -59,17 +56,9 @@ cats
 ~~~
 {: .output}
 
+A função `read.csv` é utilizada para ler dados de tabelas armazenados em um arquivo de texto onde as colunas são delimitadas por vírgulas (csv = comma separated values, i.e., valores separados por vírgulas). Tabs também são comumente usados para separar colunas - se os seus dados estão neste formato você pode usar a função `read.delim`. Se as colunas nos seus dados são delimitadas por um outro caractere além de vírgulas ou tabs, você pode usar a função `read.table`, que é mais geral e flexível.
 
-The `read.csv` function is used for reading in tabular data stored in a text
-file where the columns of data are delimited by commas (csv = comma-separated
-values). Tabs are also commonly used to separated columns - if your data are in
-this format you can use the function `read.delim`. If the columns in your data
-are delimited by a character other than commas or tabs, you can use the more
-general and flexible `read.table` function.
-
-
-We can begin exploring our dataset right away, pulling out columns by specifying
-them using the `$` operator:
+Já podemos começar a explorar o nosso banco de dados, imprimindo colunas especificando elas com o operador `$`:
 
 
 ~~~
@@ -99,7 +88,7 @@ Levels: black calico tabby
 ~~~
 {: .output}
 
-We can do other operations on the columns:
+Nós podemos fazer outras operações nas colunas:
 
 
 ~~~
@@ -129,7 +118,7 @@ paste("My cat is", cats$coat)
 ~~~
 {: .output}
 
-But what about
+Mas e se fizermos
 
 
 ~~~
@@ -152,7 +141,7 @@ factors
 ~~~
 {: .output}
 
-Understanding what happened here is key to successfully analyzing data in R.
+Entendendo o que aconteceu aqui é a chave para analisar dados em R de maneira satisfatória.
 
 ## Data Types
 
