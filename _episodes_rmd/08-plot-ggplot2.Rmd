@@ -9,7 +9,7 @@ objectives:
 - "Para entender a gramática básica de gráficos, incluindo as camadas de estética e de geometria, adicionando estatísticas, usando transformações de escala, dividindo com cor ou painéis por grupos."
 keypoints:
 - "Usar `ggplot2` para criar gráficos."
-- "Pense nos gráficos em camadas: *aesthetics*, *geometry*, *statistics*, *scale transformation*, and *grouping*."
+- "Pense nos gráficos em camadas: *aesthetics*, *geometry*, *statistics*, *scale transformation*, e *grouping*."
 source: Rmd
 ---
 

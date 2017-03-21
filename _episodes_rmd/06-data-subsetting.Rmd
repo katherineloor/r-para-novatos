@@ -20,20 +20,20 @@ source: Rmd
 ```{r, include=FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("06-")
-# Carregando silenciosamente os dados para que o resto do tópico rode
+# Carregando silenciosamente os dados para que o resto do tÃ³pico rode
 gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
 ```
 
 
-O R tem vários operadores poderosos para subconjuntos e o domínio deles irá
-permitir que você facilmente utilize operações complexas em qualquer tipo de
+O R tem vÃ¡rios operadores poderosos para subconjuntos e o domÃ­nio deles irÃ¡
+permitir que vocÃª facilmente utilize operaÃ§Ãµes complexas em qualquer tipo de
 conjunto de dados.
 
-Existem seis diferentes maneiras de nós criarmos subconjuntos de qualquer tipo de
-objeto, e três diferentes operadores de subconjuntos para as diferentes
+Existem seis diferentes maneiras de nÃ³s criarmos subconjuntos de qualquer tipo de
+objeto, e trÃªs diferentes operadores de subconjuntos para as diferentes
 estruturas de dados.
 
-Vamos começar com o carro chefe do R: vetores atômicos.
+Vamos comeÃ§ar com o carro chefe do R: vetores atÃ´micos.
 
 ```{r}
 x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
@@ -41,13 +41,13 @@ names(x) <- c('a', 'b', 'c', 'd', 'e')
 x
 ```
 
-Então, agora que nós criamos um vetor *dummy* para brincar, como nós temos acesso
-ao seu conteúdo?
+EntÃ£o, agora que nÃ³s criamos um vetor *dummy* para brincar, como nÃ³s temos acesso
+ao seu conteÃºdo?
 
-## Acessando elementos usando seus índices
+## Acessando elementos usando seus Ã­ndices
 
-Para extrair elementos de um vetor nós podemos dar seus correspondentes índices,
-começando por um:
+Para extrair elementos de um vetor nÃ³s podemos dar seus correspondentes Ã­ndices,
+comeÃ§ando por um:
 
 ```{r}
 x[1]
@@ -57,10 +57,10 @@ x[1]
 x[4]
 ```
 
-Isso pode parecer diferente, mas o operador par de colchetes é uma função. Para
-vetores atômicos (e matrizes), isso significa "me passe o *n*-ésimo elemento".
+Isso pode parecer diferente, mas o operador par de colchetes Ã© uma funÃ§Ã£o. Para
+vetores atÃ´micos (e matrizes), isso significa "me passe o *n*-Ã©simo elemento".
 
-Nós podemos pedir por múltiplos elementos de uma única vez:
+NÃ³s podemos pedir por mÃºltiplos elementos de uma Ãºnica vez:
 
 ```{r}
 x[c(1, 3)]
@@ -72,7 +72,7 @@ Ou fatias do vetor:
 x[1:4]
 ```
 
-O operador : cria uma sequência de números do elemento da esquerda até o da
+O operador : cria uma sequÃªncia de nÃºmeros do elemento da esquerda atÃ© o da
 direita.
 
 ```{r}
@@ -81,71 +81,71 @@ c(1, 2, 3, 4)
 ```
 
 
-Nós podemos pedir pelo mesmo elemento múltiplas vezes:
+NÃ³s podemos pedir pelo mesmo elemento mÃºltiplas vezes:
 
 ```{r}
 x[c(1,1,3)]
 ```
 
-Se nós pedirmos por um número fora do vetor, o R retornará valores faltantes:
+Se nÃ³s pedirmos por um nÃºmero fora do vetor, o R retornarÃ¡ valores faltantes:
 
 ```{r}
 x[6]
 ```
 
-Este é um vetor de comprimento um contendo um `NA`, cujo nome é também `NA`.
+Este Ã© um vetor de comprimento um contendo um `NA`, cujo nome Ã© tambÃ©m `NA`.
 
-Se nós pedirmos pelo elemento de índice 0, nós temos um vetor vazio:
+Se nÃ³s pedirmos pelo elemento de Ã­ndice 0, nÃ³s temos um vetor vazio:
 
 ```{r}
 x[0]
 ```
 
-> ## Numeração de vetores no R começa em 1
+> ## NumeraÃ§Ã£o de vetores no R comeÃ§a em 1
 >
-> Em várias linguagens de programação (C e python, por exemplo), o primeiro
-> elemento de um vetor possuí um indexador igual a 0. Em R, o primeiro elemento
-> é 1.
+> Em vÃ¡rias linguagens de programaÃ§Ã£o (C e python, por exemplo), o primeiro
+> elemento de um vetor possuÃ­ um indexador igual a 0. Em R, o primeiro elemento
+> Ã© 1.
 {: .callout}
 
 ## Pulando e removendo elementos
 
-Se nós usarmos como indexador de um vetor um número negativo, o R irá retornar
-todo elemento *exceto* o elemento específicado:
+Se nÃ³s usarmos como indexador de um vetor um nÃºmero negativo, o R irÃ¡ retornar
+todo elemento *exceto* o elemento especÃ­ficado:
 
 ```{r}
 x[-2]
 ```
 
 
-Nós podemos pular múltiplos elementos:
+NÃ³s podemos pular mÃºltiplos elementos:
 
 ```{r}
 x[c(-1, -5)]  # ou x[-c(1,5)]
 ```
 
-> ## Dica: Ordem de operações
+> ## Dica: Ordem de operaÃ§Ãµes
 >
-> Uma experiência em comum para os novatos ocorre quando se tenta pular
-> pedaços de um vetor. A maioria das pessoas primeiro tenta negar uma
-> sequência, como por exemplo:
+> Uma experiÃªncia em comum para os novatos ocorre quando se tenta pular
+> pedaÃ§os de um vetor. A maioria das pessoas primeiro tenta negar uma
+> sequÃªncia, como por exemplo:
 >
 > ```{r, error=TRUE, eval=FALSE}
 > x[-1:3]
 > ```
 >
-> Isto retorna uma espécie de erro crítico:
+> Isto retorna uma espÃ©cie de erro crÃ­tico:
 >
 > ```{r, error=TRUE, echo=FALSE}
 > x[-1:3]
 > ```
 >
-> Mas lembre da ordem das operações. : é realmente uma função, então o que
-> acontece é que ele pega seu primento argumento como -1, o segundo como 3,
-> e então gera a sequência de números: `c(-1, 0, 1, 2, 3)`.
+> Mas lembre da ordem das operaÃ§Ãµes. : Ã© realmente uma funÃ§Ã£o, entÃ£o o que
+> acontece Ã© que ele pega seu primento argumento como -1, o segundo como 3,
+> e entÃ£o gera a sequÃªncia de nÃºmeros: `c(-1, 0, 1, 2, 3)`.
 >
-> A solução correta é colocar o que a função chama em parênteses, assim o
-> operador `-` é aplicado ao resultado:
+> A soluÃ§Ã£o correta Ã© colocar o que a funÃ§Ã£o chama em parÃªnteses, assim o
+> operador `-` Ã© aplicado ao resultado:
 >
 > ```{r}
 > x[-(1:3)]
@@ -153,8 +153,8 @@ x[c(-1, -5)]  # ou x[-c(1,5)]
 {: .callout}
 
 
-Para remover elementos de um vetor, nós precisamos atribuir o resultado
-novamente na variável:
+Para remover elementos de um vetor, nÃ³s precisamos atribuir o resultado
+novamente na variÃ¡vel:
 
 ```{r}
 x <- x[-4]
@@ -163,7 +163,7 @@ x
 
 > ## Desafio 1
 >
-> Dado o código a seguir:
+> Dado o cÃ³digo a seguir:
 >
 > ```{r}
 > x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
@@ -171,13 +171,13 @@ x
 > print(x)
 > ```
 >
-> Forneça ao menos 3 diferentes comandos que produzem o seguinte resultado:
+> ForneÃ§a ao menos 3 diferentes comandos que produzem o seguinte resultado:
 >
 > ```{r, echo=FALSE}
 > x[2:4]
 > ```
 >
-> Depois de você encontrar 3 diferentes comandos, compare anotações com seu colega. Vocês tiveram diferentes estratégias?
+> Depois de vocÃª encontrar 3 diferentes comandos, compare anotaÃ§Ãµes com seu colega. VocÃªs tiveram diferentes estratÃ©gias?
 >
 > > ## Resposta do desafio 1
 > >
@@ -199,27 +199,27 @@ x
 
 ## Subconjuntos por nome
 
-Nós podemos extrair elementos através de seu nome, invés do indexador:
+NÃ³s podemos extrair elementos atravÃ©s de seu nome, invÃ©s do indexador:
 
 ```{r}
 x[c("a", "c")]
 ```
 
-Esta é uma maneira muito mais confiável de dividir objetos: a posição de vários
-elementos pode frequentemente mudar quando encadeamos operações de subconjuntos,
-mas os nomes sempre permanecerão os mesmos!
+Esta Ã© uma maneira muito mais confiÃ¡vel de dividir objetos: a posiÃ§Ã£o de vÃ¡rios
+elementos pode frequentemente mudar quando encadeamos operaÃ§Ãµes de subconjuntos,
+mas os nomes sempre permanecerÃ£o os mesmos!
 
-Infelizmente não podemos pular ou remover elementos tão facilmente.
+Infelizmente nÃ£o podemos pular ou remover elementos tÃ£o facilmente.
 
-Para pular (ou remover) um único elemento nomeado:
+Para pular (ou remover) um Ãºnico elemento nomeado:
 
 ```{r}
 x[-which(names(x) == "a")]
 ```
 
-A função `which` retorna os índices de todos os elementos `TRUE` de seu
-argumento. Lembre que expressões são avaliadas antes de serem passadas para
-funções. Vamos mostrar passo à passo para ficar claro o que está acontecendo.
+A funÃ§Ã£o `which` retorna os Ã­ndices de todos os elementos `TRUE` de seu
+argumento. Lembre que expressÃµes sÃ£o avaliadas antes de serem passadas para
+funÃ§Ãµes. Vamos mostrar passo Ã  passo para ficar claro o que estÃ¡ acontecendo.
 
 Primeiro isso acontece:
 
@@ -227,10 +227,10 @@ Primeiro isso acontece:
 names(x) == "a"
 ```
 
-O operador condicional é aplicado a todo nome do vetor `x`. Apenas o primeiro
-nome é `a` e por isso seu elemento é `TRUE`.
+O operador condicional Ã© aplicado a todo nome do vetor `x`. Apenas o primeiro
+nome Ã© `a` e por isso seu elemento Ã© `TRUE`.
 
-`which` então converte isto para um indexador:
+`which` entÃ£o converte isto para um indexador:
 
 ```{r}
 which(names(x) == "a")
@@ -238,22 +238,22 @@ which(names(x) == "a")
 
 
 
-Apenas o primeiro elemento é `TRUE`, então `which` retorna 1. Agora que temos
-índices podemos pular um elemento, pois temos um index negativo!
+Apenas o primeiro elemento Ã© `TRUE`, entÃ£o `which` retorna 1. Agora que temos
+Ã­ndices podemos pular um elemento, pois temos um index negativo!
 
-Pular múltiplos índices nomeados é similar, mas usa um operador de comparação
+Pular mÃºltiplos Ã­ndices nomeados Ã© similar, mas usa um operador de comparaÃ§Ã£o
 diferente:
 
 ```{r}
 x[-which(names(x) %in% c("a", "c"))]
 ```
 
-O `%in%` vai em cada elemento de seu argumento à esquerda, nesse caso os nomes
+O `%in%` vai em cada elemento de seu argumento Ã  esquerda, nesse caso os nomes
 de `x`, e pergunta, "Esse elemento ocorre no segundo argumento?"
 
 > ## Desafio 2
 >
-> Rode o código a seguir para definir o vetor `x` como acima:
+> Rode o cÃ³digo a seguir para definir o vetor `x` como acima:
 >
 > ```{r}
 > x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
@@ -261,42 +261,42 @@ de `x`, e pergunta, "Esse elemento ocorre no segundo argumento?"
 > print(x)
 > ```
 >
-> Dado este vetor `X`, o que você espera que o código a seguir faça?
+> Dado este vetor `X`, o que vocÃª espera que o cÃ³digo a seguir faÃ§a?
 >```{r, eval=FALSE}
 > x[-which(names(x) == "g")]
 >```
 >
-> Teste este comando e veja o que você recebe. É o que você esperava?
-> Por que nós recebemos este resultado? (Dica: teste cada parte do comando - esta é uma ferramenta útil de depuração, *debugging*)
+> Teste este comando e veja o que vocÃª recebe. Ã‰ o que vocÃª esperava?
+> Por que nÃ³s recebemos este resultado? (Dica: teste cada parte do comando - esta Ã© uma ferramenta Ãºtil de depuraÃ§Ã£o, *debugging*)
 >
-> Quais das afirmações a seguir são verdadeiras:
+> Quais das afirmaÃ§Ãµes a seguir sÃ£o verdadeiras:
 >
-> * A) se não existem valores `TRUE` passados ao `witch`, um vetor vazio é retornado
-> * B) se não existem valores `TRUE` passados ao `witch`, uma mensagem de erro é retornada
-> * C) `integer` é um vetor vazio
-> * D) fazendo um vetor vazio negativo é retornado um vetor "com todo mundo"
-> * E) `x[]` dá o mesmo resultado que `x[integer()]`
+> * A) se nÃ£o existem valores `TRUE` passados ao `witch`, um vetor vazio Ã© retornado
+> * B) se nÃ£o existem valores `TRUE` passados ao `witch`, uma mensagem de erro Ã© retornada
+> * C) `integer` Ã© um vetor vazio
+> * D) fazendo um vetor vazio negativo Ã© retornado um vetor "com todo mundo"
+> * E) `x[]` dÃ¡ o mesmo resultado que `x[integer()]`
 >
 > > ## Resposta do desafio 2
 > >
-> > A e C estão corretas.
+> > A e C estÃ£o corretas.
 > >
 > > O comando `which` retorna o indexador de todo valor `TRUE` em sua entrada,
-> > *input*. O comando `names(x) == "g"` não retorna cada valor `TRUE`. Se não 
-> > existem valores `TRUE` passados ao comando `which`, é retornado um vetor vazio.
-> > Transformado este vetor em negativo com um sinal de menos não altera seu
-> > significado. Pois nós usamos este vetor vazio para recuperar valores de `x`, o
-> > que produz um vetor numérico vazio. Ele é um vetor `numérico nomeado` vazio
-> > porque o tipo do vetor `x` é "numérico nomeado" desde que nós atribuímos nomes
+> > *input*. O comando `names(x) == "g"` nÃ£o retorna cada valor `TRUE`. Se nÃ£o 
+> > existem valores `TRUE` passados ao comando `which`, Ã© retornado um vetor vazio.
+> > Transformado este vetor em negativo com um sinal de menos nÃ£o altera seu
+> > significado. Pois nÃ³s usamos este vetor vazio para recuperar valores de `x`, o
+> > que produz um vetor numÃ©rico vazio. Ele Ã© um vetor `numÃ©rico nomeado` vazio
+> > porque o tipo do vetor `x` Ã© "numÃ©rico nomeado" desde que nÃ³s atribuÃ­mos nomes
 > > aos valores (tente `str(x)`).
 > {: .solution}
 {: .challenge}
 
-> ## Dica: Nomes não-únicos
+> ## Dica: Nomes nÃ£o-Ãºnicos
 >
-> Você deve estar consciente de que é possível que múltiplos elementos de um vetor
+> VocÃª deve estar consciente de que Ã© possÃ­vel que mÃºltiplos elementos de um vetor
 > tenham o mesmo nome. (Para um *data frame*, colunas podem ter o mesmo nome -
-> embora o R tente evitar isso - mas o nome das linhas deve ser único). Considere
+> embora o R tente evitar isso - mas o nome das linhas deve ser Ãºnico). Considere
 > estes exemplos:
 >
 >```{r}
@@ -305,115 +305,115 @@ de `x`, e pergunta, "Esse elemento ocorre no segundo argumento?"
 > names(x) <- c('a', 'a', 'a')
 > x
 > x['a']  # retorna apenas o primeiro valor
-> x[which(names(x) == 'a')]  # retorna todos os três valores
+> x[which(names(x) == 'a')]  # retorna todos os trÃªs valores
 > ```
 {: .callout}
 
 
 > ## Dica: Tendo ajuda com operadores
 >
-> Lembre-se que você pode procurar por ajuda para operadores colocando eles entre aspas:
+> Lembre-se que vocÃª pode procurar por ajuda para operadores colocando eles entre aspas:
 > `help("%in%")` ou `?"%in%"`.
 >
 {: .callout}
 
 
-Então por que não podemos usar `==` igual antes? Essa é uma excelente pergunta.
+EntÃ£o por que nÃ£o podemos usar `==` igual antes? Essa Ã© uma excelente pergunta.
 
-Vamos dar uma olhada no componente de comparação deste código:
+Vamos dar uma olhada no componente de comparaÃ§Ã£o deste cÃ³digo:
 
 ```{r}
 names(x) == c('a', 'c')
 ```
 
-Obviamente "c" está como um dos nomes de `x`, então por que isto não funcionou?
-`==` trabalha ligeiramente diferente de `%in%`. Ele irá comparar cada elemento de
+Obviamente "c" estÃ¡ como um dos nomes de `x`, entÃ£o por que isto nÃ£o funcionou?
+`==` trabalha ligeiramente diferente de `%in%`. Ele irÃ¡ comparar cada elemento de
 seu argumento a esquerda com o correspondente elemento do argumento a direita.
 
-Aqui uma ilustração:
+Aqui uma ilustraÃ§Ã£o:
 
 ```{r, eval=FALSE}
 c("a", "b", "c", "e")  # nomes de x
-   |    |    |    |    # Os elementos == são comparados
+   |    |    |    |    # Os elementos == sÃ£o comparados
 c("a", "c")
 ```
 
-Quando um vetor é menor que o outro, ele é *reciclado*:
+Quando um vetor Ã© menor que o outro, ele Ã© *reciclado*:
 
 ```{r, eval=FALSE}
 c("a", "b", "c", "e")  # nomes de x
-   |    |    |    |    # Os elementos == são comparados
+   |    |    |    |    # Os elementos == sÃ£o comparados
 c("a", "c", "a", "c")
 ```
 
 Neste caso o R simplesmente repete c("a", "c") duas vezes. Se o
-tamando do maior vetor não for múltiplo do tamanho do menor vetor,
-o R também irá retornar uma mensagem de aviso:
+tamando do maior vetor nÃ£o for mÃºltiplo do tamanho do menor vetor,
+o R tambÃ©m irÃ¡ retornar uma mensagem de aviso:
 
 ```{r}
 names(x) == c('a', 'c', 'e')
 ```
 
-Essa diferença entre `==` e `%in%` é importante de se lembrar, pois
-pode gerar *bugs* sutis e difíceis de encontrar!
+Essa diferenÃ§a entre `==` e `%in%` Ã© importante de se lembrar, pois
+pode gerar *bugs* sutis e difÃ­ceis de encontrar!
 
-## Subconjuntos através de outras operações lógicas
+## Subconjuntos atravÃ©s de outras operaÃ§Ãµes lÃ³gicas
 
-Nós podemos também criar subconjuntos mais simples atráves de
-operações lógicas:
+NÃ³s podemos tambÃ©m criar subconjuntos mais simples atrÃ¡ves de
+operaÃ§Ãµes lÃ³gicas:
 
 ```{r}
 x[c(TRUE, TRUE, FALSE, FALSE)]
 ```
 
-Note que neste caso, o vetor lógico é também reciclado para o
+Note que neste caso, o vetor lÃ³gico Ã© tambÃ©m reciclado para o
 tamanho do vetor que estamos fazendo o subconjunto!
 
 ```{r}
 x[c(TRUE, FALSE)]
 ```
 
-Já que operadores de comparação avaliam para vetores lógicos, nós
-podemos usá-los para sucintamente criar subconjuntos de vetores:
+JÃ¡ que operadores de comparaÃ§Ã£o avaliam para vetores lÃ³gicos, nÃ³s
+podemos usÃ¡-los para sucintamente criar subconjuntos de vetores:
 
 ```{r}
 x[x > 7]
 ```
 
-> ## Dica: Combinanndo condições lógicas
+> ## Dica: Combinanndo condiÃ§Ãµes lÃ³gicas
 >
-> Existem várias situações em que você vai desejar combinar múltiplos critérios
-> lógicos. Por exemplo, nós podemos querer encontrar todos os países da Ásia *ou*
+> Existem vÃ¡rias situaÃ§Ãµes em que vocÃª vai desejar combinar mÃºltiplos critÃ©rios
+> lÃ³gicos. Por exemplo, nÃ³s podemos querer encontrar todos os paÃ­ses da Ãsia *ou*
 > da Europa *e* que possuem expectativa de vida dentro de certo intervalo.
-> Existem no R várias operações para combinar vetores lógicos:
+> Existem no R vÃ¡rias operaÃ§Ãµes para combinar vetores lÃ³gicos:
 >
->  * `&`, o operador lógico "E": retorna `TRUE` se tanto a esquerda quanto a
+>  * `&`, o operador lÃ³gico "E": retorna `TRUE` se tanto a esquerda quanto a
      direita forem `TRUE`.
->  * `|`, o operador lógico "OU": retorna `TRUE`, se a esquerda ou direita (ou 
+>  * `|`, o operador lÃ³gico "OU": retorna `TRUE`, se a esquerda ou direita (ou 
      ambas) forem `TRUE`.
 >
 > A regra de reciclagem se aplica em ambos, assim, `TRUE` `&`
 > `c(TRUE, FALSE, TRUE)` compara o primeiro `TRUE` na esquerda do sinal `&` com
-> cada uma das três condições da direita.
+> cada uma das trÃªs condiÃ§Ãµes da direita.
 >
-> As vezes você pode ver `&&` e `||` invés de `&` e `|`. Estes operadores não usam
+> As vezes vocÃª pode ver `&&` e `||` invÃ©s de `&` e `|`. Estes operadores nÃ£o usam
 > a regra de reciclagem: eles olham apenas para o primeiro elemento de cada vetor
-> e ignoram os demais elementos. Operadores longos são usados principalmente em
-> programação, invés de análise de dados.
+> e ignoram os demais elementos. Operadores longos sÃ£o usados principalmente em
+> programaÃ§Ã£o, invÃ©s de anÃ¡lise de dados.
 >
->  * `!`, o operador lógico "NÃO": converte `TRUE` em `FALSE` e `FALSE` em `TRUE`.
->    Ele pode negar uma única condição lógica (por exemplo, `!TRUE` se torna
->    `FALSE`), ou um vetor inteiro de condições (por exemplo, `!c(TRUE, FALSE)` se
+>  * `!`, o operador lÃ³gico "NÃƒO": converte `TRUE` em `FALSE` e `FALSE` em `TRUE`.
+>    Ele pode negar uma Ãºnica condiÃ§Ã£o lÃ³gica (por exemplo, `!TRUE` se torna
+>    `FALSE`), ou um vetor inteiro de condiÃ§Ãµes (por exemplo, `!c(TRUE, FALSE)` se
 >    torna `c(FALSE, TRUE`).
 >
-> Adicionalmente, você pode comparar os elementos dentro de um único vetor usando a
-> função `all` (que retorna `TRUE` se todos os elementos do vetor forem `TRUE`) e
-> a função `any` (que retorna `TRUE` se um ou mais elementos do vetor for `TRUE`).
+> Adicionalmente, vocÃª pode comparar os elementos dentro de um Ãºnico vetor usando a
+> funÃ§Ã£o `all` (que retorna `TRUE` se todos os elementos do vetor forem `TRUE`) e
+> a funÃ§Ã£o `any` (que retorna `TRUE` se um ou mais elementos do vetor for `TRUE`).
 {: .callout}
 
 > ## Desafio 3
 >
-> Dado o código a seguir:
+> Dado o cÃ³digo a seguir:
 >
 > ```{r}
 > x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
@@ -421,7 +421,7 @@ x[x > 7]
 > print(x)
 > ```
 >
-> Escreva um comando que retorne os valores em `x` que são maiores que 4 e menores que 7.
+> Escreva um comando que retorne os valores em `x` que sÃ£o maiores que 4 e menores que 7.
 >
 > > ## Resposta do desafio 3
 > >
@@ -434,22 +434,22 @@ x[x > 7]
 
 ## Lidando com valores especiais
 
-Em algum dado momento você irá encontrar funções em R que não sabem lidar com
+Em algum dado momento vocÃª irÃ¡ encontrar funÃ§Ãµes em R que nÃ£o sabem lidar com
 dados faltantes, infinito, ou indefinidos.
 
-Existem funções especiais que você pode usar para filtrar estes dados:
+Existem funÃ§Ãµes especiais que vocÃª pode usar para filtrar estes dados:
 
- * `is.na` irá retornar todas as posições do vetor, matriz, ou *data frame*
-   que contém `NA`.
- * Da mesma maneira, `is.nan` e `is.infinite` fará o mesmo para `NaN` e `Inf`.
- * `is.finite` irá retornar todas as posições do vetor, matriz, ou *data frame*
-  que não contém `NA`, `NaN` ou `Inf`.
- * `na.omit` irá filtrar todos os valores faltantes de um vetor
+ * `is.na` irÃ¡ retornar todas as posiÃ§Ãµes do vetor, matriz, ou *data frame*
+   que contÃ©m `NA`.
+ * Da mesma maneira, `is.nan` e `is.infinite` farÃ¡ o mesmo para `NaN` e `Inf`.
+ * `is.finite` irÃ¡ retornar todas as posiÃ§Ãµes do vetor, matriz, ou *data frame*
+  que nÃ£o contÃ©m `NA`, `NaN` ou `Inf`.
+ * `na.omit` irÃ¡ filtrar todos os valores faltantes de um vetor
 
 ## Subconjuntos de fatores
 
-Agora que já exploramos as diferentes maneiras de fazer subconjuntos de vetores,
-como nós fazemos subconjuntos de outras estruturas de dados?
+Agora que jÃ¡ exploramos as diferentes maneiras de fazer subconjuntos de vetores,
+como nÃ³s fazemos subconjuntos de outras estruturas de dados?
 
 Subconjuntos de fatores funciona da mesma maneira que os subconjuntos de vetores.
 
@@ -460,8 +460,8 @@ f[f %in% c("b", "c")]
 f[1:3]
 ```
 
-Uma importante nota é que pular elementos não irá remover o nível (*level*),
-mesmo que não existam mais elementos dessa categoria no fator:
+Uma importante nota Ã© que pular elementos nÃ£o irÃ¡ remover o nÃ­vel (*level*),
+mesmo que nÃ£o existam mais elementos dessa categoria no fator:
 
 ```{r}
 f[-3]
@@ -469,8 +469,8 @@ f[-3]
 
 ## Subconjuntos de matrizes
 
-Subconjuntos de matrizes são criados usando a função `[`. Neste caso é usado
-dois argumentos: o primeiro aplicado às linhas, o segundo às colunas:
+Subconjuntos de matrizes sÃ£o criados usando a funÃ§Ã£o `[`. Neste caso Ã© usado
+dois argumentos: o primeiro aplicado Ã s linhas, o segundo Ã s colunas:
 
 ```{r}
 set.seed(1)
@@ -478,43 +478,43 @@ m <- matrix(rnorm(6*4), ncol=4, nrow=6)
 m[3:4, c(3,1)]
 ```
 
-Você pode deixar o primeiro ou segundo argumento em branco para recuperar todas
+VocÃª pode deixar o primeiro ou segundo argumento em branco para recuperar todas
 as linhas ou colunas respectivamente:
 
 ```{r}
 m[, c(3,4)]
 ```
 
-Se nós acessarmos apenas uma linha ou coluna, o R irá automaticamente converter
+Se nÃ³s acessarmos apenas uma linha ou coluna, o R irÃ¡ automaticamente converter
 o resultado para um vetor:
 
 ```{r}
 m[3,]
 ```
 
-Se você quiser manter a saída como uma matriz, você precisa especificar um 
+Se vocÃª quiser manter a saÃ­da como uma matriz, vocÃª precisa especificar um 
 *terceiro* argumento, `drop = FALSE`:
 
 ```{r}
 m[3, , drop=FALSE]
 ```
 
-Ao contrário de vetores, se nós tentarmos acessar uma linha ou coluna fora da
-matriz, o R irá retornar um erro:
+Ao contrÃ¡rio de vetores, se nÃ³s tentarmos acessar uma linha ou coluna fora da
+matriz, o R irÃ¡ retornar um erro:
 
 ```{r, error=TRUE}
 m[, c(3,6)]
 ```
 
-> ## Dica: Matrizes de maior dimensão
+> ## Dica: Matrizes de maior dimensÃ£o
 >
-> ao se trabalhar com matrizes de maiores dimensão, cada argumento para `[`
-> corresponde a uma dimensão. Por exemplo, numa matriz 3D, os primeiros três
-> argumentos correspondem as linhas, colunas, e nível da dimensão.
+> ao se trabalhar com matrizes de maiores dimensÃ£o, cada argumento para `[`
+> corresponde a uma dimensÃ£o. Por exemplo, numa matriz 3D, os primeiros trÃªs
+> argumentos correspondem as linhas, colunas, e nÃ­vel da dimensÃ£o.
 >
 {: .callout}
 
-Por matrizes serem vetores, nós podemos também criar subconjuntos usando apenas
+Por matrizes serem vetores, nÃ³s podemos tambÃ©m criar subconjuntos usando apenas
 um argumento:
 
 ```{r}
@@ -522,34 +522,34 @@ m[5]
 ```
 
 
-Isto usualmente não é útil, e frequentemente confundem na hora de ler. Contudo,
-é útil para notar que matrizes são estabelecidas por padrão (*default*) no
-formato colunas primeiro, *column-major*. Isso significa que os vetores são
+Isto usualmente nÃ£o Ã© Ãºtil, e frequentemente confundem na hora de ler. Contudo,
+Ã© Ãºtil para notar que matrizes sÃ£o estabelecidas por padrÃ£o (*default*) no
+formato colunas primeiro, *column-major*. Isso significa que os vetores sÃ£o
 arrumados pelas colunas:
 
 ```{r}
 matrix(1:6, nrow=2, ncol=3)
 ```
 
-Se você deseja preencher a matriz pelas linhas, use `byrow=TRUE`:
+Se vocÃª deseja preencher a matriz pelas linhas, use `byrow=TRUE`:
 
 ```{r}
 matrix(1:6, nrow=2, ncol=3, byrow=TRUE)
 ```
 
-Subconjuntos de matrizes também podem ser criados pelos nomes das linhas e 
-colunas, invés do índice das linhas e colunas.
+Subconjuntos de matrizes tambÃ©m podem ser criados pelos nomes das linhas e 
+colunas, invÃ©s do Ã­ndice das linhas e colunas.
 
 > ## Desafio 4
 >
-> Dado o seguinte código:
+> Dado o seguinte cÃ³digo:
 >
 > ```{r}
 > m <- matrix(1:18, nrow=3, ncol=6)
 > print(m)
 > ```
 >
-> 1. Qual dos seguintes comandos irá extrair os valores 11 e 14?
+> 1. Qual dos seguintes comandos irÃ¡ extrair os valores 11 e 14?
 >
 > A. `m[2,4,2,5]`
 >
@@ -568,12 +568,12 @@ colunas, invés do índice das linhas e colunas.
 
 ## Subconjuntos de listas
 
-Agora nós vamos introduzir alguns novos operadores para subconjuntos. Existem
-três funções usadas para fazer subconjuntos de listas. `[`, como vimos para
-vetores atômicos e matrizes, assim como `[[` e `$`.
+Agora nÃ³s vamos introduzir alguns novos operadores para subconjuntos. Existem
+trÃªs funÃ§Ãµes usadas para fazer subconjuntos de listas. `[`, como vimos para
+vetores atÃ´micos e matrizes, assim como `[[` e `$`.
 
-Usando `[` sempre será retornada uma lista. Se você quiser um *subconjunto* de
-uma lista, mas não *extrair* um elemento, então você provavelmente irá usar `[`.
+Usando `[` sempre serÃ¡ retornada uma lista. Se vocÃª quiser um *subconjunto* de
+uma lista, mas nÃ£o *extrair* um elemento, entÃ£o vocÃª provavelmente irÃ¡ usar `[`.
 
 ```{r}
 xlist <- list(a = "Software Carpentry", b = 1:10, data = head(iris))
@@ -582,26 +582,26 @@ xlist[1]
 
 Isto retorna uma *lista com um elemento*.
 
-Nós podemos selecionar elementos de uma lista exatamente da mesma maneira usada
-com vetores atômicos, isto é, `[`. Operadores de comparação entretanto não
-funcionam por não serem recursivos, eles irão testar uma condição na estrutura de
-dados em cada elemento da lista, não no elemento indivual dentro dessa estrutura
+NÃ³s podemos selecionar elementos de uma lista exatamente da mesma maneira usada
+com vetores atÃ´micos, isto Ã©, `[`. Operadores de comparaÃ§Ã£o entretanto nÃ£o
+funcionam por nÃ£o serem recursivos, eles irÃ£o testar uma condiÃ§Ã£o na estrutura de
+dados em cada elemento da lista, nÃ£o no elemento indivual dentro dessa estrutura
 de dados.
 
 ```{r}
 xlist[1:2]
 ```
 
-Para extrair elementos individuais de uma lista, você precisa usar a função dois
+Para extrair elementos individuais de uma lista, vocÃª precisa usar a funÃ§Ã£o dois
 pares de colchetes: `[[`.
 
 ```{r}
 xlist[[1]]
 ```
 
-Repare que agora o resultado é um vetor, não uma lista.
+Repare que agora o resultado Ã© um vetor, nÃ£o uma lista.
 
-Você não pode extrair mais de elemento de uma vez:
+VocÃª nÃ£o pode extrair mais de elemento de uma vez:
 
 ```{r, error=TRUE}
 xlist[[1:2]]
@@ -613,14 +613,14 @@ Nem usar isso para pular elementos:
 xlist[[-1]]
 ```
 
-Mas você pode usar nomes tanto para fazer subconjuntos quanto para extrair
+Mas vocÃª pode usar nomes tanto para fazer subconjuntos quanto para extrair
 elementos:
 
 ```{r}
 xlist[["a"]]
 ```
 
-A função `$` é uma maneira abreviada de extrair elementos pelo nome:
+A funÃ§Ã£o `$` Ã© uma maneira abreviada de extrair elementos pelo nome:
 
 ```{r}
 xlist$data
@@ -633,8 +633,8 @@ xlist$data
 > xlist <- list(a = "Software Carpentry", b = 1:10, data = head(iris))
 > ```
 >
-> Usando seus conhecimentos de subconjuntos de listas e vetores, extraia o número
-> 2 de xlist. Dica: o número 2 está contido dentro do item "b" da lista.
+> Usando seus conhecimentos de subconjuntos de listas e vetores, extraia o nÃºmero
+> 2 de xlist. Dica: o nÃºmero 2 estÃ¡ contido dentro do item "b" da lista.
 >
 > > ## Resposta do desafio 5
 > >
@@ -658,12 +658,12 @@ xlist$data
 > mod <- aov(pop ~ lifeExp, data=gapminder)
 > ```
 >
-> Extraia os graus de liberdade residuais (dica: `attributes()` irá ajudar você)
+> Extraia os graus de liberdade residuais (dica: `attributes()` irÃ¡ ajudar vocÃª)
 >
 > > ## Resposta do desafio 6
 > >
 > > ```{r, eval=FALSE}
-> > attributes(mod) ## `df.residual` é um dos nomes de `mod`
+> > attributes(mod) ## `df.residual` Ã© um dos nomes de `mod`
 > > ```
 > > ```{r, eval=FALSE}
 > > mod$df.residual
@@ -674,17 +674,17 @@ xlist$data
 
 ## *Data frames*
 
-Lembre-se que *data frames* são listas disfarçadas, então regras similares se
-aplicam. Contudo, eles também são objetos de duas dimensões:
+Lembre-se que *data frames* sÃ£o listas disfarÃ§adas, entÃ£o regras similares se
+aplicam. Contudo, eles tambÃ©m sÃ£o objetos de duas dimensÃµes:
 
-`[` com um argumento irá agir da mesma forma que em listas, em que cada elemento
-da lista corresponde a uma coluna. O objeto resultante será um *data frame*:
+`[` com um argumento irÃ¡ agir da mesma forma que em listas, em que cada elemento
+da lista corresponde a uma coluna. O objeto resultante serÃ¡ um *data frame*:
 
 ```{r}
 head(gapminder[3])
 ```
 
-Similarmente, `[[` irá agir para extrair uma *única coluna*:
+Similarmente, `[[` irÃ¡ agir para extrair uma *Ãºnica coluna*:
 
 ```{r}
 head(gapminder[["lifeExp"]])
@@ -702,33 +702,33 @@ Com dois argumentos, `[` se comporta da mesma maneira que em matrizes:
 gapminder[1:3,]
 ```
 
-Se nós selecionarmos uma única linha, o resultado será um *data frame* (pois os
-elementos são de tipos variados):
+Se nÃ³s selecionarmos uma Ãºnica linha, o resultado serÃ¡ um *data frame* (pois os
+elementos sÃ£o de tipos variados):
 
 ```{r}
 gapminder[3,]
 ```
 
-Mas para uma única coluna o resultado será um vetor (isso pode ser alterado com o
+Mas para uma Ãºnica coluna o resultado serÃ¡ um vetor (isso pode ser alterado com o
 terceiro argumento, `drop = FALSE`).
 
 > ## Desafio 7
 >
 > Conserte cada um dos seguintes subconjuntos de *data frames* com erros:
 >
-> 1. Extraia observações coletadas no ano de 1957
+> 1. Extraia observaÃ§Ãµes coletadas no ano de 1957
 >
 >    ```{r, eval=FALSE}
 >    gapminder[gapminder$year = 1957,]
 >    ```
 >
-> 2. Extraia todas as colunas exceto 1 até 4
+> 2. Extraia todas as colunas exceto 1 atÃ© 4
 >
 >    ```{r, eval=FALSE}
 >    gapminder[,-1:4]
 >    ```
 >
-> 3. Extraia as linhas em que a expectativa de vida é maior que 80 anos
+> 3. Extraia as linhas em que a expectativa de vida Ã© maior que 80 anos
 >
 >    ```{r, eval=FALSE}
 >    gapminder[gapminder$lifeExp > 80]
@@ -741,7 +741,7 @@ terceiro argumento, `drop = FALSE`).
 >    gapminder[1, 4, 5]
 >    ```
 >
-> 5. Avançado: extraia as linhas que contêm informações sobre os anos 2002
+> 5. AvanÃ§ado: extraia as linhas que contÃªm informaÃ§Ãµes sobre os anos 2002
 >    e 2007
 >
 >    ```{r, eval=FALSE}
@@ -752,21 +752,21 @@ terceiro argumento, `drop = FALSE`).
 > >
 > > Conserte cada um dos seguintes subconjuntos de *data frames* com erros:
 > >
-> > 1. Extraia observações coletadas no ano de 1957
+> > 1. Extraia observaÃ§Ãµes coletadas no ano de 1957
 > >
 > >    ```{r, eval=FALSE}
 > >    # gapminder[gapminder$year = 1957,]
 > >    gapminder[gapminder$year == 1957,]
 > >    ```
 > >
-> > 2. Extraia todas as colunas exceto 1 até 4
+> > 2. Extraia todas as colunas exceto 1 atÃ© 4
 > >
 > >    ```{r, eval=FALSE}
 > >    # gapminder[,-1:4]
 > >    gapminder[,-c(1:4)]
 > >    ```
 > >
-> > 3. Extraia as linhas em que a expectativa de vida é maior que 80 anos
+> > 3. Extraia as linhas em que a expectativa de vida Ã© maior que 80 anos
 > >
 > >    ```{r, eval=FALSE}
 > >    # gapminder[gapminder$lifeExp > 80]
@@ -781,7 +781,7 @@ terceiro argumento, `drop = FALSE`).
 > >    gapminder[1, c(4, 5)]
 > >    ```
 > >
-> > 5. Avançado: extraia as linhas que contêm informações sobre os anos 2002
+> > 5. AvanÃ§ado: extraia as linhas que contÃªm informaÃ§Ãµes sobre os anos 2002
 > >    e 2007
 > >
 > >     ```{r, eval=FALSE}
@@ -798,11 +798,11 @@ terceiro argumento, `drop = FALSE`).
 >
 >
 > 2. Crie um novo `data.frame` chamado `gapminder_small` que contenha apenas as linhas
-> >  1 até 9 e 19 até 23. Você pode fazer isso em um ou dois passos.
+> >  1 atÃ© 9 e 19 atÃ© 23. VocÃª pode fazer isso em um ou dois passos.
 >
 > > ## Resposta do desafio 8
 > >
-> > 1. `gapminder` é um `data.frame`, então ele precisa de duas dimensões para ter um subconjunto. `gapminder[1:20, ]` diz para selecionar as primeiras 20 linhas e todas as colunas.
+> > 1. `gapminder` Ã© um `data.frame`, entÃ£o ele precisa de duas dimensÃµes para ter um subconjunto. `gapminder[1:20, ]` diz para selecionar as primeiras 20 linhas e todas as colunas.
 > >
 > > 2. 
 > >

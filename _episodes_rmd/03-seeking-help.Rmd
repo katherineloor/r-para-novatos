@@ -10,167 +10,150 @@ objectives:
 - "To be able to seek help from your peers."
 keypoints:
 - "Use `help()` to get online help in R."
-source: Rmd
 ---
+
 
 ```{r, include=FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("03-")
 ```
 
-## Reading Help files
 
-R, and every package, provide help files for functions. To search for help on a
-function from a specific function that is in a package loaded into your
-namespace (your interactive R session):
+## Lendo arquivos de ajuda
+R, e todo pacote, fornece arquivos de ajuda para funções. Para procurar ajuda sobre uma função de uma função específica que está em um pacote carregado no seu namespace (sua seção interativa do R):
 
 ```{r, eval=FALSE}
 ?function_name
 help(function_name)
 ```
 
-This will load up a help page in RStudio (or as plain text in R by itself).
+Isso irá carregar uma página de ajuda no RStudio (ou um texto no próprio R).
 
-Each help page is broken down into sections:
+Cada página de ajuda é dividida nas seções:
 
- - Description: An extended description of what the function does.
- - Usage: The arguments of the function and their default values.
- - Arguments: An explanation of the data each argument is expecting.
- - Details: Any important details to be aware of.
- - Value: The data the function returns.
- - See Also: Any related functions you might find useful.
- - Examples: Some examples for how to use the function.
+ - Description: Uma descrição estendida sobre o que a função faz.
+ - Usage: Os argumentos da função e seus valores padrões.
+ - Arguments: Uma explicação dos dados que cada argumento espera receber.
+ - Details: Qualquer detalhe importante para estar atento.
+ - Values: Os dados que a função retorna.
+ - See Also: Qualquer função relacionada você pode achar útil.
+ - Examples: Alguns exemplos sobre como usar a função.
 
-Different functions might have different sections, but these are the main ones you should be aware of.
+Diferentes funções podem ter diferentes seções, mas essas são as principais para se prestar atenção.
 
-> ## Tip: Reading help files
+> ## Dica: Lendo arquivos de ajuda
 >
-> One of the most daunting aspects of R is the large number of functions
-> available. It would be prohibitive, if not impossible to remember the
-> correct usage for every function you use. Luckily, the help files
-> mean you don't have to!
+> Um dos aspectos mais assustadores do R é seu imenso número de funções disponíveis. 
+> Seria improvável, se não impossível, lembrar corretamente como utilizar cada função
+> você utiliza. Felizmente, os arquivos de ajuda existem para que você não precise 
+> fazer isso!
 {: .callout}
 
-## Special Operators
-
-To seek help on special operators, use quotes:
+## Operadores Especiais
+Para procurar ajuda sobre operadores especiais, use os termos:
 
 ```{r, eval=FALSE}
 ?"+"
 ```
 
-## Getting help on packages
+## Conseguindo ajuda sobre pacotes
 
-Many packages come with "vignettes": tutorials and extended example documentation.
-Without any arguments, `vignette()` will list all vignettes for all installed packages;
-`vignette(package="package-name")` will list all available vignettes for
-`package-name`, and `vignette("vignette-name")` will open the specified vignette.
+Muitos pacotes vem com “vignettes”: tutoriais e exemplos de documentações estendidos. Sem qualquer argumento, `vignette()` listará todas vignettes para todos pacotes instalados; `vignette(package="package-name")` listará todas as vignettes disponíveis para `package-name`, e `vignette("vignette-name")` abrirá a vignette especificada.
 
-If a package doesn't have any vignettes, you can usually find help by typing
-`help("package-name")`.
+Se um pacote não possui vignettes alguma, você geralmente pode achar ajuda digitando `help("package-name")`.
 
-## When you kind of remember the function
+## Quando você meio que lembra a função
 
-If you're not sure what package a function is in, or how it's specifically spelled you can do a fuzzy search:
+Se você não tem certeza em qual pacote uma certa função está, ou como ela é especificamente escrita você pode fazer uma busca fuzzy:
 
 ```{r, eval=FALSE}
 ??function_name
 ```
 
-## When you have no idea where to begin
+## Quando você não tem ideia por onde começar
 
-If you don't know what function or package you need to use
-[CRAN Task Views](http://cran.at.r-project.org/web/views)
-is a specially maintained list of packages grouped into
-fields. This can be a good starting point.
+Se você não sabe qual pacote ou função você precisa, a lista de tópicos do CRAN ([CRAN Task Views](https://cran.r-project.org/web/views/)) é uma lista especialmente mantida de pacotes agrupados em áreas. Esse pode ser um bom ponto de partida.
 
-## When your code doesn't work: seeking help from your peers
+## Quando o seu código não funciona: procurando ajuda com outras pessoas
 
-If you're having trouble using a function, 9 times out of 10,
-the answers you are seeking have already been answered on
-[Stack Overflow](http://stackoverflow.com/). You can search using
-the `[r]` tag.
+Se você está tendo trabalho usando alguma função, em  90% das vezes, a resposta que você procura já foi respondida em [Stack Overflow](http://stackoverflow.com/). Você pode procurar usando o campo [r].
 
-If you can't find the answer, there are a few useful functions to
-help you ask a question from your peers:
+Se você não consegue encontrar a resposta, existem algumas funções úteis para ajudá-lo a tirar sua dúvida com outras pessoas:
 
 ```{r, eval=FALSE}
 ?dput
 ```
 
-Will dump the data you're working with into a format so that it can
-be copy and pasted by anyone else into their R session.
+Irá retornar o banco de dados com o qual você está trabalhando em um formato que ele possa ser copiado e colado por qualquer um em suas sessões em R.
 
 ```{r}
 sessionInfo()
 ```
 
-Will print out your current version of R, as well as any packages you
-have loaded. This can be useful for others to help reproduce and debug
-your issue.
+Irá imprimir a sua atual versão do R, bem como os pacotes que você tem carregados. Isso pode ser útil para ajudar outras pessoas a reproduzirem e corrigirem seus problemas.
 
-> ## Challenge 1
+> ## Desafio 1
 >
-> Look at the help for the `c` function. What kind of vector do you
-> expect you will create if you evaluate the following:
+> Olhe a ajuda da função `c()`. Que tipo de vetor você espera criar se você usar os
+> seguintes comandos:
 > ```{r, eval=FALSE}
 > c(1, 2, 3)
 > c('d', 'e', 'f')
 > c(1, 2, 'f')
 > ```
-> > ## Solution to Challenge 1
+> > ## Solução do desafio 1
 > >
-> > The `c()` function creates a vector, in which all elements are the
-> > same type. In the first case, the elements are numeric, in the
-> > second, they are characters, and in the third they are characters:
-> > the numeric values are "coerced" to be characters.
+
+> > A função `c()` cria um vetor, no qual todos elementos são do mesmo tipo. No
+> > primeiro caso, os elementos são numéricos, no segundo, eles são caracteres, e no
+> > terceiro eles são caracteres: os valores numéricos foram "forçados" a serem
+> > caracteres.
 > {: .solution}
 {: .challenge}
 
-> ## Challenge 2
+> ## Desafio 2
 >
-> Look at the help for the `paste` function. You'll need to use this later.
-> What is the difference between the `sep` and `collapse` arguments?
+> Olhe a ajuda para a função `paste`. Você precisará dela mais adiante. Qual a
+> diferença entre os argumentos `sep` e `collapse`?
 >
-> > ## Solution to Challenge 2
+> > ## Solução do desafio 2
 > >
-> > To look at the help for the `paste()` function, use:
+> > Para ver a ajuda da função `paste()`, use:
 > > ```{r, eval=FALSE}
 > > help("paste")
 > > ?paste
 > > ```
-> > The difference between `sep` and `collapse` is a little
-> > tricky. The `sep` argument specifies what separator character to use
-> > when you specify several different *arguments* to `paste()`,
-> > e.g. `paste('a', 'b', sep=',')`. In contrast, `collapse` specifies
-> > what separator character to use when combining a set of strings that
-> > are all specified as part of the same *vector*,
-> > e.g. `paste(c('a','b'), collapse=',')`. (For more information,
-> > scroll to the bottom of the `?paste` help page and look at the
-> > examples, or try `example('paste')`.)
+> > A diferença entre `sep` e `collapse` é um pouco
+> > delicada. O argumento `sep` especifica qual separador de caractere deve ser usado
+> > quando você passa vários *argumentos* diferentes para `paste()`,
+> > e.g. `paste('a', 'b', sep=',')`. Por outro lado, `collapse` especifica
+> > qual separador de caracteres deve ser usado quando um conjunto de strings é  
+> > combinado, quando todos são especificados como partes do mesmo *vetor*,
+> > e.g. `paste(c('a','b'), collapse=',')`. (Para mais informações,
+> > vá para o final da página de ajuda da função `?paste` e veja os
+> > exemplos, ou tente `example('paste')`.)
 > {: .solution}
 {: .challenge}
 
-> ## Challenge 3
-> Use help to find a function (and its associated parameters) that you could
-> use to load data from a csv file in which columns are delimited with "\t"
-> (tab) and the decimal point is a "." (period). This check for decimal
-> separator is important, especially if you are working with international
-> colleagues, because different countries have different conventions for the
-> decimal point (i.e. comma vs period).
-> hint: use `??csv` to lookup csv related functions.
-> > ## Solution to Challenge 3
+> ## Desafio 3
+> Use a função help para achar a função (e seus parâmetros associados) que pode ser
+> usada para carregar dados de um arquivo csv no qual as colunas são delimitadas com
+> "\t" (tab) e decimais são pontos “.”. Essa verificação para separadores decimais é
+> importante, especialmente se você está trabalhando com colaboradores internacionais,
+> porque países diferentes possuem diferentes convenções para o ponto decimal (isto é,
+> vírgula ou ponto). Dica: use ??csv para buscar funções relacionadas com csv.
+> > ## Solução do desafio 3
 > >
-> > The standard R function for reading tab-delimited files with a period
-> > decimal separator is read.delim(). You can also do this with
-> > `read.table(file, sep="\t")` (the period is the *default* decimal
-> > separator for `read.table()`, although you may have to change
-> > the `comment.char` argument as well if your data file contains
-> > hash (#) characters
+> > A função padrão em R para ler arquivos delimitados por tab com um ponto  
+> > como separador decimal é read.delim(). Você pode também fazer isso com
+> > `read.table(file, sep="\t")` (o ponto é o separador decimal *default*
+> > para `read.table()`, embora você possa mudar o argumento 
+> > `comment.char` também se seus dados contém
+> > caracteres hash (#)
 > {: solution}
 {: .challenge}
 
-## Other ports of call
+## Outras opções de ajuda
 
 * [Quick R](http://www.statmethods.net/)
 * [RStudio cheat sheets](http://www.rstudio.com/resources/cheatsheets/)

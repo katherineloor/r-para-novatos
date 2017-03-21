@@ -1,15 +1,15 @@
 ---
 title: Split-Apply-Combine
-Ensino: 30
-Exercícios: 30
-Questões:
-- "Como posso fazer diferentes cálculos em diferentes conjuntos de dados?"
-Objetivos:
-- "Poder usar a estratégia de split-apply-combine para análise de dados."
-Pontos Chave:
-- "Use o pacote `plyr` para dividir dados, aplicar funções aos subconjuntos e combinar os resultados."
-source: Rmd
+teaching: 30
+exercises: 30
+questions:
+- "How can I do different calculations on different sets of data?"
+objectives:
+- "To be able to use the split-apply-combine strategy for data analysis."
+keypoints:
+- "Use the `plyr` package to split data, apply functions to subsets, and combine the results."
 ---
+
 
 ```{r, include=FALSE}
 source("../bin/chunk-options.R")

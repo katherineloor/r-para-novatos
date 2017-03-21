@@ -1,23 +1,21 @@
 ---
-title: Produzindo relatórios com knitr
-ensino: 60
-exercícios: 15
-questões:
-- "Como posso integrar software e relatórios?"
-objetivos:
-- Valor dos relatórios reproduzíveis
-- Noções básicas de Markdown
-- Pedaços de código R
-- Opções de bloco
-- Código R em linha
-- Outros formatos de saída
-pontos Chave:
-- "Relatório mixto escrito em R Markdown com software escrito em R."
-- "Especifique opções de bloco para controlar a formatação."
-- "Use `knitr` para converter esses documentos em PDF e outros formatos."
-source: Rmd
+title: Producing Reports With knitr
+teaching: 60
+exercises: 15
+questions:
+- "How can I integrate software and reports?"
+objectives:
+- Value of reproducible reports
+- Basics of Markdown
+- R code chunks
+- Chunk options
+- Inline R code
+- Other output formats
+keypoints:
+- "Mix reporting written in R Markdown with software written in R."
+- "Specify chunk options to control formatting."
+- "Use `knitr` to convert these documents into PDF and other formats."
 ---
-
 ```{r chunk_options, include=FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("15-")

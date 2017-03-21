@@ -1,21 +1,27 @@
 ---
-title: "IntroduÃ§Ã£o ao R e RStudio"
-Questões:
-- Como encontrar o seu camihno ao redor de RStudio?
-- Como interagir com R?
-- Como gerenciar seu ambiente?
-- Como instalar pacotes?
-exercises: 10
-source: Rmd
+title: "Introduction to R and RStudio"
 teaching: 45
-Objetivos:
-- Obter familiaridade com os vÃ¡rios panÃ©is no IDE do RStudio
-- Obter familiaridade com os botÃµes, atalhos e opÃ§Ãµes no IDE do RStudio
-- Entender variÃ¡veis e como atribuir a ela
-- Ser capaz de gerenciar seu espaÃ§o de trabalho em uma sessaÃ£o interativa de R
-- Ser capaz de usar operaÃ§oÃµes matemÃ¡ticas e de comparaÃ§Ã£o
-- Ser capaz de chamar funÃ§Ãµes
-- Introduzir o gerenciamento de pacotes
+exercises: 10
+questions:
+- "How to find your way around RStudio?"
+- "How to interact with R?"
+- "How to manage your environment?"
+- "How to install packages?"
+objectives:
+- "To gain familiarity with the various panes in the RStudio IDE"
+- "To gain familiarity with the buttons, short cuts and options in the RStudio IDE"
+- "To understand variables and how to assign to them"
+- "To be able to manage your workspace in an interactive R session"
+- "To be able to use mathematical and comparison operations"
+- "To be able to call functions"
+- "Introduction to package management"
+keypoints:
+- "Use RStudio to write and run R programs."
+- "R has the usual arithmetic operators and mathematical functions."
+- "Use `<-` to assign values to variables."
+- "Use `ls()` to list the variables in a program."
+- "Use `rm()` to delete objects in a program."
+- "Use `install.packages()` to install packages (libraries)."
 ---
 
 ```{r, include=FALSE}
@@ -24,39 +30,39 @@ knitr_fig_path("01-")
 ```
 
 
-## Motivação
+## Motiva??o
 
-A ciência é um processo de várias etapas: uma vez que você criou uma experiência e coletou dados, a verdadeira diversão começa! Esta lição ensinará como iniciar este processo usando R e RStudio. Começaremos com dados brutos, realizaremos análises exploratórias e aprenderemos a traçar resultados graficamente. Este exemplo começa com um conjunto de dados de [gapminder.org](https://www.gapminder.org) que contém informações de população para muitos países ao longo do tempo. Você pode ler os dados em R? Pode traçar a população para o Senegal? Você pode calcular a renda média dos países do continente asiático? No final dessas lições você será capaz de fazer coisas como tramar as populações de todos esses países em menos de um minuto!
+A ci?ncia ? um processo de v?rias etapas: uma vez que voc? criou uma experi?ncia e coletou dados, a verdadeira divers?o come?a! Esta li??o ensinar? como iniciar este processo usando R e RStudio. Come?aremos com dados brutos, realizaremos an?lises explorat?rias e aprenderemos a tra?ar resultados graficamente. Este exemplo come?a com um conjunto de dados de [gapminder.org](https://www.gapminder.org) que cont?m informa??es de popula??o para muitos pa?ses ao longo do tempo. Voc? pode ler os dados em R? Pode tra?ar a popula??o para o Senegal? Voc? pode calcular a renda m?dia dos pa?ses do continente asi?tico? No final dessas li??es voc? ser? capaz de fazer coisas como tramar as popula??es de todos esses pa?ses em menos de um minuto!
 
 ## Antes de iniciar o Workshop
 
-Certifique-se de que tem a versão mais recente do R e do RStudio instalados na sua máquina. Isso é importante, pois alguns pacotes usados no workshop podem não ser instalados corretamente (ou em todos) se R não estiver atualizado.
+Certifique-se de que tem a vers?o mais recente do R e do RStudio instalados na sua m?quina. Isso ? importante, pois alguns pacotes usados no workshop podem n?o ser instalados corretamente (ou em todos) se R n?o estiver atualizado.
 
 [Download and install the latest version of R here](https://www.r-project.org/)
 [Download and install RStudio here](https://www.rstudio.com/)
 
-## Introduçaõ ao RStudio 
+## Introdu?a? ao RStudio 
 
 
-Bem-vindo à parte do R do Software Carpentry.
+Bem-vindo ? parte do R do Software Carpentry.
 
-Ao longo desta lição, vamos ensinar-lhe alguns dos fundamentos da linguagem R, bem como algumas práticas recomendadas para organizar o código para projetos científicos que facilitarão a sua vida.
+Ao longo desta li??o, vamos ensinar-lhe alguns dos fundamentos da linguagem R, bem como algumas pr?ticas recomendadas para organizar o c?digo para projetos cient?ficos que facilitar?o a sua vida.
 
-Estaremos usando o RStudio: um ambiente de desenvolvimento integrado livre e de código aberto. Ele fornece um editor embutido, funciona em todas as plataformas (incluindo servidores) e oferece muitas vantagens, como integração com controle de versão e gerenciamento de projetos. 
+Estaremos usando o RStudio: um ambiente de desenvolvimento integrado livre e de c?digo aberto. Ele fornece um editor embutido, funciona em todas as plataformas (incluindo servidores) e oferece muitas vantagens, como integra??o com controle de vers?o e gerenciamento de projetos. 
 
 
 
-**Layout básico**
+**Layout b?sico**
 
-Quando você abrir RStudio pela primeira vez, você será recebido por três painéis: 
+Quando voc? abrir RStudio pela primeira vez, voc? ser? recebido por tr?s pain?is: 
 
-  * O console R interativo (todo à esquerda)
-  * Ambiente/História (tabulada no canto direito)
-  * Archivos/Gráficos/Pacotes/Ajuda/Visualizador (com abas na parte inferior direita)
+  * O console R interativo (todo ? esquerda)
+  * Ambiente/Hist?ria (tabulada no canto direito)
+  * Archivos/Gr?ficos/Pacotes/Ajuda/Visualizador (com abas na parte inferior direita)
 
 ![](http://swcarpentry.github.io/r-novice-gapminder/fig/01-rstudio.png)
 
-Depois de abrir arquivos, como R scripts, um painel de editor também será aberto no canto superior esquerdo. 
+Depois de abrir arquivos, como R scripts, um painel de editor tamb?m ser? aberto no canto superior esquerdo. 
 
 
 ![](http://swcarpentry.github.io/r-novice-gapminder/fig/01-rstudio-script.png) 
@@ -65,46 +71,46 @@ Depois de abrir arquivos, como R scripts, um painel de editor também será aberto
 ## Fluxo de trabalho no RStudio
 Existem duas maneiras principais de se trabalhar dentro do RStudio.
 
-1. Teste e jogue dentro do console R interativo, em seguida, copie o código para um arquivo .R para ser executado posteriormente.
-   *  Isso funciona bem ao fazer pequenos testes e inicialmente começar.
+1. Teste e jogue dentro do console R interativo, em seguida, copie o c?digo para um arquivo .R para ser executado posteriormente.
+   *  Isso funciona bem ao fazer pequenos testes e inicialmente come?ar.
    *  Torna-se rapidamente trabalhoso.
 2. Comece a escrever em um arquivo .R e use o comando / atalho RStudio para pressionar a linha atual, as linhas selecionadas ou as linhas modificadas para o console R interativo. .
-   * Esta é uma ótima maneira de começar; Todo o seu código é salvo para mais tarde.
-   * Você poderá executar o arquivo criado a partir de RStudio ou usando a função **source ()** de R.
+   * Esta ? uma ?tima maneira de come?ar; Todo o seu c?digo ? salvo para mais tarde.
+   * Voc? poder? executar o arquivo criado a partir de RStudio ou usando a fun??o **source ()** de R.
 
-> ## Dica: Executando segmentos do seu código
+> ## Dica: Executando segmentos do seu c?digo
 >
-> O RStudio oferece-lhe uma grande flexibilidade na execução de código 
->a partir da janela do editor. Existem botões, opções de menu e atalhos 
->de teclado. Para executar a linha atual, você pode: 1. pressionar no botão 
+> O RStudio oferece-lhe uma grande flexibilidade na execu??o de c?digo 
+>a partir da janela do editor. Existem bot?es, op??es de menu e atalhos 
+>de teclado. Para executar a linha atual, voc? pode: 1. pressionar no bot?o 
 >Executar acima do painel do editor ou 2. selecionar "Run lines" no menu "Code",
 >ou 3. pressionar Ctrl-Enter no Windows ou Linux ou Command-Enter no OS X.
->(Este atalho também pode ser visto ao passar o mouse sobre o botão).
->Para executar um bloco de código, selecione-o e, em seguida, Executar. 
->Se você modificou uma linha de código dentro de um bloco de código que 
->você acabou de executar, não há necessidade de reajustar a seção e Run, 
->você pode usar o próximo botão, Re-Run the previous code region. Isso 
->executará o bloco de código anterior incluindo as modificações feitas.
+>(Este atalho tamb?m pode ser visto ao passar o mouse sobre o bot?o).
+>Para executar um bloco de c?digo, selecione-o e, em seguida, Executar. 
+>Se voc? modificou uma linha de c?digo dentro de um bloco de c?digo que 
+>voc? acabou de executar, n?o h? necessidade de reajustar a se??o e Run, 
+>voc? pode usar o pr?ximo bot?o, Re-Run the previous code region. Isso 
+>executar? o bloco de c?digo anterior incluindo as modifica??es feitas.
 >
 {: .callout}
 
-## Introdução a R
+## Introdu??o a R
 
-A maior parte do seu tempo em R será gasto no console interativo R. Isto é onde você irá executar todo o seu código, e pode ser um ambiente útil para experimentar idéias antes de adicioná-los a um arquivo de script R. Este console no RStudio é o mesmo que você obteria se você digitou R em seu ambiente de linha de comando.
+A maior parte do seu tempo em R ser? gasto no console interativo R. Isto ? onde voc? ir? executar todo o seu c?digo, e pode ser um ambiente ?til para experimentar id?ias antes de adicion?-los a um arquivo de script R. Este console no RStudio ? o mesmo que voc? obteria se voc? digitou R em seu ambiente de linha de comando.
 
-A primeira coisa que você vai ver na sessão interativa R é um monte de informações, seguido por um ">" e um cursor piscando. Em muitos aspectos isso é semelhante ao ambiente de shell que você aprendeu durante as lições do shell: ele opera na mesma idéia de um "Read, evaluate, print loop": você digita comandos, R tenta executá-los e, em seguida, retorna um resultado.
+A primeira coisa que voc? vai ver na sess?o interativa R ? um monte de informa??es, seguido por um ">" e um cursor piscando. Em muitos aspectos isso ? semelhante ao ambiente de shell que voc? aprendeu durante as li??es do shell: ele opera na mesma id?ia de um "Read, evaluate, print loop": voc? digita comandos, R tenta execut?-los e, em seguida, retorna um resultado.
 
 ## Usando R como uma calculadora 
 
-A coisa mais simples que você pode fazer com R é aritmética: 
+A coisa mais simples que voc? pode fazer com R ? aritm?tica: 
 
 ```{r}
 1 + 100
 ```
 
-E R vai imprimir a resposta, com um precedente "[1]". Não se preocupe com isso por agora, vamos explicar isso mais tarde. Por agora, pense nisso como uma saída indicadora.  
+E R vai imprimir a resposta, com um precedente "[1]". N?o se preocupe com isso por agora, vamos explicar isso mais tarde. Por agora, pense nisso como uma sa?da indicadora.  
 
-Como bash, se você digitar um comando incompleto, R esperará que você o complete: 
+Como bash, se voc? digitar um comando incompleto, R esperar? que voc? o complete: 
 
 ~~~
 > 1 +
@@ -116,26 +122,26 @@ Como bash, se você digitar um comando incompleto, R esperará que você o complete
 ~~~
 {: .output}
 
-Cada vez que você pressionar a tecla Enter e a sessão R mostre um "+" em vez de um ">", isso significa que está esperando que você complete o comando. Se você deseja cancelar um comando, você pode simplesmente presionar em "Esc" e rstudio vai lhe dar de volta o ">" alerta.
+Cada vez que voc? pressionar a tecla Enter e a sess?o R mostre um "+" em vez de um ">", isso significa que est? esperando que voc? complete o comando. Se voc? deseja cancelar um comando, voc? pode simplesmente presionar em "Esc" e rstudio vai lhe dar de volta o ">" alerta.
 
 > ## Dica: Cancelamento de comandos
 >
-> Se você estiver usando R a partir da linha de comando em vez de 
->dentro RStudio, você precisará usar `Ctrl+C` em vez de `Esc` 
-> para cancelar o comando. Isso também se aplica aos usuários de Mac!
+> Se voc? estiver usando R a partir da linha de comando em vez de 
+>dentro RStudio, voc? precisar? usar `Ctrl+C` em vez de `Esc` 
+> para cancelar o comando. Isso tamb?m se aplica aos usu?rios de Mac!
 >
-> Cancelar um comando não é útil somente para matar comandos incompletos: 
-> você também pode usá-lo para dizer a R para parar o código em execução
-> (por exemplo, se estiver demorando muito mais do que você espera) 
->ou para se livrar do código que você está escrevendo. 
+> Cancelar um comando n?o ? ?til somente para matar comandos incompletos: 
+> voc? tamb?m pode us?-lo para dizer a R para parar o c?digo em execu??o
+> (por exemplo, se estiver demorando muito mais do que voc? espera) 
+>ou para se livrar do c?digo que voc? est? escrevendo. 
 >
 {: .callout}
 
-Ao usar R como uma calculadora, a ordem das operações é a mesma que você teria aprendido na escola.  
+Ao usar R como uma calculadora, a ordem das opera??es ? a mesma que voc? teria aprendido na escola.  
 
-Da precedência mais alta à mais baixa:
+Da preced?ncia mais alta ? mais baixa:
 
- * Parênteses: `(`, `)`
+ * Par?nteses: `(`, `)`
  * Exponentes: `^` or `**`
  * Dividir: `/`
  * Multiplicar: `*`
@@ -146,44 +152,44 @@ Da precedência mais alta à mais baixa:
 3 + 5 * 2
 ```
 
-Use parênteses para agrupar operações, a fim de forçar a ordem de avaliação se difere do padrão, ou para tornar claro o que você pretende. .
+Use par?nteses para agrupar opera??es, a fim de for?ar a ordem de avalia??o se difere do padr?o, ou para tornar claro o que voc? pretende. .
 
 ```{r}
 (3 + 5) * 2
 ```
 
-Isso pode ficar complicado quando não é necessário, mas esclarece suas intenções. Lembre-se de que os outros podem ler o seu código mais tarde. 
+Isso pode ficar complicado quando n?o ? necess?rio, mas esclarece suas inten??es. Lembre-se de que os outros podem ler o seu c?digo mais tarde. 
 
 ```{r, eval=FALSE}
-(3 + (5 * (2 ^ 2))) # difícil de ler
-3 + 5 * 2 ^ 2       # claro, se você se lembrar das regras
-3 + 5 * (2 ^ 2)     # se você esquecer algumas regras, isso pode ajudar
+(3 + (5 * (2 ^ 2))) # dif?cil de ler
+3 + 5 * 2 ^ 2       # claro, se voc? se lembrar das regras
+3 + 5 * (2 ^ 2)     # se voc? esquecer algumas regras, isso pode ajudar
 ```
 
 
-O texto após cada linha de código é chamado de "comentário". Qualquer coisa que se segue após o hash (ou octothorpe) símbolo `#` é ignorado por R quando ele executa código.
+O texto ap?s cada linha de c?digo ? chamado de "coment?rio". Qualquer coisa que se segue ap?s o hash (ou octothorpe) s?mbolo `#` ? ignorado por R quando ele executa c?digo.
 
-Números realmente pequenos ou grandes obtêm uma notação científica:
+N?meros realmente pequenos ou grandes obt?m uma nota??o cient?fica:
 
 ```{r}
 2/10000
 ```
 
-Qual é taquigrafia para "multiplicado por `10^XX`". Então `2e-4` é abreviação para `2 * 10^(-4)`.
+Qual ? taquigrafia para "multiplicado por `10^XX`". Ent?o `2e-4` ? abrevia??o para `2 * 10^(-4)`.
 
 
-Você também pode escrever números em notação científica: 
+Voc? tamb?m pode escrever n?meros em nota??o cient?fica: 
 
 ```{r}
 5e3  # Note a falta de menos aqui
 ```
 
-## Funções matemáticas
+## Fun??es matem?ticas
 
-R tem muitas funções matemáticas construídas. Para chamar uma função, simplesmente digite seu nome, seguido por parênteses abertos e fechados. Qualquer coisa que digitemos dentro dos parênteses é chamada de argumentos da função:
+R tem muitas fun??es matem?ticas constru?das. Para chamar uma fun??o, simplesmente digite seu nome, seguido por par?nteses abertos e fechados. Qualquer coisa que digitemos dentro dos par?nteses ? chamada de argumentos da fun??o:
 
 ```{r}
-sin(1)  # funções trigonométricas
+sin(1)  # fun??es trigonom?tricas
 ```
 
 ```{r}
@@ -198,22 +204,22 @@ log10(10) # logaritmo base-10
 exp(0.5) # e^(1/2)
 ```
 
-Não se preocupe em tentar lembrar cada função em R. Você pode simplesmente procurá-los no Google, ou se lembrar do início do nome da função, use a conclusão da guia no RStudio.
+N?o se preocupe em tentar lembrar cada fun??o em R. Voc? pode simplesmente procur?-los no Google, ou se lembrar do in?cio do nome da fun??o, use a conclus?o da guia no RStudio.
 
-Esta é uma vantagem que RStudio tem sobre R por conta própria, tem auto-conclusão habilidades que lhe permitem procurar mais facilmente as funções, os seus argumentos e os valores que eles tomam.
+Esta ? uma vantagem que RStudio tem sobre R por conta pr?pria, tem auto-conclus?o habilidades que lhe permitem procurar mais facilmente as fun??es, os seus argumentos e os valores que eles tomam.
 
-Digite um "?" antes do nome dum comando e abrirá uma página de ajuda para esse comando. Assim como fornecerá uma descrição detalhada do comando e como ele funciona, baixando na a detailed description of the command and how it works, a rolagem para a parte inferior da página de ajuda normalmente mostrará uma coleção de exemplos de código que ilustram o uso do comando. Passaremos por um exemplo mais adiante.
+Digite um "?" antes do nome dum comando e abrir? uma p?gina de ajuda para esse comando. Assim como fornecer? uma descri??o detalhada do comando e como ele funciona, baixando na a detailed description of the command and how it works, a rolagem para a parte inferior da p?gina de ajuda normalmente mostrar? uma cole??o de exemplos de c?digo que ilustram o uso do comando. Passaremos por um exemplo mais adiante.
 
 ## Comparando coisas
 
-Podemos também fazer comparação em R:
+Podemos tamb?m fazer compara??o em R:
 
 ```{r}
-1 == 1  # igualdade (nota dois sinais iguais, leai-se como "é igual a")
+1 == 1  # igualdade (nota dois sinais iguais, leai-se como "? igual a")
 ```
 
 ```{r}
-1 != 2  # desigualdade (leai-se como "não é igual a")
+1 != 2  # desigualdade (leai-se como "n?o ? igual a")
 ```
 
 ```{r}
@@ -232,47 +238,47 @@ Podemos também fazer comparação em R:
 1 >= -9 #Maior ou igual que
 ```
 
-> ## Dica: Comparando Números
+> ## Dica: Comparando N?meros
 >
->Uma palavra de advertência sobre a comparação de números: 
->você nunca deve usar `==` para comparar dois números a
+>Uma palavra de advert?ncia sobre a compara??o de n?meros: 
+>voc? nunca deve usar `==` para comparar dois n?meros a
 > menos que sejam inteiros (um tipo de dados que pode representar
-> especificamente apenas números inteiros).
+> especificamente apenas n?meros inteiros).
 >
-> Os computadores só podem representar números decimais com 
->um certo grau de precisão, então dois números que parecem os mesmos
->quando impressos por R, podem realmente ter diferentes representações 
+> Os computadores s? podem representar n?meros decimais com 
+>um certo grau de precis?o, ent?o dois n?meros que parecem os mesmos
+>quando impressos por R, podem realmente ter diferentes representa??es 
 >subjacentes e, portanto, ser diferentes por uma pequena margem de erro 
->(chamada tolerância numérica da máquina).
+>(chamada toler?ncia num?rica da m?quina).
 >
-> Em vez disso, você deve usar a função `all.equal`.
+> Em vez disso, voc? deve usar a fun??o `all.equal`.
 > Leitura adicional:     [http://floating-point-gui.de/](http://floating-point-gui.de/)
 > 
 {: .callout}
 
-## Variáveis e atribuição 
+## Vari?veis e atribui??o 
 
-Podemos armazenar valores em variáveis usando o operador de atribuição `<-`, assim: 
+Podemos armazenar valores em vari?veis usando o operador de atribui??o `<-`, assim: 
 
 ```{r}
 x <- 1/40
 ```
 
-Observe que a atribuição não imprime um valor. Em vez disso, nós armazenamos isso para mais tarde em algo chamado de **variável**, `x` agora contém o **valor** `0.025`:
+Observe que a atribui??o n?o imprime um valor. Em vez disso, n?s armazenamos isso para mais tarde em algo chamado de **vari?vel**, `x` agora cont?m o **valor** `0.025`:
 
 ```{r}
 x
 ```
 
-Mais precisamente, o valor armazenado é uma *aproximação decimal* dessa fração chamada uma [Número de ponto flutuante](http://en.wikipedia.org/wiki/Floating_point).
+Mais precisamente, o valor armazenado ? uma *aproxima??o decimal* dessa fra??o chamada uma [N?mero de ponto flutuante](http://en.wikipedia.org/wiki/Floating_point).
 
-Procure a guia `Ambiente` em um dos painéis do RStudio, e você verá que `x` e seu valor apareceram. Nossa variável `x` pode ser usada no lugar de um número em qualquer cálculo que espera um número: 
+Procure a guia `Ambiente` em um dos pain?is do RStudio, e voc? ver? que `x` e seu valor apareceram. Nossa vari?vel `x` pode ser usada no lugar de um n?mero em qualquer c?lculo que espera um n?mero: 
 
 ```{r}
 log(x)
 ```
 
-Observe também que as variáveis podem ser reatribuídas:
+Observe tamb?m que as vari?veis podem ser reatribu?das:
 
 ```{r}
 x <- 100
@@ -280,34 +286,34 @@ x <- 100
 
 `x` usado para conter o valor 0.025 e agora ele tem o valor 100.  
 
-valores asignados podem conter a variável sendo assignidada:
+valores asignados podem conter a vari?vel sendo assignidada:
 
 ```{r}
-x <- x + 1 #observe como o RStudio atualiza sua descrição de x na guia superior direita
+x <- x + 1 #observe como o RStudio atualiza sua descri??o de x na guia superior direita
 ```
 
-O lado direito da atribuição pode ser qualquer expressão R válida. 
-O lado direito é *totalmente avaliado* antes da atribuição ocorrer.
+O lado direito da atribui??o pode ser qualquer express?o R v?lida. 
+O lado direito ? *totalmente avaliado* antes da atribui??o ocorrer.
 
-Nomes de variáveis podem conter letras, números, sublinhados e pontos. Eles não podem começar com um número nem conter espaços em tudo. Diferentes pessoas usam convenções diferentes para nomes de variáveis longas,
+Nomes de vari?veis podem conter letras, n?meros, sublinhados e pontos. Eles n?o podem come?ar com um n?mero nem conter espa?os em tudo. Diferentes pessoas usam conven??es diferentes para nomes de vari?veis longas,
 
   * pontos.entre.palavras
   * sublinha\_entre_palavras
   * cameloCasoParaSeparadoPalavras
 
-O que você usa depende de você, mas seja **consistente**.
+O que voc? usa depende de voc?, mas seja **consistente**.
 
-Também é possível usar o operador = para atribuição: 
+Tamb?m ? poss?vel usar o operador = para atribui??o: 
 
 ```{r}
 x = 1/40
 ```
 
-Mas isso é muito menos comum entre os usuários de R. O mais importante é ser **consistente** com o operador que você usa. Há ocasionalmente lugares onde é menos confuso usar `<-` than `=`, e é o símbolo mais comum usado na comunidade. Portanto, a recomendação é usar `<-`. 
+Mas isso ? muito menos comum entre os usu?rios de R. O mais importante ? ser **consistente** com o operador que voc? usa. H? ocasionalmente lugares onde ? menos confuso usar `<-` than `=`, e ? o s?mbolo mais comum usado na comunidade. Portanto, a recomenda??o ? usar `<-`. 
 
-## Vetorização
+## Vetoriza??o
 
-É de extrema relevância compreender que o R é um software vetorizado. Isso simplesmnte quer dizer que variáveis e funções podem receber vetores. 
+? de extrema relev?ncia compreender que o R ? um software vetorizado. Isso simplesmnte quer dizer que vari?veis e fun??es podem receber vetores. 
 Veja os exemplos abaixo:
 
 ```{r}
@@ -317,14 +323,14 @@ x <- 1:5
 2^x
 ```
 
-A possibilidade de variáveis e funções receber valores faz do R um software extremamente poderoso. Este tópico será abordado em detalhes adiante.
+A possibilidade de vari?veis e fun??es receber valores faz do R um software extremamente poderoso. Este t?pico ser? abordado em detalhes adiante.
 
 
 ## Controlando o ambiente de trabalho
 
-Existem alguns comandos que o usuário pode utilizar para interagir com o ambiente de trabalho do R.
+Existem alguns comandos que o usu?rio pode utilizar para interagir com o ambiente de trabalho do R.
 
-A função `ls`, por exemplo, lista todas as variáveis e funções gravadas no ambiente de trabalho.
+A fun??o `ls`, por exemplo, lista todas as vari?veis e fun??es gravadas no ambiente de trabalho.
 
 
 ```{r}
@@ -333,34 +339,34 @@ ls()
 
 > ## Dica: Objetos escondidos
 >
-> A função `ls()`não mostra variáveis e funções que começão com `.`.
-> A função  Para listar todos os objetos, inclusive os que   iniciam com `.`, digite `ls(all.names=TRUE)` e não `ls()`.
+> A fun??o `ls()`n?o mostra vari?veis e fun??es que come??o com `.`.
+> A fun??o  Para listar todos os objetos, inclusive os que   iniciam com `.`, digite `ls(all.names=TRUE)` e n?o `ls()`.
 > 
 {: .callout}
 
-Note que na função `ls` não é necessário fornecer argumentos, mas é necessário colocar parêntesis para que o R entenda que se trata de uma função.
+Note que na fun??o `ls` n?o ? necess?rio fornecer argumentos, mas ? necess?rio colocar par?ntesis para que o R entenda que se trata de uma fun??o.
 
-Se digitarmos apenas `ls` o R nos fornecerá o código fonte da função!
+Se digitarmos apenas `ls` o R nos fornecer? o c?digo fonte da fun??o!
 
 ```{r}
 ls
 ```
 
-Pode ser interessante deletar objetos que não serão utilizados adiante. Para isso utilizamos a função `rm`.
+Pode ser interessante deletar objetos que n?o ser?o utilizados adiante. Para isso utilizamos a fun??o `rm`.
 
 ```{r}
 rm(x)
 ```
 
-Se muitos objetos devem ser excluídos de uma só vez não há necessidade de excluir um por um. Basta utilizar a função `ls` conjugada com a `rm` da seguinte forma:
+Se muitos objetos devem ser exclu?dos de uma s? vez n?o h? necessidade de excluir um por um. Basta utilizar a fun??o `ls` conjugada com a `rm` da seguinte forma:
 
 ```{r}
 rm(list = ls())
 ```
 
-Neste caso duas funções foram utilizadas em conjunto. Sempre que este for o caso o que está localizado dentro do parêntesis mais interno será avaliado primeiro e assim em diante.
+Neste caso duas fun??es foram utilizadas em conjunto. Sempre que este for o caso o que est? localizado dentro do par?ntesis mais interno ser? avaliado primeiro e assim em diante.
 
-No caso acima foi especificado que o resultado da função `ls` deveria ser usado na forma de lista `list` como argumento da função `rm`. Quando destinados valores de argumentos a funções por nome, o operador a ser utilizado deverá ser o símbolo `=`.
+No caso acima foi especificado que o resultado da fun??o `ls` deveria ser usado na forma de lista `list` como argumento da fun??o `rm`. Quando destinados valores de argumentos a fun??es por nome, o operador a ser utilizado dever? ser o s?mbolo `=`.
 
 Se utilizarmos `<-` teremos efeitos indesejados ou  mensagens de erro.
 ```{r, error=TRUE}
@@ -369,9 +375,9 @@ rm(list <- ls())
 
 > ## Dica: Avisos vs Erros
 >
-> Fique atento pois o R poderá fazer algo inesperado.
-> Erros, como no caso acima, ocorrem quando o R não consegue efetuar as operações.
-> Avisos, por outro lado, indicam que o R conseguiu efetuar as operações, mas algo  provavelmente não ocorreu como esperado.
+> Fique atento pois o R poder? fazer algo inesperado.
+> Erros, como no caso acima, ocorrem quando o R n?o consegue efetuar as opera??es.
+> Avisos, por outro lado, indicam que o R conseguiu efetuar as opera??es, mas algo  provavelmente n?o ocorreu como esperado.
 >
 > Em ambos os casos, as mensagens que o R fornece ajudam a consertar o problema.
 >
@@ -379,17 +385,17 @@ rm(list <- ls())
 
 ## Pacotes do R
 
-É possível adicionar funções ao R através da escrita de pacote escritos por você mesmo, ou por pacotes escritos por outras pessoas. Hoje existem mais de 7000 pacotes disponíveis no CRAN (*the comprehensive R archive network*). O R e o Rstudio possuem elevada funcionalidade no quesito de gerenciamento de pacotes:
+? poss?vel adicionar fun??es ao R atrav?s da escrita de pacote escritos por voc? mesmo, ou por pacotes escritos por outras pessoas. Hoje existem mais de 7000 pacotes dispon?veis no CRAN (*the comprehensive R archive network*). O R e o Rstudio possuem elevada funcionalidade no quesito de gerenciamento de pacotes:
 
-* É possível ver quais pacotes estão instalados. Para isso devemos digitar `installed.packages()`.
-* É possível instalar novos pacotes ao digitar `install.packages("packagename")`, onde `packagename` é o nome do pacote a ser instalado. 
-* É possível atualizar pacotes já instalados. A função utilizada é `update.packages()`.
-* É possível remover pacotes com a função `remove.packages("packagename")`. 
-* É possível tornar um pacote habilitado ao uso. A função utilizada neste caso é `library(packagename)`.
+* ? poss?vel ver quais pacotes est?o instalados. Para isso devemos digitar `installed.packages()`.
+* ? poss?vel instalar novos pacotes ao digitar `install.packages("packagename")`, onde `packagename` ? o nome do pacote a ser instalado. 
+* ? poss?vel atualizar pacotes j? instalados. A fun??o utilizada ? `update.packages()`.
+* ? poss?vel remover pacotes com a fun??o `remove.packages("packagename")`. 
+* ? poss?vel tornar um pacote habilitado ao uso. A fun??o utilizada neste caso ? `library(packagename)`.
 
 > ## Desafio 1
 >
-> Quais nomes a seguir são válidos para variáveis no R ?
+> Quais nomes a seguir s?o v?lidos para vari?veis no R ?
 > ```{r, eval=FALSE}
 > min_height
 > max.height
@@ -401,9 +407,9 @@ rm(list <- ls())
 > celsius2kelvin
 > ```
 >
-> > ## Solução do desafio 1
+> > ## Solu??o do desafio 1
 > >
-> > Os nomes a seguir são válidos:
+> > Os nomes a seguir s?o v?lidos:
 > > ```{r ch1pt1-sol, eval=FALSE}
 > > min_height
 > > max.height
@@ -411,12 +417,12 @@ rm(list <- ls())
 > > celsius2kelvin
 > > ```
 > >
-> > O nome a seguir cria uma variável escondida
+> > O nome a seguir cria uma vari?vel escondida
 > > ```{r ch1pt2-sol, eval=FALSE}
 > > .mass
 > > ```
 > >
-> > Os nomes a seguir não podem ser usados para nomear objetos
+> > Os nomes a seguir n?o podem ser usados para nomear objetos
 > > ```{r ch1pt3-sol, eval=FALSE}
 > > _age
 > > min-length
@@ -427,7 +433,7 @@ rm(list <- ls())
 
 > ## Desafio 2
 >
-> Quais serão os valores das variáveis definidas abaixo ?
+> Quais ser?o os valores das vari?veis definidas abaixo ?
 >
 > ```{r, eval=FALSE}
 > mass <- 47.5
@@ -436,28 +442,28 @@ rm(list <- ls())
 > age <- age - 20
 > ```
 >
-> > ## Solução do desafio 2
+> > ## Solu??o do desafio 2
 > >
 > > ```{r ch2pt1-sol}
 > > mass <- 47.5
 > > ```
-> > Este comando atribui o valor 47.5 para a variável ` mass` for the variable mass
+> > Este comando atribui o valor 47.5 para a vari?vel ` mass` for the variable mass
 > >
 > > ```{r ch2pt2-sol}
 > > age <- 122
 > > ```
-> > Este comando atribiu o valor 122 para a variável ` age` 
+> > Este comando atribiu o valor 122 para a vari?vel ` age` 
 > >
 > > ```{r ch2pt3-sol}
 > > mass <- mass * 2.3
 > > ```
-> > O valor da variável ` mass`será dividido por 2.3 e a variável ` mass` passará a ter um novo valor.
+> > O valor da vari?vel ` mass`ser? dividido por 2.3 e a vari?vel ` mass` passar? a ter um novo valor.
 > > 
 > >
 > > ```{r ch2pt4-sol}
 > > age <- age - 20
 > > ```
-> > Será realizada uma subtração de 20 unidades na variável ` age`.
+> > Ser? realizada uma subtra??o de 20 unidades na vari?vel ` age`.
 > > 
 > {: .solution}
 {: .challenge}
@@ -465,26 +471,26 @@ rm(list <- ls())
 
 > ## Desafio 3
 >
-> Rode os códigos do desafio anterior, escreva um comando e compare massa com idade. 
-> A massa é maior que a idade ?
+> Rode os c?digos do desafio anterior, escreva um comando e compare massa com idade. 
+> A massa ? maior que a idade ?
 >
-> > ## Solução do desafio 3
+> > ## Solu??o do desafio 3
 > >
-> > Uma maneira de realizar esta tarefa é utilizar `>`:
+> > Uma maneira de realizar esta tarefa ? utilizar `>`:
 > > ```{r ch3-sol}
 > > mass > age
 > >```
-> > O resultado a ser retornado deve ser `TRUE` porque a variável ` mass` é maior que ` age`.
+> > O resultado a ser retornado deve ser `TRUE` porque a vari?vel ` mass` ? maior que ` age`.
 > {: .solution}
 {: .challenge}
 
 
 > ## Desafio 4
 >
-> Limpe o seu ambiente de trabalho. Delete as variáveis massa e idade.
+> Limpe o seu ambiente de trabalho. Delete as vari?veis massa e idade.
 >
 >
-> > ## Solução do desafio 4
+> > ## Solu??o do desafio 4
 > >
 > > O comando `rm` pode ser utilizado para realizar essa tarefa
 > > ```{r ch4-sol}
@@ -497,7 +503,7 @@ rm(list <- ls())
 >
 > Instale os pacotes `ggplot2`, `plyr` e `gapminder`.
 >
-> > ## Solução do desafio 5
+> > ## Solu??o do desafio 5
 > >
 > > Podemos utilizar o comando `install.packages()` para instalar os referidos pacotes.
 > > ```{r ch5-sol, eval=FALSE}
