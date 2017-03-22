@@ -3,11 +3,11 @@ title: Split-Apply-Combine
 teaching: 30
 exercises: 30
 questions:
-- "How can I do different calculations on different sets of data?"
+- "Como posso fazer diferentes cálculos em diferentes conjuntos de dados?"
 objectives:
-- "To be able to use the split-apply-combine strategy for data analysis."
+- "Poder usar a estratégia de split-apply-combine para análise de dados."
 keypoints:
-- "Use the `plyr` package to split data, apply functions to subsets, and combine the results."
+- "Use o pacote `plyr` para dividir dados, aplicar funções aos subconjuntos e combinar os resultados."
 ---
 
 
