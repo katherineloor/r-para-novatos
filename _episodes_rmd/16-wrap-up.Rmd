@@ -1,9 +1,9 @@
 ---
-title: Writing Good Software
+title: Escrevendo bons softwares
 teaching: 15
 exercises: 0
 questions:
-- "How can I write software that other people can use?"
+- "Como posso escrever softwares que outras pessoas possam utilizar?"
 objectives:
 - "Describe best practices for writing R and explain the justification for each."
 keypoints:
