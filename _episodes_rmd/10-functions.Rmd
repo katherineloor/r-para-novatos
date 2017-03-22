@@ -3,17 +3,17 @@ title: Functions Explained
 teaching: 45
 exercises: 15
 questions:
-- "How can I write a new function in R?"
+- "Como posso escrever uma nova função em R?"
 objectives:
-- "Define a function that takes arguments."
-- "Return a value from a function."
-- "Test a function."
-- "Set default values for function arguments."
-- "Explain why we should divide programs into small, single-purpose functions."
+- "Definir uma função que tem argumentos."
+- "Retornar um valor desde a função."
+- "Testar uma função."
+- "Definir valores padrão para argumentos de função."
+- "Explicar por que devemos dividir os programas em pequenas funções de propósito único."
 keypoints:
-- "Use `function` to define a new function in R."
-- "Use parameters to pass values into functions."
-- "Load functions into programs using `source`."
+- "Usar `function` para definir uma nova função em R."
+- "Usar parâmetros para passar valores entre funções."
+- "Carregar funções entre programas usando `source`."
 source: Rmd
 ---
 
@@ -25,32 +25,32 @@ gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
 ```
 
 
-If we only had one data set to analyze, it would probably be faster to load the
-file into a spreadsheet and use that to plot simple statistics. However, the
-gapminder data is updated periodically, and we may want to pull in that new
-information later and re-run our analysis again. We may also obtain similar data
-from a different source in the future.
+Se nós tivéssemos apenas um conjunto de dados para analisar, provavelmente seria mais rápido 
+carregar o arquivo em uma planilha e usá-la para plotar estatísticas simples. Todavia, os
+dados do gapminder são atualizados periodicamente, e talvez nós quiséssemos pegar essas novas
+informações depois e recolocá-las na nossa análise de novo. Nós também poderíamos pegar dados 
+similares de uma fonte diferente no futuro.
 
-In this lesson, we'll learn how to write a function so that we can repeat
-several operations with a single command.
+Nessa lição, nós aprenderemos como escrever uma função para que possamos repetir
+várias operações com um único comando.
 
-> ## What is a function?
+> ## O que é uma função?
 >
-> Functions gather a sequence of operations into a whole, preserving it for ongoing use. Functions provide:
+> Funções juntam uma sequência de operações em um todo, preservando isso para um uso contínuo, funções tem como característica:
 >
-> * a name we can remember and invoke it by
-> * relief from the need to remember the individual operations
-> * a defined set of inputs and expected outputs
-> * rich connections to the larger programming environment
+> * Um nome que possamos invocar e lembrar depois
+> * Um alívio para a necessidade de lembrar operações individuais
+> * Um conjunto definido de entradas e suas esperadas saídas
+> * Ricas conexões para o grande meio de programação
 >
-> As the basic building block of most programming languages, user-defined
-> functions constitute "programming" as much as any single abstraction can. If
-> you have written a function, you are a computer programmer.
+> Como o bloco de construção básico da maioria das linguagens de programação,
+> funções "constituem" programação "tanto quanto qualquer abstração. Se
+> você escreveu uma função, você é um programador de computador.
 {: .callout}
 
-## Defining a function
+## Definindo uma função
 
-Let's open a new R script file in the `functions/` directory and call it functions-lesson.R.
+Vamos abrir um novo arquivo script do R em `functions/` directory e chamá-lo de functions-lesson.R.
 
 ```{r}
 my_sum <- function(a, b) {
@@ -59,7 +59,7 @@ my_sum <- function(a, b) {
 }
 ```
 
-Let’s define a function fahr_to_kelvin that converts temperatures from Fahrenheit to Kelvin:
+Vamos definir uma função fahr_to_kelvin que converte temperaturas de Fahrenheit a Kelvin:
 
 ```{r}
 fahr_to_kelvin <- function(temp) {
@@ -68,29 +68,29 @@ fahr_to_kelvin <- function(temp) {
 }
 ```
 
-Nós definimos `fahr_to_kelvin` by assigning it to the output of `function`.  The
-list of argument names are contained within parentheses.  Next, the
-[body]({{ page.root }}/reference/#function-body) of the function--the statements that are
-executed when it runs--is contained within curly braces (`{}`).  The statements
-in the body are indented by two spaces.  This makes the code easier to read but
-does not affect how the code operates.
+Nós definimos `fahr_to_kelvin` atribuindo-o à saída de `function`.  A lista
+de nomes de argumentos estão contidos entre parênteses. Em seguida, o
+[corpo]({{ page.root }}/reference/#function-body) da função--as declarações que são
+executadas quando ele é executado--estão contidas dentro de chaves (`{}`). As declarações
+no corpo são recuados por dois espaços. Isso torna o código mais fácil de ler, mas
+não afeta o funcionamento do código.
 
-When we call the function, the values we pass to it as arguments are assigned to those
-variables so that we can use them inside the function.  Inside the function, we
-use a [return statement]({{ page.root }}/reference/#return-statement) to send a result back
-to whoever asked for it.
+Quando chamamos a função, os valores que passamos aos argumentos são assinalados às
+variáveis para que possamos usá-las dentro de uma função. Dentro da função nós
+usamos uma [return statement]({{ page.root }}/reference/#return-statement) para enviar o resultado de volta
+para quem o pediu.
 
-> ## Tip
+> ## Dica
 >
-> One feature unique to R is that the return statement is not required.
-> R automatically returns whichever variable is on the last line of the body
-> of the function. But for clarity, we will explicitly define the
-> return statement.
+> Uma característica única do R é que uma afirmação de retorno não é requerida.
+> O R retorna automaticamente qualquer variável que está na última linha do corpo
+> da função. Mas por clareza, nós vamos explicitamente definir
+> a afirmação de retorno.
 {: .callout}
 
 
-Let's try running our function.
-Calling our own function is no different from calling any other function:
+Vamos tentar rodar nossa função.
+Chamar a nossa função não é diferente de chamar qualquer outra função:
 
 ```{r}
 # freezing point of water
@@ -102,17 +102,17 @@ fahr_to_kelvin(32)
 fahr_to_kelvin(212)
 ```
 
-> ## Challenge 1
+> ## Desafio 1
 >
-> Write a function called `kelvin_to_celsius` that takes a temperature in Kelvin
-> and returns that temperature in Celsius
+> Escreva uma função chamada `kelvin_to_celsius` que pega a temperatura em Kelvin
+> e transforma em Celsius
 >
-> Hint: To convert from Kelvin to Celsius you subtract 273.15
+> Dica: para converter de Kelvin para Celsius é só subtrair 273.15
 >
-> > ## Solution to challenge 1
+> > ## Solução do Desafio 1
 > >
-> > Write a function called `kelvin_to_celsius` that takes a temperature in Kelvin
-> > and returns that temperature in Celsius
+> > Escreva uma função chamada `kelvin_to_celsius` que pega a temperatura em Kelvin
+> > e transforma em Celsius
 > >
 > > ```{r}
 > > kelvin_to_celsius <- function(temp) {
@@ -123,13 +123,13 @@ fahr_to_kelvin(212)
 > {: .solution}
 {: .challenge}
 
-## Combining functions
+## Combinando Funções
 
-The real power of functions comes from mixing, matching and combining them
-into ever-larger chunks to get the effect we want.
+O real poder das funções está em mesclar e combinar as funções
+em maiores para conseguir o efeito desejado.
 
-Let's define two functions that will convert temperature from Fahrenheit to
-Kelvin, and Kelvin to Celsius:
+Vamos definir duas funções que convertem a temperatura de Fahrenheit para
+Kelvin, e Kelvin para Celsius:
 
 ```{r}
 fahr_to_kelvin <- function(temp) {
@@ -145,7 +145,7 @@ kelvin_to_celsius <- function(temp) {
 
 > ## Desafio 2
 >
-> Defina a função que converte diratamente de Fahrenheit para Celsius, 
+> Defina a função que converte diretamente de Fahrenheit para Celsius, 
 > reutilizando as duas funções acima (ou usando as funções que preferir).
 >
 >
@@ -166,9 +166,8 @@ kelvin_to_celsius <- function(temp) {
 {: .challenge}
 
 
-We're going to define
-a function that calculates the Gross Domestic Product of a nation from the data
-available in our dataset:
+Nós vamos a definir uma função que calcula o Produto Interno Bruto de uma 
+nação a partir dos dados disponíveis em nosso conjunto de dados:
 
 ```{r}
 # Takes a dataset and multiplies the population column
