@@ -2,29 +2,17 @@
 layout: lesson
 root: .
 ---
+Introdução ao R para não-programadores usando dados gapminder.
 
-Introduction to R for non-programmers using gapminder data.
+O objetivo desta lição é ensinar programadores principiantes a escrever código modular e as melhores práticas para usar R para análise de dados. R é comumente usado em muitas disciplinas científicas para análise estatística e devido sua variedade de pacotes. Vimos que muitos cientistas que vem para oficinas do Software Carpentry usam R e querem aprender mais. A ênfase destes materiais é dar uma base sólida nos fundamentos de R e ensinar os melhores práticas para a computação científica: dividir as análises em unidades modulares, automação de tarefas e encapsulamento.
 
-The goal of this lesson is to teach novice programmers to write modular code
-and best practices for using R for data analysis. R is commonly used in many
-scientific disciplines for statistical analysis and its array of third-party
-packages. We find that many scientists who come to Software Carpentry workshops
-use R and want to learn more. The emphasis of these materials is to give
-attendees a strong foundation in the fundamentals of R, and to teach best
-practices for scientific computing: breaking down analyses into modular units,
-task automation, and encapsulation.
+Observe que este workshop se concentrará em ensinar os fundamentos da linguagem de programação R e não ensinará análise estatística.
 
-Note that this workshop will focus on teaching the fundamentals of the
-programming language R, and will not teach statistical analysis.
+Uma variedade de pacotes de terceiros são usados em toda esta oficina. Estes não são necessariamente os melhores, nem são abrangentes, mas são pacotes que achamos úteis e foram escolhidos  principalmente para usabilidade.
 
-A variety of third party packages are used throughout this workshop. These
-are not necessarily the best, nor are they comprehensive, but they are
-packages we find useful, and have been chosen primarily for their
-usability.
-
-> ## Prerequisites
+> ## Pré-requisitos
 >
-> Understand that computers store data and instructions (programs, scripts etc.) in files.
-> Files are organised in directories (folders).
-> Know how to access files not in the working directory by specifying the path.
+> Entender que os computadores armazenam dados e instruções (programas, scripts etc.) em arquivos.
+> Os arquivos são organizados em diretórios (pastas).
+> Saiba como acessar arquivos que não estão diretório de trabalho especificando o caminho.
 {: .prereq}
